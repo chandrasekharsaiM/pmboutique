@@ -137,7 +137,7 @@
   var grid = document.getElementById('productGrid');
   var tagLabels = { new: 'New', bestseller: 'Bestseller', limited: 'Limited', trending: 'Trending' };
 
-  fetch('data/products.json')
+  fetch('data/products.json?v=' + Date.now())
     .then(function(r) { return r.json(); })
     .then(function(data) {
       var products = data.products
