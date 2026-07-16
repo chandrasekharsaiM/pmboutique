@@ -204,62 +204,32 @@
     let ghConfig = { user: '', repo: '', token: '' };
     let products = [];
     let currentFilter = 'all';
-    let pendingFiles = [];
-    let pendingGalleryFiles = [];
 
-    function processImage(file, maxWidth, maxHeight, callback) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        var img = new Image();
-        img.onload = function() {
-          try {
-            var w = img.naturalWidth || img.width;
-            var h = img.naturalHeight || img.height;
-            if (w > maxWidth) { h = Math.round((h * maxWidth) / w); w = maxWidth; }
-            if (h > maxHeight) { w = Math.round((w * maxHeight) / h); h = maxHeight; }
-            var canvas = document.createElement('canvas');
-            canvas.width = w;
-            canvas.height = h;
-            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-            canvas.toBlob(function(blob) {
-              if (blob && blob.size > 0) {
-                callback(new File([blob], 'upload-' + Date.now() + '.jpg', { type: 'image/jpeg' }));
-              } else {
-                callback(file);
-              }
-            }, 'image/jpeg', 0.80);
-          } catch (e) { callback(file); }
+    function resizeFile(file, maxW, maxH) {
+      return new Promise(function(resolve) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var img = new Image();
+          img.onload = function() {
+            try {
+              var w = img.naturalWidth || img.width;
+              var h = img.naturalHeight || img.height;
+              if (w > maxW) { h = Math.round((h * maxW) / w); w = maxW; }
+              if (h > maxH) { w = Math.round((w * maxH) / h); h = maxH; }
+              var canvas = document.createElement('canvas');
+              canvas.width = w;
+              canvas.height = h;
+              canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+              canvas.toBlob(function(blob) {
+                resolve(blob ? new File([blob], 'upload.jpg', { type: 'image/jpeg' }) : file);
+              }, 'image/jpeg', 0.80);
+            } catch (e) { resolve(file); }
+          };
+          img.onerror = function() { resolve(file); };
+          img.src = e.target.result;
         };
-        img.onerror = function() { callback(file); };
-        img.src = e.target.result;
-      };
-      reader.onerror = function() { callback(file); };
-      reader.readAsDataURL(file);
-    }
-
-    function handleFileSelect(input, previewEl, maxW, maxH, fileList, index) {
-      if (!input.files || !input.files[0]) return;
-      var file = input.files[0];
-      previewEl.src = URL.createObjectURL(file);
-      previewEl.classList.remove('hidden');
-      if (typeof index !== 'undefined') {
-        fileList[index] = file;
-      } else {
-        fileList.length = 0;
-        fileList[0] = file;
-      }
-      processImage(file, maxW, maxH, function(resized) {
-        if (typeof index !== 'undefined') {
-          fileList[index] = resized;
-        } else {
-          fileList.length = 0;
-          fileList[0] = resized;
-        }
-        var origKB = Math.round(file.size / 1024);
-        var newKB = Math.round(resized.size / 1024);
-        if (origKB > 200) {
-          showToast('Ready: ' + (origKB > 1024 ? (origKB / 1024).toFixed(1) + 'MB' : origKB + 'KB') + ' \u2192 ' + (newKB > 1024 ? (newKB / 1024).toFixed(1) + 'MB' : newKB + 'KB'), 'success');
-        }
+        reader.onerror = function() { resolve(file); };
+        reader.readAsDataURL(file);
       });
     }
 
@@ -421,13 +391,11 @@
       document.getElementById('pGallery').value = '';
       document.getElementById('mainPreview').classList.add('hidden');
       document.getElementById('galleryPreview').innerHTML = '';
-      pendingFiles = [];
-      pendingGalleryFiles = [];
       document.getElementById('productModal').classList.add('active');
     }
 
     function editProduct(id) {
-      const p = products.find(x => x.id === id);
+      var p = products.find(function(x) { return x.id === id; });
       if (!p) return;
       document.getElementById('modalTitle').textContent = 'Edit Product';
       document.getElementById('editId').value = p.id;
@@ -441,8 +409,6 @@
       document.getElementById('mainPreview').src = p.image;
       document.getElementById('mainPreview').classList.remove('hidden');
       document.getElementById('galleryPreview').innerHTML = '';
-      pendingFiles = [];
-      pendingGalleryFiles = [];
       document.getElementById('productModal').classList.add('active');
     }
 
@@ -451,26 +417,22 @@
     }
 
     function previewImage(input, previewId) {
-      handleFileSelect(input, document.getElementById(previewId), 1200, 1200, pendingFiles);
+      if (input.files && input.files[0]) {
+        var preview = document.getElementById(previewId);
+        preview.src = URL.createObjectURL(input.files[0]);
+        preview.classList.remove('hidden');
+      }
     }
 
     function previewGallery(input) {
       var container = document.getElementById('galleryPreview');
       container.innerHTML = '';
-      pendingGalleryFiles = [];
       var files = Array.from(input.files).slice(0, 6);
       for (var i = 0; i < files.length; i++) {
-        (function(idx) {
-          var file = files[idx];
-          var thumb = document.createElement('img');
-          thumb.src = URL.createObjectURL(file);
-          thumb.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:6px;border:2px solid #ddd';
-          container.appendChild(thumb);
-          pendingGalleryFiles[idx] = file;
-          processImage(file, 800, 800, function(resized) {
-            pendingGalleryFiles[idx] = resized;
-          });
-        })(i);
+        var thumb = document.createElement('img');
+        thumb.src = URL.createObjectURL(files[i]);
+        thumb.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:6px;border:2px solid #ddd';
+        container.appendChild(thumb);
       }
     }
 
@@ -482,6 +444,8 @@
       var tag = document.getElementById('pTag').value || null;
       var order = parseInt(document.getElementById('pOrder').value) || 1;
       var urlText = document.getElementById('pImageUrl').value.trim();
+      var imageInput = document.getElementById('pImage');
+      var galleryInput = document.getElementById('pGallery');
 
       if (!name) { showToast('Product name is required', 'error'); return; }
 
@@ -493,45 +457,42 @@
         var imagePath = '';
         var gallery = [];
 
-        var hasNewMainImage = pendingFiles.length > 0 && pendingFiles[0];
-        var hasNewGalleryImages = pendingGalleryFiles.length > 0;
+        var mainFile = imageInput.files && imageInput.files[0] ? imageInput.files[0] : null;
+        var galleryFiles = galleryInput.files ? Array.from(galleryInput.files).slice(0, 6) : [];
 
-        showToast('Step 1/3: Reading image file...', 'success');
-
-        if (hasNewMainImage) {
-          var file = pendingFiles[0];
+        if (mainFile) {
+          showToast('Uploading image...', 'success');
           var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
           var imgPath = 'images/products/' + slug + '.jpg';
-          var base64 = await fileToBase64(file);
-          if (!base64) { throw new Error('Could not read image file'); }
-          showToast('Step 2/3: Uploading image to GitHub...', 'success');
+          var resized = await resizeFile(mainFile, 1200, 1200);
+          var base64 = await fileToBase64(resized);
+          if (!base64) throw new Error('Failed to read image');
           await commitBinaryFile(imgPath, base64, 'Admin: Upload ' + name + ' image');
           imagePath = imgPath;
         }
 
-        if (hasNewGalleryImages) {
-          showToast('Step 2/3: Uploading gallery images...', 'success');
-          for (var i = 0; i < pendingGalleryFiles.length; i++) {
-            var gfile = pendingGalleryFiles[i];
-            if (!gfile) continue;
-            var gslug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-            var gimgPath = 'images/products/' + gslug + '-' + (i + 1) + '.jpg';
-            var gbase64 = await fileToBase64(gfile);
+        if (galleryFiles.length > 0) {
+          showToast('Uploading gallery images...', 'success');
+          var gslug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+          for (var i = 0; i < galleryFiles.length; i++) {
+            var gresized = await resizeFile(galleryFiles[i], 800, 800);
+            var gbase64 = await fileToBase64(gresized);
             if (gbase64) {
+              var gimgPath = 'images/products/' + gslug + '-' + (i + 1) + '.jpg';
               await commitBinaryFile(gimgPath, gbase64, 'Admin: Upload ' + name + ' gallery ' + (i + 1));
               gallery.push(gimgPath);
             }
           }
         }
 
-        if (!imagePath && !hasNewGalleryImages && urlText) {
+        if (!imagePath && galleryFiles.length === 0 && urlText) {
           var urls = urlText.split(',').map(function(u) { return u.trim(); }).filter(Boolean);
           imagePath = urls[0] || '';
           gallery = urls.slice(1);
         }
 
         if (!imagePath) {
-          showToast('Please provide an image or paste an image URL', 'error');
+          showToast('Please select an image file or paste an image URL', 'error');
           saveBtn.textContent = 'Save Product';
           saveBtn.disabled = false;
           return;
@@ -547,13 +508,13 @@
             products[idx].tag = tag;
             products[idx].order = order;
             if (imagePath) products[idx].image = imagePath;
-            if (hasNewGalleryImages) products[idx].gallery = gallery;
+            if (gallery.length > 0) products[idx].gallery = gallery;
           }
         } else {
           products.push({ id: id, name: name, collection: collection, image: imagePath, gallery: gallery, tag: tag, order: order });
         }
 
-        showToast('Step 3/3: Saving product data...', 'success');
+        showToast('Saving to GitHub...', 'success');
         var json = JSON.stringify({ products: products }, null, 2);
         await commitFile('data/products.json', json, 'Admin: ' + (editId ? 'Update' : 'Add') + ' product "' + name + '"');
 
@@ -561,7 +522,7 @@
         closeModal();
         await loadProducts();
       } catch (e) {
-        showToast('Error at step: ' + e.message, 'error');
+        showToast('Error: ' + e.message, 'error');
         console.error('saveProduct error:', e);
       }
 
