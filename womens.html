@@ -131,6 +131,14 @@
   </div>
 </div>
 
+<div class="img-zoom-overlay" id="imgZoomOverlay">
+  <button class="img-zoom-close" onclick="closeZoom()"><i class="fas fa-times"></i></button>
+  <button class="img-zoom-nav img-zoom-prev" onclick="zoomPrev()"><i class="fas fa-chevron-left"></i></button>
+  <img id="imgZoomSrc" src="" alt="">
+  <button class="img-zoom-nav img-zoom-next" onclick="zoomNext()"><i class="fas fa-chevron-right"></i></button>
+  <div class="img-zoom-counter" id="imgZoomCounter"></div>
+</div>
+
 <script src="js/scripts.min.js"></script>
 <script>
 (function() {
@@ -151,9 +159,9 @@
 
       grid.innerHTML = products.map(function(p) {
         var tagHtml = p.tag ? '<span class="product-tag tag-' + p.tag + '">' + tagLabels[p.tag] + '</span>' : '';
-        var g = p.gallery || [];
-        var gStr = "'" + g.join("','") + "'";
-        return '<div class="product-card" onclick="openDesignModal(\'' + p.name.replace(/'/g, "\\'") + '\', \'' + p.image.replace(/'/g, "\\'") + '\', [' + gStr + '])">' +
+        var allImages = [p.image].concat(p.gallery || []);
+        var imgsJson = JSON.stringify(allImages);
+        return '<div class="product-card" data-images=\'' + imgsJson.replace(/'/g, "&#39;") + '\' data-name="' + p.name.replace(/"/g, '&quot;') + '">' +
           '<div class="product-card-image">' +
             '<img src="' + p.image + '" alt="' + p.name + '" loading="lazy">' +
             tagHtml +
@@ -164,13 +172,22 @@
           '</div>' +
         '</div>';
       }).join('');
+
+      var cards = grid.querySelectorAll('.product-card');
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].addEventListener('click', function() {
+          var name = this.getAttribute('data-name');
+          var imgs = JSON.parse(this.getAttribute('data-images'));
+          openDesignModal(name, imgs);
+        });
+      }
     })
     .catch(function() {
       grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 0;color:#c0392b">Failed to load products. Please try again later.</div>';
     });
 })();
 
-function openDesignModal(name, img, imgs) {
+function openDesignModal(name, imgs) {
   document.getElementById('designModalTitle').textContent = name;
   var grid = document.getElementById('designModalGrid');
   grid.innerHTML = '';
@@ -179,6 +196,8 @@ function openDesignModal(name, img, imgs) {
     imgEl.src = imgs[i];
     imgEl.alt = name + ' Design ' + (i + 1);
     imgEl.loading = 'lazy';
+    imgEl.setAttribute('data-index', i);
+    imgEl.onclick = (function(idx) { return function(e) { e.stopPropagation(); openZoom(imgs, idx); }; })(i);
     grid.appendChild(imgEl);
   }
   document.getElementById('designModal').classList.add('active');
@@ -188,8 +207,38 @@ function closeDesignModal() {
   document.getElementById('designModal').classList.remove('active');
   document.body.style.overflow = '';
 }
+
+var zoomImages = [], zoomIdx = 0;
+function openZoom(imgs, idx) {
+  zoomImages = imgs;
+  zoomIdx = idx;
+  document.getElementById('imgZoomSrc').src = imgs[idx];
+  document.getElementById('imgZoomCounter').textContent = (idx + 1) + ' / ' + imgs.length;
+  document.getElementById('imgZoomOverlay').classList.add('active');
+}
+function closeZoom() {
+  document.getElementById('imgZoomOverlay').classList.remove('active');
+}
+function zoomPrev() {
+  zoomIdx = (zoomIdx - 1 + zoomImages.length) % zoomImages.length;
+  document.getElementById('imgZoomSrc').src = zoomImages[zoomIdx];
+  document.getElementById('imgZoomCounter').textContent = (zoomIdx + 1) + ' / ' + zoomImages.length;
+}
+function zoomNext() {
+  zoomIdx = (zoomIdx + 1) % zoomImages.length;
+  document.getElementById('imgZoomSrc').src = zoomImages[zoomIdx];
+  document.getElementById('imgZoomCounter').textContent = (zoomIdx + 1) + ' / ' + zoomImages.length;
+}
+
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeDesignModal();
+  if (e.key === 'Escape') {
+    if (document.getElementById('imgZoomOverlay').classList.contains('active')) closeZoom();
+    else closeDesignModal();
+  }
+  if (document.getElementById('imgZoomOverlay').classList.contains('active')) {
+    if (e.key === 'ArrowLeft') zoomPrev();
+    if (e.key === 'ArrowRight') zoomNext();
+  }
 });
 </script>
 <script src="js/body-integrations.js"></script>
