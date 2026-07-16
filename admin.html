@@ -177,12 +177,12 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Product Image</label>
+        <label>Product Image (auto-resized to 1200px)</label>
         <input type="file" id="pImage" accept="image/*" onchange="previewImage(this, 'mainPreview')">
         <img id="mainPreview" class="image-preview hidden" alt="Preview">
       </div>
       <div class="form-group">
-        <label>Gallery Images (up to 3, used in modal popup)</label>
+        <label>Gallery Images — up to 3, auto-resized to 800px</label>
         <input type="file" id="pGallery" accept="image/*" multiple onchange="previewGallery(this)">
         <div id="galleryPreview" style="display:flex;gap:8px;margin-top:8px"></div>
       </div>
@@ -206,6 +206,30 @@
     let currentFilter = 'all';
     let pendingFiles = [];
     let pendingGalleryFiles = [];
+
+    // --- Image Resize ---
+    function resizeImage(file, maxWidth, maxHeight, quality) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = new Image();
+          img.onload = function() {
+            let w = img.width, h = img.height;
+            if (w > maxWidth) { h = (h * maxWidth) / w; w = maxWidth; }
+            if (h > maxHeight) { w = (w * maxHeight) / h; h = maxHeight; }
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.round(w);
+            canvas.height = Math.round(h);
+            canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(function(blob) {
+              resolve(new File([blob], file.name.replace(/\.[^.]+$/, '.jpg'), { type: 'image/jpeg' }));
+            }, 'image/jpeg', quality || 0.85);
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
 
     // --- Init ---
     (function() {
@@ -393,21 +417,25 @@
       document.getElementById('productModal').classList.remove('active');
     }
 
-    function previewImage(input, previewId) {
+    async function previewImage(input, previewId) {
       const preview = document.getElementById(previewId);
       if (input.files && input.files[0]) {
-        pendingFiles = [input.files[0]];
+        const resized = await resizeImage(input.files[0], 1200, 1200, 0.85);
+        pendingFiles = [resized];
         const reader = new FileReader();
         reader.onload = e => { preview.src = e.target.result; preview.classList.remove('hidden'); };
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(resized);
       }
     }
 
-    function previewGallery(input) {
+    async function previewGallery(input) {
       const container = document.getElementById('galleryPreview');
       container.innerHTML = '';
-      pendingGalleryFiles = Array.from(input.files).slice(0, 3);
-      pendingGalleryFiles.forEach(file => {
+      pendingGalleryFiles = [];
+      const files = Array.from(input.files).slice(0, 3);
+      for (const file of files) {
+        const resized = await resizeImage(file, 800, 800, 0.85);
+        pendingGalleryFiles.push(resized);
         const reader = new FileReader();
         reader.onload = e => {
           const img = document.createElement('img');
@@ -415,8 +443,8 @@
           img.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:6px;border:2px solid #ddd';
           container.appendChild(img);
         };
-        reader.readAsDataURL(file);
-      });
+        reader.readAsDataURL(resized);
+      }
     }
 
     // --- Save Product ---
@@ -441,9 +469,8 @@
         // Upload new main image
         if (pendingFiles.length > 0) {
           const file = pendingFiles[0];
-          const ext = file.name.split('.').pop();
           const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-          const imgPath = `images/products/${slug}.${ext}`;
+          const imgPath = `images/products/${slug}.jpg`;
           const base64 = await fileToBase64(file);
           await commitBinaryFile(imgPath, base64, `Admin: Upload ${name} image`);
           imagePath = imgPath;
@@ -453,9 +480,8 @@
         if (pendingGalleryFiles.length > 0) {
           for (let i = 0; i < pendingGalleryFiles.length; i++) {
             const file = pendingGalleryFiles[i];
-            const ext = file.name.split('.').pop();
             const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-            const imgPath = `images/products/${slug}-${i + 1}.${ext}`;
+            const imgPath = `images/products/${slug}-${i + 1}.jpg`;
             const base64 = await fileToBase64(file);
             await commitBinaryFile(imgPath, base64, `Admin: Upload ${name} gallery ${i + 1}`);
             gallery.push(imgPath);
