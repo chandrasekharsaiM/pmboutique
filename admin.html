@@ -217,7 +217,7 @@
             try {
               var w = img.naturalWidth || img.width;
               var h = img.naturalHeight || img.height;
-              if (w === 0 || h === 0) { reject(new Error('Image has no dimensions')); return; }
+              if (w === 0 || h === 0) { resolve(file); return; }
               if (w > maxWidth) { h = Math.round((h * maxWidth) / w); w = maxWidth; }
               if (h > maxHeight) { w = Math.round((w * maxHeight) / h); h = maxHeight; }
               var canvas = document.createElement('canvas');
@@ -225,7 +225,7 @@
               canvas.height = h;
               canvas.getContext('2d').drawImage(img, 0, 0, w, h);
               canvas.toBlob(function(blob) {
-                if (!blob) { reject(new Error('Compression failed')); return; }
+                if (!blob || blob.size === 0) { resolve(file); return; }
                 var origKB = Math.round(file.size / 1024);
                 var newKB = Math.round(blob.size / 1024);
                 if (origKB > 200) {
@@ -233,12 +233,12 @@
                 }
                 resolve(new File([blob], 'upload-' + Date.now() + '.jpg', { type: 'image/jpeg' }));
               }, 'image/jpeg', targetQuality || 0.82);
-            } catch (err) { reject(err); }
+            } catch (err) { resolve(file); }
           };
-          img.onerror = function() { reject(new Error('Cannot read this image. Try saving it as JPG first.')); };
+          img.onerror = function() { resolve(file); };
           img.src = e.target.result;
         };
-        reader.onerror = function() { reject(new Error('Cannot read file')); };
+        reader.onerror = function() { resolve(file); };
         reader.readAsDataURL(file);
       });
     }
@@ -434,21 +434,13 @@
       if (input.files && input.files[0]) {
         var file = input.files[0];
         isResizing = true;
-        document.getElementById('saveBtn').textContent = 'Compressing image...';
+        document.getElementById('saveBtn').textContent = 'Processing image...';
         document.getElementById('saveBtn').disabled = true;
-        try {
-          var resized = await compressImage(file, 1200, 1200, 0.82);
-          if (resized.size > 800000) {
-            resized = await compressImage(resized, 1200, 1200, 0.5);
-          }
-          pendingFiles = [resized];
-          var reader = new FileReader();
-          reader.onload = function(e) { preview.src = e.target.result; preview.classList.remove('hidden'); };
-          reader.readAsDataURL(resized);
-        } catch (err) {
-          showToast('Failed: ' + err.message, 'error');
-          pendingFiles = [];
-        }
+        var resized = await compressImage(file, 1200, 1200, 0.82);
+        pendingFiles = [resized];
+        var reader = new FileReader();
+        reader.onload = function(e) { preview.src = e.target.result; preview.classList.remove('hidden'); };
+        reader.readAsDataURL(resized);
         isResizing = false;
         document.getElementById('saveBtn').textContent = 'Save Product';
         document.getElementById('saveBtn').disabled = false;
@@ -460,29 +452,22 @@
       container.innerHTML = '';
       pendingGalleryFiles = [];
       isResizing = true;
-      document.getElementById('saveBtn').textContent = 'Compressing images...';
+      document.getElementById('saveBtn').textContent = 'Processing images...';
       document.getElementById('saveBtn').disabled = true;
       var files = Array.from(input.files).slice(0, 6);
       for (var i = 0; i < files.length; i++) {
-        try {
-          var resized = await compressImage(files[i], 800, 800, 0.82);
-          if (resized.size > 600000) {
-            resized = await compressImage(resized, 800, 800, 0.5);
-          }
-          pendingGalleryFiles.push(resized);
-          var reader = new FileReader();
-          reader.onload = (function(r) {
-            return function(e) {
-              var img = document.createElement('img');
-              img.src = e.target.result;
-              img.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:6px;border:2px solid #ddd';
-              container.appendChild(img);
-            };
-          })(resized);
-          reader.readAsDataURL(resized);
-        } catch (err) {
-          showToast('Image ' + (i + 1) + ' failed: ' + err.message, 'error');
-        }
+        var resized = await compressImage(files[i], 800, 800, 0.82);
+        pendingGalleryFiles.push(resized);
+        var reader = new FileReader();
+        reader.onload = (function(r) {
+          return function(e) {
+            var img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:6px;border:2px solid #ddd';
+            container.appendChild(img);
+          };
+        })(resized);
+        reader.readAsDataURL(resized);
       }
       isResizing = false;
       document.getElementById('saveBtn').textContent = 'Save Product';
