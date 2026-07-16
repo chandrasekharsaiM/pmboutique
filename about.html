@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — PM Designer Boutique</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/styles.min.css?v=2">
+  <style>
+    .about-page-hero {
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--charcoal);
+      overflow: hidden;
+    }
+    .about-page-hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .about-page-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+    }
+    .about-page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(30,27,23,0.4), rgba(30,27,23,0.7));
+      z-index: 1;
+    }
+    .about-page-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 var(--gutter);
+    }
+    .about-page-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .about-page-hero-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .about-story-section {
+      padding: 100px 0;
+    }
+    .about-story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-story-images {
+      position: relative;
+      height: 550px;
+    }
+    .about-story-img-main {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 75%;
+      height: 70%;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .about-story-img-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about-story-img-accent {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 55%;
+      height: 55%;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 6px solid var(--white);
+      box-shadow: var(--shadow-lg);
+    }
+    .about-story-img-accent img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about-story-year {
+      position: absolute;
+      top: 40%;
+      right: 10%;
+      width: 100px;
+      height: 100px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      box-shadow: var(--shadow-md);
+    }
+    .about-story-year-number {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .about-story-year-text {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .about-story-content {
+      padding-right: 20px;
+    }
+    .about-story-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .about-story-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    .about-story-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .about-story-desc {
+      font-size: 16px;
+      color: var(--gray-500);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .about-values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+    .about-value-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .about-value-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      background: var(--cream);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 16px;
+    }
+    .about-value-item h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 2px;
+    }
+    .about-value-item p {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+    .about-marquee {
+      padding: 60px 0;
+      background: var(--charcoal);
+      overflow: hidden;
+    }
+    .about-marquee-track {
+      display: flex;
+      gap: 60px;
+      animation: marqueeScroll 20s linear infinite;
+      width: max-content;
+    }
+    .about-marquee-item {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 700;
+      color: rgba(255,255,255,0.08);
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+    .about-marquee-item span {
+      color: var(--gold);
+      font-style: italic;
+    }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .about-features {
+      padding: 100px 0;
+      background: var(--cream);
+    }
+    .about-features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .about-feature-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: var(--shadow-xs);
+      transition: all 0.4s var(--ease);
+    }
+    .about-feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+    .about-feature-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--cream);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 22px;
+      color: var(--gold);
+    }
+    .about-feature-card h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+    .about-feature-card p {
+      font-size: 14px;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+    .about-stats-section {
+      padding: 80px 0;
+    }
+    .about-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+    .about-stat-item {
+      padding: 20px;
+    }
+    .about-stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .about-stat-label {
+      font-size: 14px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+    @media (max-width: 1024px) {
+      .about-story-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-story-images { height: 400px; }
+      .about-story-content { padding-right: 0; }
+      .about-features-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .about-story-images { height: 320px; }
+      .about-values-grid { grid-template-columns: 1fr; }
+      .about-features-grid { grid-template-columns: 1fr; }
+      .about-stats-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+    }
+    @media (max-width: 480px) {
+      .about-story-images { height: 260px; }
+      .about-story-year { width: 72px; height: 72px; top: 35%; }
+      .about-story-year-number { font-size: 24px; }
+    }
+  </style>
+  <script src="js/head-integrations.js" defer></script>
+</head>
+<body>
+
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <img src="images/logo-preloader.png" alt="PM" class="preloader-logo-img">
+    <div class="preloader-line"><div class="preloader-line-fill"></div></div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo-nav.png" alt="PM Designer Boutique" class="logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link active">About</a></li>
+        <li class="nav-item-dropdown">
+          <span class="nav-link dropdown-trigger">Collections <i class="fas fa-chevron-down"></i></span>
+          <div class="dropdown-menu">
+            <a href="womens.html">Womens</a>
+            <a href="mens.html">Mens</a>
+            <a href="kids.html">Kids</a>
+          </div>
+        </li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      </ul>
+      <a href="contact.html" class="nav-cta">Contact</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul class="mobile-links">
+        <li><a href="index.html" class="mobile-link">Home</a></li>
+        <li><a href="about.html" class="mobile-link">About</a></li>
+        <li>
+          <span class="mobile-link mobile-dropdown-trigger">Collections <i class="fas fa-chevron-down"></i></span>
+          <div class="mobile-dropdown-content open">
+            <div class="mobile-dropdown-links">
+              <a href="womens.html">Womens</a>
+              <a href="mens.html">Mens</a>
+              <a href="kids.html">Kids</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="gallery.html" class="mobile-link">Gallery</a></li>
+        <li><a href="contact.html" class="mobile-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section class="about-page-hero">
+  <div class="about-page-hero-bg">
+    <img src="images/about-brand.jpg" alt="About PM Designer Boutique">
+  </div>
+  <div class="about-page-hero-overlay"></div>
+  <div class="about-page-hero-content">
+    <h1 class="about-page-hero-title">Our Story</h1>
+    <p class="about-page-hero-subtitle">A decade of crafting dreams through fabric, thread, and artistry.</p>
+  </div>
+</section>
+
+<section class="about-story-section">
+  <div class="container">
+    <div class="about-story-grid">
+      <div class="about-story-images">
+        <div class="about-story-img-main">
+          <img src="images/about-brand.jpg" alt="PM Designer Boutique" loading="lazy">
+        </div>
+        <div class="about-story-img-accent">
+          <img src="images/about-fabric.jpg" alt="Premium fabrics" loading="lazy">
+        </div>
+        <div class="about-story-year">
+          <span class="about-story-year-number">10+</span>
+          <span class="about-story-year-text">Years</span>
+        </div>
+      </div>
+      <div class="about-story-content">
+        <span class="about-story-tag">Who We Are</span>
+        <h2 class="about-story-title">Crafting Dreams<br>Through <em>Fabric & Thread</em></h2>
+        <p class="about-story-desc">
+          At PM Designer Boutique, fashion is more than clothing — it's an emotion, a celebration, and a reflection of who you are. Founded with a passion for premium craftsmanship, our boutique has become a trusted destination for brides, families, and fashion lovers.
+        </p>
+        <p class="about-story-desc">
+          Every stitch, every cut, and every design is thoughtfully created by skilled artisans who understand that fashion is deeply personal. We take pride in delivering outfits that don't just fit your body — they fit your story.
+        </p>
+        <div class="about-values-grid">
+          <div class="about-value-item">
+            <div class="about-value-icon"><i class="fas fa-gem"></i></div>
+            <div>
+              <h4>Premium Fabrics</h4>
+              <p>Handpicked silk, organza, georgette & more</p>
+            </div>
+          </div>
+          <div class="about-value-item">
+            <div class="about-value-icon"><i class="fas fa-cut"></i></div>
+            <div>
+              <h4>Expert Tailoring</h4>
+              <p>Precision measurements & flawless fits</p>
+            </div>
+          </div>
+          <div class="about-value-item">
+            <div class="about-value-icon"><i class="fas fa-paint-brush"></i></div>
+            <div>
+              <h4>Custom Designs</h4>
+              <p>Bespoke creations for every occasion</p>
+            </div>
+          </div>
+          <div class="about-value-item">
+            <div class="about-value-icon"><i class="fas fa-heart"></i></div>
+            <div>
+              <h4>Personal Touch</h4>
+              <p>Dedicated one-on-one styling guidance</p>
+            </div>
+          </div>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Start Your Journey</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="about-marquee">
+  <div class="about-marquee-track">
+    <div class="about-marquee-item">Bridal <span>Couture</span></div>
+    <div class="about-marquee-item">Designer <span>Sarees</span></div>
+    <div class="about-marquee-item">Premium <span>Lehengas</span></div>
+    <div class="about-marquee-item">Custom <span>Stitching</span></div>
+    <div class="about-marquee-item">Party <span>Wear</span></div>
+    <div class="about-marquee-item">Festive <span>Collections</span></div>
+    <div class="about-marquee-item">Bridal <span>Couture</span></div>
+    <div class="about-marquee-item">Designer <span>Sarees</span></div>
+    <div class="about-marquee-item">Premium <span>Lehengas</span></div>
+    <div class="about-marquee-item">Custom <span>Stitching</span></div>
+  </div>
+</div>
+
+<section class="about-features">
+  <div class="container">
+    <div class="about-features-grid">
+      <div class="about-feature-card">
+        <div class="about-feature-icon"><i class="fas fa-user-tie"></i></div>
+        <h3>Personalized Styling</h3>
+        <p>Dedicated one-on-one styling guidance to find your perfect look.</p>
+      </div>
+      <div class="about-feature-card">
+        <div class="about-feature-icon"><i class="fas fa-crown"></i></div>
+        <h3>Bridal Specialists</h3>
+        <p>Expert bridal consultants who understand your special day.</p>
+      </div>
+      <div class="about-feature-card">
+        <div class="about-feature-icon"><i class="fas fa-gem"></i></div>
+        <h3>Premium Fabrics</h3>
+        <p>Only the finest silk, organza, georgette, and handpicked textiles.</p>
+      </div>
+      <div class="about-feature-card">
+        <div class="about-feature-icon"><i class="fas fa-ruler-combined"></i></div>
+        <h3>Perfect Fit</h3>
+        <p>Precision measurements and expert tailoring every time.</p>
+      </div>
+      <div class="about-feature-card">
+        <div class="about-feature-icon"><i class="fas fa-cut"></i></div>
+        <h3>Handcrafted Designs</h3>
+        <p>Every stitch and detail created by skilled artisan hands.</p>
+      </div>
+      <div class="about-feature-card">
+        <div class="about-feature-icon"><i class="fas fa-scissors"></i></div>
+        <h3>Customized Stitching</h3>
+        <p>Bespoke tailoring that brings your vision to life.</p>
+      </div>
+      <div class="about-feature-card">
+        <div class="about-feature-icon"><i class="fas fa-fire"></i></div>
+        <h3>Latest Trends</h3>
+        <p>Contemporary designs rooted in timeless elegance.</p>
+      </div>
+      <div class="about-feature-card">
+        <div class="about-feature-icon"><i class="fas fa-clock"></i></div>
+        <h3>Timely Delivery</h3>
+        <p>Reliable delivery without compromising quality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-stats-section">
+  <div class="container">
+    <div class="about-stats-grid">
+      <div class="about-stat-item">
+        <div class="about-stat-num">500+</div>
+        <div class="about-stat-label">Happy Clients</div>
+      </div>
+      <div class="about-stat-item">
+        <div class="about-stat-num">1200+</div>
+        <div class="about-stat-label">Outfits Delivered</div>
+      </div>
+      <div class="about-stat-item">
+        <div class="about-stat-num">10+</div>
+        <div class="about-stat-label">Years Experience</div>
+      </div>
+      <div class="about-stat-item">
+        <div class="about-stat-num">50+</div>
+        <div class="about-stat-label">Fabric Varieties</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-mark">PM</span><span class="logo-text">Designer Boutique</span></a>
+        <p>Where Elegance Meets Craftsmanship. Creating timeless fashion that celebrates every woman.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Collections</h4>
+        <ul>
+          <li><a href="womens.html">Womens</a></li>
+          <li><a href="mens.html">Mens</a></li>
+          <li><a href="kids.html">Kids</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 PM Designer Boutique. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/9107947103883" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<button class="btt visible" id="btt" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script src="js/scripts.min.js"></script>
+<script src="js/body-integrations.js"></script>
+<script src="js/footer-integrations.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kids Collection — PM Designer Boutique</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/styles.min.css?v=2">
+  <script src="js/head-integrations.js" defer></script>
+</head>
+<body>
+
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <img src="images/logo-preloader.png" alt="PM" class="preloader-logo-img">
+    <div class="preloader-line"><div class="preloader-line-fill"></div></div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo-nav.png" alt="PM Designer Boutique" class="logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item-dropdown">
+          <span class="nav-link dropdown-trigger active">Collections <i class="fas fa-chevron-down"></i></span>
+          <div class="dropdown-menu">
+            <a href="womens.html">Womens</a>
+            <a href="mens.html">Mens</a>
+            <a href="kids.html">Kids</a>
+          </div>
+        </li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      </ul>
+      <a href="contact.html" class="nav-cta">Contact</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul class="mobile-links">
+        <li><a href="index.html" class="mobile-link">Home</a></li>
+        <li><a href="about.html" class="mobile-link">About</a></li>
+        <li>
+          <span class="mobile-link mobile-dropdown-trigger">Collections <i class="fas fa-chevron-down"></i></span>
+          <div class="mobile-dropdown-content open">
+            <div class="mobile-dropdown-links">
+              <a href="womens.html">Womens</a>
+              <a href="mens.html">Mens</a>
+              <a href="kids.html">Kids</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="gallery.html" class="mobile-link">Gallery</a></li>
+        <li><a href="contact.html" class="mobile-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section class="collection-hero">
+  <div class="container">
+    <h1 class="collection-hero-title">Kids Collection</h1>
+    <p class="collection-hero-subtitle">Adorable ethnic and party wear for your little ones — lehengas, sherwanis, frocks, and more designed for every celebration.</p>
+  </div>
+</section>
+
+<section class="collection-grid-section">
+  <div class="container">
+    <div class="product-grid" id="productGrid">
+      <div style="grid-column:1/-1;text-align:center;padding:60px 0;color:var(--gray)">Loading products...</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-mark">PM</span><span class="logo-text">Designer Boutique</span></a>
+        <p>Where Elegance Meets Craftsmanship. Creating timeless fashion that celebrates every woman.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Collections</h4>
+        <ul>
+          <li><a href="womens.html">Womens</a></li>
+          <li><a href="mens.html">Mens</a></li>
+          <li><a href="kids.html">Kids</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 PM Designer Boutique. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/9107947103883" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<button class="btt visible" id="btt" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<div class="design-modal" id="designModal">
+  <div class="design-modal-overlay" onclick="closeDesignModal()"></div>
+  <div class="design-modal-content">
+    <button class="design-modal-close" onclick="closeDesignModal()"><i class="fas fa-times"></i></button>
+    <h2 class="design-modal-title" id="designModalTitle">Product Name</h2>
+    <p class="design-modal-subtitle">Latest Designs</p>
+    <div class="design-modal-grid" id="designModalGrid"></div>
+    <a href="contact.html" class="design-modal-btn">Enquire Now <i class="fas fa-arrow-right"></i></a>
+  </div>
+</div>
+
+<script src="js/scripts.min.js"></script>
+<script>
+(function() {
+  var grid = document.getElementById('productGrid');
+  var tagLabels = { new: 'New', bestseller: 'Bestseller', limited: 'Limited', trending: 'Trending' };
+
+  fetch('data/products.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var products = data.products
+        .filter(function(p) { return p.collection === 'kids'; })
+        .sort(function(a, b) { return a.order - b.order; });
+
+      if (products.length === 0) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 0;color:#999">No products found.</div>';
+        return;
+      }
+
+      grid.innerHTML = products.map(function(p) {
+        var tagHtml = p.tag ? '<span class="product-tag tag-' + p.tag + '">' + tagLabels[p.tag] + '</span>' : '';
+        var galleryJs = JSON.stringify(p.gallery || []);
+        return '<div class="product-card" onclick="openDesignModal(\'' + p.name.replace(/'/g, "\\'") + '\', \'' + p.image + '\', ' + galleryJs + ')">' +
+          '<div class="product-card-image">' +
+            '<img src="' + p.image + '" alt="' + p.name + '" loading="lazy">' +
+            tagHtml +
+          '</div>' +
+          '<div class="product-card-info">' +
+            '<h3 class="product-card-title">' + p.name + '</h3>' +
+            '<p class="product-card-cta">View Latest Designs <i class="fas fa-arrow-right"></i></p>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    })
+    .catch(function() {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 0;color:#c0392b">Failed to load products. Please try again later.</div>';
+    });
+})();
+
+function openDesignModal(name, img, imgs) {
+  document.getElementById('designModalTitle').textContent = name;
+  var grid = document.getElementById('designModalGrid');
+  grid.innerHTML = '';
+  for (var i = 0; i < imgs.length; i++) {
+    var imgEl = document.createElement('img');
+    imgEl.src = imgs[i];
+    imgEl.alt = name + ' Design ' + (i + 1);
+    imgEl.loading = 'lazy';
+    grid.appendChild(imgEl);
+  }
+  document.getElementById('designModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeDesignModal() {
+  document.getElementById('designModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeDesignModal();
+});
+</script>
+<script src="js/body-integrations.js"></script>
+<script src="js/footer-integrations.js"></script>
+</body>
+</html>

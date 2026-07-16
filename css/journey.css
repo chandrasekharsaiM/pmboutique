@@ -1,0 +1,100 @@
+.journey {
+  background: var(--off-white);
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 32px;
+  width: 2px;
+  background: var(--gray-100);
+}
+
+.timeline-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(180deg, var(--gold), var(--gold-light));
+  transition: height 0.3s linear;
+}
+
+.timeline-steps {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.t-step {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.t-dot {
+  position: relative;
+  width: 64px;
+  min-width: 64px;
+  height: 64px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+.t-dot-inner {
+  width: 16px;
+  height: 16px;
+  background: var(--gray-300);
+  border-radius: 50%;
+  transition: all 0.4s var(--ease);
+}
+
+.t-step.active .t-dot-inner {
+  background: var(--gold);
+  box-shadow: 0 0 0 6px rgba(201, 169, 110, 0.2);
+}
+
+.t-body {
+  flex: 1;
+  padding: 12px 0;
+}
+
+.t-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.t-body h4 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 8px;
+}
+
+.t-body p {
+  font-size: 15px;
+  color: var(--gray-500);
+  line-height: 1.7;
+}

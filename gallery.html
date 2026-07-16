@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — PM Designer Boutique</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/styles.min.css?v=2">
+  <script src="js/head-integrations.js" defer></script>
+</head>
+<body>
+
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <img src="images/logo-preloader.png" alt="PM" class="preloader-logo-img">
+    <div class="preloader-line"><div class="preloader-line-fill"></div></div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo-nav.png" alt="PM Designer Boutique" class="logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item-dropdown">
+          <span class="nav-link dropdown-trigger">Collections <i class="fas fa-chevron-down"></i></span>
+          <div class="dropdown-menu">
+            <a href="womens.html">Womens</a>
+            <a href="mens.html">Mens</a>
+            <a href="kids.html">Kids</a>
+          </div>
+        </li>
+        <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+      </ul>
+      <a href="contact.html" class="nav-cta">Contact</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul class="mobile-links">
+        <li><a href="index.html" class="mobile-link">Home</a></li>
+        <li><a href="about.html" class="mobile-link">About</a></li>
+        <li>
+          <span class="mobile-link mobile-dropdown-trigger">Collections <i class="fas fa-chevron-down"></i></span>
+          <div class="mobile-dropdown-content open">
+            <div class="mobile-dropdown-links">
+              <a href="womens.html">Womens</a>
+              <a href="mens.html">Mens</a>
+              <a href="kids.html">Kids</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="gallery.html" class="mobile-link">Gallery</a></li>
+        <li><a href="contact.html" class="mobile-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section class="gallery-hero">
+  <div class="gallery-hero-bg">
+    <img src="images/gallery-bridal.jpg" alt="Gallery Background">
+  </div>
+  <div class="gallery-hero-content">
+    <h1 class="gallery-hero-title">Our Gallery</h1>
+    <p class="gallery-hero-subtitle">A curated glimpse into our world of fashion, craftsmanship, and artistry.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="gallery-filters">
+      <button class="gallery-filter-btn active" data-filter="all">All</button>
+      <button class="gallery-filter-btn" data-filter="womens">Womens</button>
+      <button class="gallery-filter-btn" data-filter="mens">Mens</button>
+      <button class="gallery-filter-btn" data-filter="kids">Kids</button>
+      <button class="gallery-filter-btn" data-filter="bridal">Bridal</button>
+      <button class="gallery-filter-btn" data-filter="sarees">Sarees</button>
+      <button class="gallery-filter-btn" data-filter="lehengas">Lehengas</button>
+      <button class="gallery-filter-btn" data-filter="party">Party Wear</button>
+      <button class="gallery-filter-btn" data-filter="blouses">Blouses</button>
+      <button class="gallery-filter-btn" data-filter="embroidery">Embroidery</button>
+    </div>
+
+    <div class="gallery-masonry" id="galleryGrid">
+      <!-- Womens -->
+      <div class="gallery-masonry-item" data-category="womens bridal" data-caption="Bridal Couture">
+        <img src="images/gallery-bridal.jpg" alt="Bridal Couture" loading="lazy">
+        <div class="gallery-masonry-caption">Bridal Couture</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens sarees" data-caption="Designer Sarees">
+        <img src="images/gallery-saree.jpg" alt="Designer Sarees" loading="lazy">
+        <div class="gallery-masonry-caption">Designer Sarees</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens lehengas" data-caption="Premium Lehengas">
+        <img src="images/gallery-lehenga.jpg" alt="Premium Lehengas" loading="lazy">
+        <div class="gallery-masonry-caption">Premium Lehengas</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens blouses" data-caption="Designer Blouses">
+        <img src="images/gallery-blouse.jpg" alt="Designer Blouses" loading="lazy">
+        <div class="gallery-masonry-caption">Designer Blouses</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens embroidery" data-caption="Hand Embroidery">
+        <img src="images/gallery-embroidery.jpg" alt="Hand Embroidery" loading="lazy">
+        <div class="gallery-masonry-caption">Hand Embroidery</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens party" data-caption="Party Wear">
+        <img src="images/gallery-party.jpg" alt="Party Wear" loading="lazy">
+        <div class="gallery-masonry-caption">Party Wear</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens bridal" data-caption="Bridal Lehenga Work">
+        <img src="images/collection-bridal.jpg" alt="Bridal Lehenga Work" loading="lazy">
+        <div class="gallery-masonry-caption">Bridal Lehenga Work</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens sarees" data-caption="Silk Saree Collection">
+        <img src="images/collection-saree.jpg" alt="Silk Saree Collection" loading="lazy">
+        <div class="gallery-masonry-caption">Silk Saree Collection</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens lehengas" data-caption="Festive Lehenga">
+        <img src="images/collection-lehenga.jpg" alt="Festive Lehenga" loading="lazy">
+        <div class="gallery-masonry-caption">Festive Lehenga</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens party" data-caption="Celebration Wear">
+        <img src="images/collection-party.jpg" alt="Celebration Wear" loading="lazy">
+        <div class="gallery-masonry-caption">Celebration Wear</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens blouses" data-caption="Embroidered Blouses">
+        <img src="images/collection-blouse.jpg" alt="Embroidered Blouses" loading="lazy">
+        <div class="gallery-masonry-caption">Embroidered Blouses</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens bridal" data-caption="Wedding Ensemble">
+        <img src="images/hero-bridal.jpg" alt="Wedding Ensemble" loading="lazy">
+        <div class="gallery-masonry-caption">Wedding Ensemble</div>
+      </div>
+
+      <!-- Mens -->
+      <div class="gallery-masonry-item" data-category="mens" data-caption="Silk Sherwani">
+        <img src="images/mens/mens-sherwani.jpg" alt="Silk Sherwani" loading="lazy">
+        <div class="gallery-masonry-caption">Silk Sherwani</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="mens" data-caption="Embroidered Kurta">
+        <img src="images/mens/mens-kurta.jpg" alt="Embroidered Kurta" loading="lazy">
+        <div class="gallery-masonry-caption">Embroidered Kurta</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="mens" data-caption="Bandhgala Suit">
+        <img src="images/mens/mens-bandhgala.jpg" alt="Bandhgala Suit" loading="lazy">
+        <div class="gallery-masonry-caption">Bandhgala Suit</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="mens" data-caption="Wedding Sherwani">
+        <img src="images/mens/mens-wedding-sherwani.jpg" alt="Wedding Sherwani" loading="lazy">
+        <div class="gallery-masonry-caption">Wedding Sherwani</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="mens" data-caption="Kurta Set">
+        <img src="images/mens/mens-kurta-set.jpg" alt="Kurta Set" loading="lazy">
+        <div class="gallery-masonry-caption">Kurta Set</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="mens" data-caption="Nehru Jacket">
+        <img src="images/mens/mens-nehru-jacket.jpg" alt="Nehru Jacket" loading="lazy">
+        <div class="gallery-masonry-caption">Nehru Jacket</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="mens" data-caption="Formal Blazer">
+        <img src="images/mens/mens-blazer.jpg" alt="Formal Blazer" loading="lazy">
+        <div class="gallery-masonry-caption">Formal Blazer</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="mens" data-caption="Pathani Set">
+        <img src="images/mens/mens-pathani.jpg" alt="Pathani Set" loading="lazy">
+        <div class="gallery-masonry-caption">Pathani Set</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="mens" data-caption="Formal Shirt">
+        <img src="images/mens/mens-formal-shirt.jpg" alt="Formal Shirt" loading="lazy">
+        <div class="gallery-masonry-caption">Formal Shirt</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="mens" data-caption="Cotton Trousers">
+        <img src="images/mens/mens-cotton-trousers.jpg" alt="Cotton Trousers" loading="lazy">
+        <div class="gallery-masonry-caption">Cotton Trousers</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="mens" data-caption="Printed T-Shirt">
+        <img src="images/mens/mens-tshirt.jpg" alt="Printed T-Shirt" loading="lazy">
+        <div class="gallery-masonry-caption">Printed T-Shirt</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="mens" data-caption="Churidar Kurta">
+        <img src="images/mens/mens-churidar.jpg" alt="Churidar Kurta" loading="lazy">
+        <div class="gallery-masonry-caption">Churidar Kurta</div>
+      </div>
+
+      <!-- Kids -->
+      <div class="gallery-masonry-item" data-category="kids" data-caption="Little Princess Lehenga">
+        <img src="images/kids/kids-lehenga-1.jpg" alt="Little Princess Lehenga" loading="lazy">
+        <div class="gallery-masonry-caption">Little Princess Lehenga</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="kids" data-caption="Kids Kurta Set">
+        <img src="images/kids/kids-kurta.jpg" alt="Kids Kurta Set" loading="lazy">
+        <div class="gallery-masonry-caption">Kids Kurta Set</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="kids" data-caption="Festive Frock">
+        <img src="images/kids/kids-frock.jpg" alt="Festive Frock" loading="lazy">
+        <div class="gallery-masonry-caption">Festive Frock</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="kids" data-caption="Mini Sherwani">
+        <img src="images/kids/kids-sherwani.jpg" alt="Mini Sherwani" loading="lazy">
+        <div class="gallery-masonry-caption">Mini Sherwani</div>
+      </div>
+
+      <!-- Stitching -->
+      <div class="gallery-masonry-item" data-category="womens" data-caption="Custom Stitching">
+        <img src="images/gallery-stitching.jpg" alt="Custom Stitching" loading="lazy">
+        <div class="gallery-masonry-caption">Custom Stitching</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens" data-caption="Bespoke Tailoring">
+        <img src="images/collection-stitching.jpg" alt="Bespoke Tailoring" loading="lazy">
+        <div class="gallery-masonry-caption">Bespoke Tailoring</div>
+      </div>
+      <div class="gallery-masonry-item" data-category="womens embroidery" data-caption="Thread Work Detail">
+        <img src="images/about-fabric.jpg" alt="Thread Work Detail" loading="lazy">
+        <div class="gallery-masonry-caption">Thread Work Detail</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="g-lightbox" id="gLightbox">
+  <button class="g-lightbox-close" id="gLightboxClose"><i class="fas fa-times"></i></button>
+  <button class="g-lightbox-prev" id="gLightboxPrev"><i class="fas fa-chevron-left"></i></button>
+  <button class="g-lightbox-next" id="gLightboxNext"><i class="fas fa-chevron-right"></i></button>
+  <div class="g-lightbox-content"><img src="" alt="" id="gLightboxImg"></div>
+  <div class="g-lightbox-caption" id="gLightboxCaption"></div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-mark">PM</span><span class="logo-text">Designer Boutique</span></a>
+        <p>Where Elegance Meets Craftsmanship. Creating timeless fashion that celebrates every woman.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Collections</h4>
+        <ul>
+          <li><a href="womens.html">Womens</a></li>
+          <li><a href="mens.html">Mens</a></li>
+          <li><a href="kids.html">Kids</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 PM Designer Boutique. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/9107947103883" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<button class="btt visible" id="btt" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script src="js/scripts.min.js"></script>
+<script>
+(function(){
+  var items = document.querySelectorAll('.gallery-masonry-item');
+  var btns = document.querySelectorAll('.gallery-filter-btn');
+  var lightbox = document.getElementById('gLightbox');
+  var lbImg = document.getElementById('gLightboxImg');
+  var lbCap = document.getElementById('gLightboxCaption');
+  var currentIndex = 0;
+  var visibleItems = [];
+
+  function getVisible() {
+    visibleItems = [];
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].style.display !== 'none') visibleItems.push(items[i]);
+    }
+  }
+
+  function openLB(index) {
+    currentIndex = index;
+    var item = visibleItems[currentIndex];
+    lbImg.src = item.querySelector('img').src;
+    lbCap.textContent = item.getAttribute('data-caption') || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLB() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  for (var i = 0; i < items.length; i++) {
+    items[i].addEventListener('click', function() {
+      getVisible();
+      for (var j = 0; j < visibleItems.length; j++) {
+        if (visibleItems[j] === this) { openLB(j); break; }
+      }
+    });
+  }
+
+  document.getElementById('gLightboxClose').addEventListener('click', closeLB);
+  lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLB(); });
+  document.getElementById('gLightboxPrev').addEventListener('click', function() {
+    getVisible();
+    currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+    openLB(currentIndex);
+  });
+  document.getElementById('gLightboxNext').addEventListener('click', function() {
+    getVisible();
+    currentIndex = (currentIndex + 1) % visibleItems.length;
+    openLB(currentIndex);
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLB();
+    if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length; openLB(currentIndex); }
+    if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % visibleItems.length; openLB(currentIndex); }
+  });
+
+  // Filters
+  for (var b = 0; b < btns.length; b++) {
+    btns[b].addEventListener('click', function() {
+      for (var k = 0; k < btns.length; k++) btns[k].classList.remove('active');
+      this.classList.add('active');
+      var filter = this.getAttribute('data-filter');
+      for (var m = 0; m < items.length; m++) {
+        if (filter === 'all' || items[m].getAttribute('data-category').indexOf(filter) !== -1) {
+          items[m].style.display = '';
+        } else {
+          items[m].style.display = 'none';
+        }
+      }
+    });
+  }
+})();
+</script>
+<script src="js/body-integrations.js"></script>
+<script src="js/footer-integrations.js"></script>
+</body>
+</html>
