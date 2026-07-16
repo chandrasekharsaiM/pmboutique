@@ -4,8 +4,37 @@
       "id": "womens-bridal-lehenga",
       "name": "Bridal Lehenga",
       "collection": "womens",
-      "image": "images/collection-bridal.jpg",
-      "gallery": ["images/collection-bridal.jpg","images/collection-lehenga.jpg","images/gallery-bridal.jpg"],
+      "image": "images/products/bridal-lehenga.jpg",
+      "gallery": [
+        "images/collection-bridal.jpg",
+        "images/collection-lehenga.jpg"
+      ],
+      "tag": "new",
+      "order": 1
+    },
+    {
+      "id": "mens-silk-sherwani",
+      "name": "Silk Sherwani",
+      "collection": "mens",
+      "image": "images/mens/mens-sherwani.jpg",
+      "gallery": [
+        "images/mens/mens-sherwani.jpg",
+        "images/mens/mens-wedding-sherwani.jpg",
+        "images/mens/mens-churidar.jpg"
+      ],
+      "tag": "new",
+      "order": 1
+    },
+    {
+      "id": "kids-princess-lehenga",
+      "name": "Little Princess Lehenga",
+      "collection": "kids",
+      "image": "images/kids/kids-lehenga-1.jpg",
+      "gallery": [
+        "images/kids/kids-lehenga-1.jpg",
+        "images/kids/kids-printed-lehenga.jpg",
+        "images/kids/extra/kids-lehenga-4.jpg"
+      ],
       "tag": "new",
       "order": 1
     },
@@ -14,7 +43,37 @@
       "name": "Silk Saree",
       "collection": "womens",
       "image": "images/collection-saree.jpg",
-      "gallery": ["images/collection-saree.jpg","images/gallery-saree.jpg","images/collection-bridal.jpg"],
+      "gallery": [
+        "images/collection-saree.jpg",
+        "images/gallery-saree.jpg",
+        "images/collection-bridal.jpg"
+      ],
+      "tag": "bestseller",
+      "order": 2
+    },
+    {
+      "id": "mens-embroidered-kurta",
+      "name": "Embroidered Kurta",
+      "collection": "mens",
+      "image": "images/mens/mens-kurta.jpg",
+      "gallery": [
+        "images/mens/mens-kurta.jpg",
+        "images/mens/mens-kurta-set.jpg",
+        "images/mens/mens-churidar.jpg"
+      ],
+      "tag": "bestseller",
+      "order": 2
+    },
+    {
+      "id": "kids-kurta-set",
+      "name": "Kids Kurta Set",
+      "collection": "kids",
+      "image": "images/kids/kids-kurta.jpg",
+      "gallery": [
+        "images/kids/kids-kurta.jpg",
+        "images/kids/extra/kids-kurta-2.jpg",
+        "images/kids/extra/kids-embroidered-kurta.jpg"
+      ],
       "tag": "bestseller",
       "order": 2
     },
@@ -23,7 +82,37 @@
       "name": "Designer Gown",
       "collection": "womens",
       "image": "images/gallery-party.jpg",
-      "gallery": ["images/gallery-party.jpg","images/collection-lehenga.jpg","images/gallery-bridal.jpg"],
+      "gallery": [
+        "images/gallery-party.jpg",
+        "images/collection-lehenga.jpg",
+        "images/gallery-bridal.jpg"
+      ],
+      "tag": "limited",
+      "order": 3
+    },
+    {
+      "id": "mens-bandhgala-suit",
+      "name": "Bandhgala Suit",
+      "collection": "mens",
+      "image": "images/mens/mens-bandhgala.jpg",
+      "gallery": [
+        "images/mens/mens-bandhgala.jpg",
+        "images/mens/mens-blazer.jpg",
+        "images/mens/mens-formal-shirt.jpg"
+      ],
+      "tag": "limited",
+      "order": 3
+    },
+    {
+      "id": "kids-festive-frock",
+      "name": "Festive Frock",
+      "collection": "kids",
+      "image": "images/kids/kids-frock.jpg",
+      "gallery": [
+        "images/kids/kids-frock.jpg",
+        "images/kids/extra/kids-frock-2.jpg",
+        "images/kids/extra/kids-cotton-frock.jpg"
+      ],
       "tag": "limited",
       "order": 3
     },
@@ -32,7 +121,37 @@
       "name": "Festive Lehenga",
       "collection": "womens",
       "image": "images/collection-lehenga.jpg",
-      "gallery": ["images/collection-lehenga.jpg","images/collection-bridal.jpg","images/gallery-lehenga.jpg"],
+      "gallery": [
+        "images/collection-lehenga.jpg",
+        "images/collection-bridal.jpg",
+        "images/gallery-lehenga.jpg"
+      ],
+      "tag": "trending",
+      "order": 4
+    },
+    {
+      "id": "mens-wedding-sherwani",
+      "name": "Wedding Sherwani",
+      "collection": "mens",
+      "image": "images/mens/mens-wedding-sherwani.jpg",
+      "gallery": [
+        "images/mens/mens-wedding-sherwani.jpg",
+        "images/mens/mens-sherwani.jpg",
+        "images/mens/mens-pathani.jpg"
+      ],
+      "tag": "trending",
+      "order": 4
+    },
+    {
+      "id": "kids-flower-girl-lehenga",
+      "name": "Flower Girl Lehenga",
+      "collection": "kids",
+      "image": "images/kids/kids-lehenga-2.jpg",
+      "gallery": [
+        "images/kids/kids-lehenga-2.jpg",
+        "images/kids/extra/kids-printed-lehenga.jpg",
+        "images/kids/extra/kids-ghagra.jpg"
+      ],
       "tag": "trending",
       "order": 4
     },
@@ -41,7 +160,37 @@
       "name": "Embroidered Blouse",
       "collection": "womens",
       "image": "images/collection-blouse.jpg",
-      "gallery": ["images/collection-blouse.jpg","images/gallery-blouse.jpg","images/collection-bridal.jpg"],
+      "gallery": [
+        "images/collection-blouse.jpg",
+        "images/gallery-blouse.jpg",
+        "images/collection-bridal.jpg"
+      ],
+      "tag": "new",
+      "order": 5
+    },
+    {
+      "id": "mens-linen-kurta-set",
+      "name": "Linen Kurta Set",
+      "collection": "mens",
+      "image": "images/mens/mens-kurta-set.jpg",
+      "gallery": [
+        "images/mens/mens-kurta-set.jpg",
+        "images/mens/mens-kurta.jpg",
+        "images/mens/mens-churidar.jpg"
+      ],
+      "tag": "new",
+      "order": 5
+    },
+    {
+      "id": "kids-mini-sherwani",
+      "name": "Mini Sherwani",
+      "collection": "kids",
+      "image": "images/kids/kids-sherwani.jpg",
+      "gallery": [
+        "images/kids/kids-sherwani.jpg",
+        "images/kids/extra/kids-sherwani-2.jpg",
+        "images/kids/extra/kids-wedding-2.jpg"
+      ],
       "tag": "new",
       "order": 5
     },
@@ -50,7 +199,37 @@
       "name": "Party Wear Suit",
       "collection": "womens",
       "image": "images/gallery-party.jpg",
-      "gallery": ["images/gallery-party.jpg","images/collection-stitching.jpg","images/collection-saree.jpg"],
+      "gallery": [
+        "images/gallery-party.jpg",
+        "images/collection-stitching.jpg",
+        "images/collection-saree.jpg"
+      ],
+      "tag": "bestseller",
+      "order": 6
+    },
+    {
+      "id": "mens-nehru-jacket",
+      "name": "Nehru Jacket",
+      "collection": "mens",
+      "image": "images/mens/mens-nehru-jacket.jpg",
+      "gallery": [
+        "images/mens/mens-nehru-jacket.jpg",
+        "images/mens/mens-blazer.jpg",
+        "images/mens/mens-bandhgala.jpg"
+      ],
+      "tag": "bestseller",
+      "order": 6
+    },
+    {
+      "id": "kids-dhoti-set",
+      "name": "Traditional Dhoti Set",
+      "collection": "kids",
+      "image": "images/kids/kids-dhoti.jpg",
+      "gallery": [
+        "images/kids/kids-dhoti.jpg",
+        "images/kids/extra/kids-kurta-2.jpg",
+        "images/kids/kids-sherwani.jpg"
+      ],
       "tag": "bestseller",
       "order": 6
     },
@@ -59,7 +238,37 @@
       "name": "Anarkali Gown",
       "collection": "womens",
       "image": "images/gallery-lehenga.jpg",
-      "gallery": ["images/gallery-lehenga.jpg","images/gallery-party.jpg","images/collection-lehenga.jpg"],
+      "gallery": [
+        "images/gallery-lehenga.jpg",
+        "images/gallery-party.jpg",
+        "images/collection-lehenga.jpg"
+      ],
+      "tag": "trending",
+      "order": 7
+    },
+    {
+      "id": "mens-formal-blazer",
+      "name": "Formal Blazer",
+      "collection": "mens",
+      "image": "images/mens/mens-blazer.jpg",
+      "gallery": [
+        "images/mens/mens-blazer.jpg",
+        "images/mens/mens-bandhgala.jpg",
+        "images/mens/mens-formal-shirt.jpg"
+      ],
+      "tag": "trending",
+      "order": 7
+    },
+    {
+      "id": "kids-party-frock",
+      "name": "Party Wear Frock",
+      "collection": "kids",
+      "image": "images/kids/kids-frock.jpg",
+      "gallery": [
+        "images/kids/kids-frock.jpg",
+        "images/kids/extra/kids-party-wear.jpg",
+        "images/kids/extra/kids-frock-2.jpg"
+      ],
       "tag": "trending",
       "order": 7
     },
@@ -68,7 +277,37 @@
       "name": "Handloom Saree",
       "collection": "womens",
       "image": "images/gallery-saree.jpg",
-      "gallery": ["images/gallery-saree.jpg","images/collection-saree.jpg","images/collection-bridal.jpg"],
+      "gallery": [
+        "images/gallery-saree.jpg",
+        "images/collection-saree.jpg",
+        "images/collection-bridal.jpg"
+      ],
+      "tag": "limited",
+      "order": 8
+    },
+    {
+      "id": "mens-pathani-set",
+      "name": "Pathani Set",
+      "collection": "mens",
+      "image": "images/mens/mens-pathani.jpg",
+      "gallery": [
+        "images/mens/mens-pathani.jpg",
+        "images/mens/mens-kurta.jpg",
+        "images/mens/mens-churidar.jpg"
+      ],
+      "tag": "limited",
+      "order": 8
+    },
+    {
+      "id": "kids-silk-dhoti",
+      "name": "Silk Dhoti Set",
+      "collection": "kids",
+      "image": "images/kids/kids-dhoti.jpg",
+      "gallery": [
+        "images/kids/kids-dhoti.jpg",
+        "images/kids/kids-kurta.jpg",
+        "images/kids/extra/kids-embroidered-kurta.jpg"
+      ],
       "tag": "limited",
       "order": 8
     },
@@ -77,8 +316,38 @@
       "name": "Custom Stitched Set",
       "collection": "womens",
       "image": "images/collection-stitching.jpg",
-      "gallery": ["images/collection-stitching.jpg","images/gallery-stitching.jpg","images/collection-blouse.jpg"],
+      "gallery": [
+        "images/collection-stitching.jpg",
+        "images/gallery-stitching.jpg",
+        "images/collection-blouse.jpg"
+      ],
       "tag": "bestseller",
+      "order": 9
+    },
+    {
+      "id": "mens-formal-shirt",
+      "name": "Formal Shirt",
+      "collection": "mens",
+      "image": "images/mens/mens-formal-shirt.jpg",
+      "gallery": [
+        "images/mens/mens-formal-shirt.jpg",
+        "images/mens/mens-blazer.jpg",
+        "images/mens/mens-trousers.jpg"
+      ],
+      "tag": "bestseller",
+      "order": 9
+    },
+    {
+      "id": "kids-printed-tshirt",
+      "name": "Boys Printed T-Shirt",
+      "collection": "kids",
+      "image": "images/kids/kids-tshirt.jpg",
+      "gallery": [
+        "images/kids/kids-tshirt.jpg",
+        "images/kids/kids-jeans.jpg",
+        "images/kids/extra/kids-pant-suit.jpg"
+      ],
+      "tag": "new",
       "order": 9
     },
     {
@@ -86,8 +355,38 @@
       "name": "Sharara Set",
       "collection": "womens",
       "image": "images/collection-party.jpg",
-      "gallery": ["images/collection-party.jpg","images/gallery-party.jpg","images/collection-lehenga.jpg"],
+      "gallery": [
+        "images/collection-party.jpg",
+        "images/gallery-party.jpg",
+        "images/collection-lehenga.jpg"
+      ],
       "tag": "new",
+      "order": 10
+    },
+    {
+      "id": "mens-cotton-trousers",
+      "name": "Cotton Trousers",
+      "collection": "mens",
+      "image": "images/mens/mens-cotton-trousers.jpg",
+      "gallery": [
+        "images/mens/mens-cotton-trousers.jpg",
+        "images/mens/mens-formal-trousers.jpg",
+        "images/mens/mens-slim-pants.jpg"
+      ],
+      "tag": "new",
+      "order": 10
+    },
+    {
+      "id": "kids-crop-top-skirt",
+      "name": "Girls Crop Top & Skirt",
+      "collection": "kids",
+      "image": "images/kids/kids-crop-top.jpg",
+      "gallery": [
+        "images/kids/kids-crop-top.jpg",
+        "images/kids/extra/kids-party-wear.jpg",
+        "images/kids/kids-palazzo.jpg"
+      ],
+      "tag": "trending",
       "order": 10
     },
     {
@@ -95,8 +394,38 @@
       "name": "Chiffon Saree",
       "collection": "womens",
       "image": "images/gallery-fabric.jpg",
-      "gallery": ["images/gallery-fabric.jpg","images/collection-saree.jpg","images/gallery-saree.jpg"],
+      "gallery": [
+        "images/gallery-fabric.jpg",
+        "images/collection-saree.jpg",
+        "images/gallery-saree.jpg"
+      ],
       "tag": "trending",
+      "order": 11
+    },
+    {
+      "id": "mens-printed-tshirt",
+      "name": "Printed T-Shirt",
+      "collection": "mens",
+      "image": "images/mens/mens-tshirt.jpg",
+      "gallery": [
+        "images/mens/mens-tshirt.jpg",
+        "images/mens/mens-polo.jpg",
+        "images/mens/mens-half-sleeve.jpg"
+      ],
+      "tag": "trending",
+      "order": 11
+    },
+    {
+      "id": "kids-denim-jeans",
+      "name": "Boys Denim Jeans",
+      "collection": "kids",
+      "image": "images/kids/kids-jeans.jpg",
+      "gallery": [
+        "images/kids/kids-jeans.jpg",
+        "images/kids/extra/kids-pant-suit.jpg",
+        "images/kids/kids-formal-shirt.jpg"
+      ],
+      "tag": null,
       "order": 11
     },
     {
@@ -104,8 +433,38 @@
       "name": "A-Line Lehenga",
       "collection": "womens",
       "image": "images/gallery-bridal.jpg",
-      "gallery": ["images/gallery-bridal.jpg","images/collection-bridal.jpg","images/collection-lehenga.jpg"],
+      "gallery": [
+        "images/gallery-bridal.jpg",
+        "images/collection-bridal.jpg",
+        "images/collection-lehenga.jpg"
+      ],
       "tag": "limited",
+      "order": 12
+    },
+    {
+      "id": "mens-slim-fit-pants",
+      "name": "Slim Fit Pants",
+      "collection": "mens",
+      "image": "images/mens/mens-slim-pants.jpg",
+      "gallery": [
+        "images/mens/mens-slim-pants.jpg",
+        "images/mens/mens-formal-trousers.jpg",
+        "images/mens/mens-jeans.jpg"
+      ],
+      "tag": "limited",
+      "order": 12
+    },
+    {
+      "id": "kids-anarkali-set",
+      "name": "Ethnic Anarkali Set",
+      "collection": "kids",
+      "image": "images/kids/kids-anarkali.jpg",
+      "gallery": [
+        "images/kids/kids-anarkali.jpg",
+        "images/kids/extra/kids-anarkali-2.jpg",
+        "images/kids/extra/kids-ghagra.jpg"
+      ],
+      "tag": "bestseller",
       "order": 12
     },
     {
@@ -113,8 +472,38 @@
       "name": "Printed Kurti",
       "collection": "womens",
       "image": "images/collection-blouse.jpg",
-      "gallery": ["images/collection-blouse.jpg","images/gallery-blouse.jpg","images/collection-party.jpg"],
+      "gallery": [
+        "images/collection-blouse.jpg",
+        "images/gallery-blouse.jpg",
+        "images/collection-party.jpg"
+      ],
       "tag": "new",
+      "order": 13
+    },
+    {
+      "id": "mens-casual-polo",
+      "name": "Casual Polo Shirt",
+      "collection": "mens",
+      "image": "images/mens/mens-polo.jpg",
+      "gallery": [
+        "images/mens/mens-polo.jpg",
+        "images/mens/mens-tshirt.jpg",
+        "images/mens/mens-half-sleeve.jpg"
+      ],
+      "tag": "new",
+      "order": 13
+    },
+    {
+      "id": "kids-formal-shirt",
+      "name": "Boys Formal Shirt",
+      "collection": "kids",
+      "image": "images/kids/kids-formal-shirt.jpg",
+      "gallery": [
+        "images/kids/kids-formal-shirt.jpg",
+        "images/kids/extra/kids-pant-suit.jpg",
+        "images/kids/extra/kids-sherwani-2.jpg"
+      ],
+      "tag": "limited",
       "order": 13
     },
     {
@@ -122,8 +511,38 @@
       "name": "Patiala Suit",
       "collection": "womens",
       "image": "images/collection-stitching.jpg",
-      "gallery": ["images/collection-stitching.jpg","images/gallery-stitching.jpg","images/collection-saree.jpg"],
+      "gallery": [
+        "images/collection-stitching.jpg",
+        "images/gallery-stitching.jpg",
+        "images/collection-saree.jpg"
+      ],
       "tag": "bestseller",
+      "order": 14
+    },
+    {
+      "id": "mens-churidar-kurta",
+      "name": "Churidar Kurta",
+      "collection": "mens",
+      "image": "images/mens/mens-churidar.jpg",
+      "gallery": [
+        "images/mens/mens-churidar.jpg",
+        "images/mens/mens-kurta.jpg",
+        "images/mens/mens-pathani.jpg"
+      ],
+      "tag": "bestseller",
+      "order": 14
+    },
+    {
+      "id": "kids-palazzo-set",
+      "name": "Girls Palazzo Set",
+      "collection": "kids",
+      "image": "images/kids/kids-palazzo.jpg",
+      "gallery": [
+        "images/kids/kids-palazzo.jpg",
+        "images/kids/extra/kids-cotton-frock.jpg",
+        "images/kids/kids-anarkali.jpg"
+      ],
+      "tag": "new",
       "order": 14
     },
     {
@@ -131,7 +550,37 @@
       "name": "Crop Top Lehenga",
       "collection": "womens",
       "image": "images/collection-lehenga.jpg",
-      "gallery": ["images/collection-lehenga.jpg","images/gallery-lehenga.jpg","images/collection-bridal.jpg"],
+      "gallery": [
+        "images/collection-lehenga.jpg",
+        "images/gallery-lehenga.jpg",
+        "images/collection-bridal.jpg"
+      ],
+      "tag": "trending",
+      "order": 15
+    },
+    {
+      "id": "mens-denim-jeans",
+      "name": "Denim Jeans",
+      "collection": "mens",
+      "image": "images/mens/mens-jeans.jpg",
+      "gallery": [
+        "images/mens/mens-jeans.jpg",
+        "images/mens/mens-slim-pants.jpg",
+        "images/mens/mens-shorts.jpg"
+      ],
+      "tag": "trending",
+      "order": 15
+    },
+    {
+      "id": "kids-shorts-tee",
+      "name": "Boys Shorts & Tee Combo",
+      "collection": "kids",
+      "image": "images/kids/kids-shorts-tee.jpg",
+      "gallery": [
+        "images/kids/kids-shorts-tee.jpg",
+        "images/kids/kids-tshirt.jpg",
+        "images/kids/kids-jeans.jpg"
+      ],
       "tag": "trending",
       "order": 15
     },
@@ -140,8 +589,38 @@
       "name": "Banarasi Saree",
       "collection": "womens",
       "image": "images/gallery-saree.jpg",
-      "gallery": ["images/gallery-saree.jpg","images/collection-saree.jpg","images/collection-bridal.jpg"],
+      "gallery": [
+        "images/gallery-saree.jpg",
+        "images/collection-saree.jpg",
+        "images/collection-bridal.jpg"
+      ],
       "tag": "limited",
+      "order": 16
+    },
+    {
+      "id": "mens-linen-shirt",
+      "name": "Linen Shirt",
+      "collection": "mens",
+      "image": "images/mens/mens-linen-shirt.jpg",
+      "gallery": [
+        "images/mens/mens-linen-shirt.jpg",
+        "images/mens/mens-formal-shirt.jpg",
+        "images/mens/mens-half-sleeve.jpg"
+      ],
+      "tag": "bestseller",
+      "order": 16
+    },
+    {
+      "id": "kids-wedding-suit",
+      "name": "Kids Wedding Suit",
+      "collection": "kids",
+      "image": "images/kids/kids-wedding.jpg",
+      "gallery": [
+        "images/kids/kids-wedding.jpg",
+        "images/kids/extra/kids-wedding-2.jpg",
+        "images/kids/extra/kids-ceremonial-wear.jpg"
+      ],
+      "tag": "bestseller",
       "order": 16
     },
     {
@@ -149,7 +628,37 @@
       "name": "Dhoti Pant Set",
       "collection": "womens",
       "image": "images/collection-party.jpg",
-      "gallery": ["images/collection-party.jpg","images/gallery-party.jpg","images/collection-blouse.jpg"],
+      "gallery": [
+        "images/collection-party.jpg",
+        "images/gallery-party.jpg",
+        "images/collection-blouse.jpg"
+      ],
+      "tag": "new",
+      "order": 17
+    },
+    {
+      "id": "mens-formal-trousers",
+      "name": "Formal Trousers",
+      "collection": "mens",
+      "image": "images/mens/mens-formal-trousers.jpg",
+      "gallery": [
+        "images/mens/mens-formal-trousers.jpg",
+        "images/mens/mens-cotton-trousers.jpg",
+        "images/mens/mens-slim-pants.jpg"
+      ],
+      "tag": "limited",
+      "order": 17
+    },
+    {
+      "id": "kids-sharara-set",
+      "name": "Girls Sharara Set",
+      "collection": "kids",
+      "image": "images/kids/kids-sharara.jpg",
+      "gallery": [
+        "images/kids/kids-sharara.jpg",
+        "images/kids/extra/kids-anarkali-2.jpg",
+        "images/kids/extra/kids-ethnic-wear.jpg"
+      ],
       "tag": "new",
       "order": 17
     },
@@ -158,169 +667,24 @@
       "name": "Georgette Gown",
       "collection": "womens",
       "image": "images/gallery-party.jpg",
-      "gallery": ["images/gallery-party.jpg","images/gallery-lehenga.jpg","images/collection-lehenga.jpg"],
+      "gallery": [
+        "images/gallery-party.jpg",
+        "images/gallery-lehenga.jpg",
+        "images/collection-lehenga.jpg"
+      ],
       "tag": "trending",
       "order": 18
-    },
-    {
-      "id": "mens-silk-sherwani",
-      "name": "Silk Sherwani",
-      "collection": "mens",
-      "image": "images/mens/mens-sherwani.jpg",
-      "gallery": ["images/mens/mens-sherwani.jpg","images/mens/mens-wedding-sherwani.jpg","images/mens/mens-churidar.jpg"],
-      "tag": "new",
-      "order": 1
-    },
-    {
-      "id": "mens-embroidered-kurta",
-      "name": "Embroidered Kurta",
-      "collection": "mens",
-      "image": "images/mens/mens-kurta.jpg",
-      "gallery": ["images/mens/mens-kurta.jpg","images/mens/mens-kurta-set.jpg","images/mens/mens-churidar.jpg"],
-      "tag": "bestseller",
-      "order": 2
-    },
-    {
-      "id": "mens-bandhgala-suit",
-      "name": "Bandhgala Suit",
-      "collection": "mens",
-      "image": "images/mens/mens-bandhgala.jpg",
-      "gallery": ["images/mens/mens-bandhgala.jpg","images/mens/mens-blazer.jpg","images/mens/mens-formal-shirt.jpg"],
-      "tag": "limited",
-      "order": 3
-    },
-    {
-      "id": "mens-wedding-sherwani",
-      "name": "Wedding Sherwani",
-      "collection": "mens",
-      "image": "images/mens/mens-wedding-sherwani.jpg",
-      "gallery": ["images/mens/mens-wedding-sherwani.jpg","images/mens/mens-sherwani.jpg","images/mens/mens-pathani.jpg"],
-      "tag": "trending",
-      "order": 4
-    },
-    {
-      "id": "mens-linen-kurta-set",
-      "name": "Linen Kurta Set",
-      "collection": "mens",
-      "image": "images/mens/mens-kurta-set.jpg",
-      "gallery": ["images/mens/mens-kurta-set.jpg","images/mens/mens-kurta.jpg","images/mens/mens-churidar.jpg"],
-      "tag": "new",
-      "order": 5
-    },
-    {
-      "id": "mens-nehru-jacket",
-      "name": "Nehru Jacket",
-      "collection": "mens",
-      "image": "images/mens/mens-nehru-jacket.jpg",
-      "gallery": ["images/mens/mens-nehru-jacket.jpg","images/mens/mens-blazer.jpg","images/mens/mens-bandhgala.jpg"],
-      "tag": "bestseller",
-      "order": 6
-    },
-    {
-      "id": "mens-formal-blazer",
-      "name": "Formal Blazer",
-      "collection": "mens",
-      "image": "images/mens/mens-blazer.jpg",
-      "gallery": ["images/mens/mens-blazer.jpg","images/mens/mens-bandhgala.jpg","images/mens/mens-formal-shirt.jpg"],
-      "tag": "trending",
-      "order": 7
-    },
-    {
-      "id": "mens-pathani-set",
-      "name": "Pathani Set",
-      "collection": "mens",
-      "image": "images/mens/mens-pathani.jpg",
-      "gallery": ["images/mens/mens-pathani.jpg","images/mens/mens-kurta.jpg","images/mens/mens-churidar.jpg"],
-      "tag": "limited",
-      "order": 8
-    },
-    {
-      "id": "mens-formal-shirt",
-      "name": "Formal Shirt",
-      "collection": "mens",
-      "image": "images/mens/mens-formal-shirt.jpg",
-      "gallery": ["images/mens/mens-formal-shirt.jpg","images/mens/mens-blazer.jpg","images/mens/mens-trousers.jpg"],
-      "tag": "bestseller",
-      "order": 9
-    },
-    {
-      "id": "mens-cotton-trousers",
-      "name": "Cotton Trousers",
-      "collection": "mens",
-      "image": "images/mens/mens-cotton-trousers.jpg",
-      "gallery": ["images/mens/mens-cotton-trousers.jpg","images/mens/mens-formal-trousers.jpg","images/mens/mens-slim-pants.jpg"],
-      "tag": "new",
-      "order": 10
-    },
-    {
-      "id": "mens-printed-tshirt",
-      "name": "Printed T-Shirt",
-      "collection": "mens",
-      "image": "images/mens/mens-tshirt.jpg",
-      "gallery": ["images/mens/mens-tshirt.jpg","images/mens/mens-polo.jpg","images/mens/mens-half-sleeve.jpg"],
-      "tag": "trending",
-      "order": 11
-    },
-    {
-      "id": "mens-slim-fit-pants",
-      "name": "Slim Fit Pants",
-      "collection": "mens",
-      "image": "images/mens/mens-slim-pants.jpg",
-      "gallery": ["images/mens/mens-slim-pants.jpg","images/mens/mens-formal-trousers.jpg","images/mens/mens-jeans.jpg"],
-      "tag": "limited",
-      "order": 12
-    },
-    {
-      "id": "mens-casual-polo",
-      "name": "Casual Polo Shirt",
-      "collection": "mens",
-      "image": "images/mens/mens-polo.jpg",
-      "gallery": ["images/mens/mens-polo.jpg","images/mens/mens-tshirt.jpg","images/mens/mens-half-sleeve.jpg"],
-      "tag": "new",
-      "order": 13
-    },
-    {
-      "id": "mens-churidar-kurta",
-      "name": "Churidar Kurta",
-      "collection": "mens",
-      "image": "images/mens/mens-churidar.jpg",
-      "gallery": ["images/mens/mens-churidar.jpg","images/mens/mens-kurta.jpg","images/mens/mens-pathani.jpg"],
-      "tag": "bestseller",
-      "order": 14
-    },
-    {
-      "id": "mens-denim-jeans",
-      "name": "Denim Jeans",
-      "collection": "mens",
-      "image": "images/mens/mens-jeans.jpg",
-      "gallery": ["images/mens/mens-jeans.jpg","images/mens/mens-slim-pants.jpg","images/mens/mens-shorts.jpg"],
-      "tag": "trending",
-      "order": 15
-    },
-    {
-      "id": "mens-linen-shirt",
-      "name": "Linen Shirt",
-      "collection": "mens",
-      "image": "images/mens/mens-linen-shirt.jpg",
-      "gallery": ["images/mens/mens-linen-shirt.jpg","images/mens/mens-formal-shirt.jpg","images/mens/mens-half-sleeve.jpg"],
-      "tag": "bestseller",
-      "order": 16
-    },
-    {
-      "id": "mens-formal-trousers",
-      "name": "Formal Trousers",
-      "collection": "mens",
-      "image": "images/mens/mens-formal-trousers.jpg",
-      "gallery": ["images/mens/mens-formal-trousers.jpg","images/mens/mens-cotton-trousers.jpg","images/mens/mens-slim-pants.jpg"],
-      "tag": "limited",
-      "order": 17
     },
     {
       "id": "mens-printed-shorts",
       "name": "Printed Shorts",
       "collection": "mens",
       "image": "images/mens/mens-shorts.jpg",
-      "gallery": ["images/mens/mens-shorts.jpg","images/mens/mens-jeans.jpg","images/mens/mens-slim-pants.jpg"],
+      "gallery": [
+        "images/mens/mens-shorts.jpg",
+        "images/mens/mens-jeans.jpg",
+        "images/mens/mens-slim-pants.jpg"
+      ],
       "tag": "new",
       "order": 18
     },
@@ -329,162 +693,13 @@
       "name": "Half Sleeve Shirt",
       "collection": "mens",
       "image": "images/mens/mens-half-sleeve.jpg",
-      "gallery": ["images/mens/mens-half-sleeve.jpg","images/mens/mens-polo.jpg","images/mens/mens-tshirt.jpg"],
+      "gallery": [
+        "images/mens/mens-half-sleeve.jpg",
+        "images/mens/mens-polo.jpg",
+        "images/mens/mens-tshirt.jpg"
+      ],
       "tag": "trending",
       "order": 19
-    },
-    {
-      "id": "kids-princess-lehenga",
-      "name": "Little Princess Lehenga",
-      "collection": "kids",
-      "image": "images/kids/kids-lehenga-1.jpg",
-      "gallery": ["images/kids/kids-lehenga-1.jpg","images/kids/kids-printed-lehenga.jpg","images/kids/extra/kids-lehenga-4.jpg"],
-      "tag": "new",
-      "order": 1
-    },
-    {
-      "id": "kids-kurta-set",
-      "name": "Kids Kurta Set",
-      "collection": "kids",
-      "image": "images/kids/kids-kurta.jpg",
-      "gallery": ["images/kids/kids-kurta.jpg","images/kids/extra/kids-kurta-2.jpg","images/kids/extra/kids-embroidered-kurta.jpg"],
-      "tag": "bestseller",
-      "order": 2
-    },
-    {
-      "id": "kids-festive-frock",
-      "name": "Festive Frock",
-      "collection": "kids",
-      "image": "images/kids/kids-frock.jpg",
-      "gallery": ["images/kids/kids-frock.jpg","images/kids/extra/kids-frock-2.jpg","images/kids/extra/kids-cotton-frock.jpg"],
-      "tag": "limited",
-      "order": 3
-    },
-    {
-      "id": "kids-flower-girl-lehenga",
-      "name": "Flower Girl Lehenga",
-      "collection": "kids",
-      "image": "images/kids/kids-lehenga-2.jpg",
-      "gallery": ["images/kids/kids-lehenga-2.jpg","images/kids/extra/kids-printed-lehenga.jpg","images/kids/extra/kids-ghagra.jpg"],
-      "tag": "trending",
-      "order": 4
-    },
-    {
-      "id": "kids-mini-sherwani",
-      "name": "Mini Sherwani",
-      "collection": "kids",
-      "image": "images/kids/kids-sherwani.jpg",
-      "gallery": ["images/kids/kids-sherwani.jpg","images/kids/extra/kids-sherwani-2.jpg","images/kids/extra/kids-wedding-2.jpg"],
-      "tag": "new",
-      "order": 5
-    },
-    {
-      "id": "kids-dhoti-set",
-      "name": "Traditional Dhoti Set",
-      "collection": "kids",
-      "image": "images/kids/kids-dhoti.jpg",
-      "gallery": ["images/kids/kids-dhoti.jpg","images/kids/extra/kids-kurta-2.jpg","images/kids/kids-sherwani.jpg"],
-      "tag": "bestseller",
-      "order": 6
-    },
-    {
-      "id": "kids-party-frock",
-      "name": "Party Wear Frock",
-      "collection": "kids",
-      "image": "images/kids/kids-frock.jpg",
-      "gallery": ["images/kids/kids-frock.jpg","images/kids/extra/kids-party-wear.jpg","images/kids/extra/kids-frock-2.jpg"],
-      "tag": "trending",
-      "order": 7
-    },
-    {
-      "id": "kids-silk-dhoti",
-      "name": "Silk Dhoti Set",
-      "collection": "kids",
-      "image": "images/kids/kids-dhoti.jpg",
-      "gallery": ["images/kids/kids-dhoti.jpg","images/kids/kids-kurta.jpg","images/kids/extra/kids-embroidered-kurta.jpg"],
-      "tag": "limited",
-      "order": 8
-    },
-    {
-      "id": "kids-printed-tshirt",
-      "name": "Boys Printed T-Shirt",
-      "collection": "kids",
-      "image": "images/kids/kids-tshirt.jpg",
-      "gallery": ["images/kids/kids-tshirt.jpg","images/kids/kids-jeans.jpg","images/kids/extra/kids-pant-suit.jpg"],
-      "tag": "new",
-      "order": 9
-    },
-    {
-      "id": "kids-crop-top-skirt",
-      "name": "Girls Crop Top & Skirt",
-      "collection": "kids",
-      "image": "images/kids/kids-crop-top.jpg",
-      "gallery": ["images/kids/kids-crop-top.jpg","images/kids/extra/kids-party-wear.jpg","images/kids/kids-palazzo.jpg"],
-      "tag": "trending",
-      "order": 10
-    },
-    {
-      "id": "kids-denim-jeans",
-      "name": "Boys Denim Jeans",
-      "collection": "kids",
-      "image": "images/kids/kids-jeans.jpg",
-      "gallery": ["images/kids/kids-jeans.jpg","images/kids/extra/kids-pant-suit.jpg","images/kids/kids-formal-shirt.jpg"],
-      "tag": null,
-      "order": 11
-    },
-    {
-      "id": "kids-anarkali-set",
-      "name": "Ethnic Anarkali Set",
-      "collection": "kids",
-      "image": "images/kids/kids-anarkali.jpg",
-      "gallery": ["images/kids/kids-anarkali.jpg","images/kids/extra/kids-anarkali-2.jpg","images/kids/extra/kids-ghagra.jpg"],
-      "tag": "bestseller",
-      "order": 12
-    },
-    {
-      "id": "kids-formal-shirt",
-      "name": "Boys Formal Shirt",
-      "collection": "kids",
-      "image": "images/kids/kids-formal-shirt.jpg",
-      "gallery": ["images/kids/kids-formal-shirt.jpg","images/kids/extra/kids-pant-suit.jpg","images/kids/extra/kids-sherwani-2.jpg"],
-      "tag": "limited",
-      "order": 13
-    },
-    {
-      "id": "kids-palazzo-set",
-      "name": "Girls Palazzo Set",
-      "collection": "kids",
-      "image": "images/kids/kids-palazzo.jpg",
-      "gallery": ["images/kids/kids-palazzo.jpg","images/kids/extra/kids-cotton-frock.jpg","images/kids/kids-anarkali.jpg"],
-      "tag": "new",
-      "order": 14
-    },
-    {
-      "id": "kids-shorts-tee",
-      "name": "Boys Shorts & Tee Combo",
-      "collection": "kids",
-      "image": "images/kids/kids-shorts-tee.jpg",
-      "gallery": ["images/kids/kids-shorts-tee.jpg","images/kids/kids-tshirt.jpg","images/kids/kids-jeans.jpg"],
-      "tag": "trending",
-      "order": 15
-    },
-    {
-      "id": "kids-wedding-suit",
-      "name": "Kids Wedding Suit",
-      "collection": "kids",
-      "image": "images/kids/kids-wedding.jpg",
-      "gallery": ["images/kids/kids-wedding.jpg","images/kids/extra/kids-wedding-2.jpg","images/kids/extra/kids-ceremonial-wear.jpg"],
-      "tag": "bestseller",
-      "order": 16
-    },
-    {
-      "id": "kids-sharara-set",
-      "name": "Girls Sharara Set",
-      "collection": "kids",
-      "image": "images/kids/kids-sharara.jpg",
-      "gallery": ["images/kids/kids-sharara.jpg","images/kids/extra/kids-anarkali-2.jpg","images/kids/extra/kids-ethnic-wear.jpg"],
-      "tag": "new",
-      "order": 17
     }
   ]
 }
