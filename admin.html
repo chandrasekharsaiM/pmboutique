@@ -206,40 +206,60 @@
     let currentFilter = 'all';
     let pendingFiles = [];
     let pendingGalleryFiles = [];
-    let isResizing = false;
 
-    function compressImage(file, maxWidth, maxHeight, targetQuality) {
-      return new Promise(function(resolve, reject) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          var img = new Image();
-          img.onload = function() {
-            try {
-              var w = img.naturalWidth || img.width;
-              var h = img.naturalHeight || img.height;
-              if (w === 0 || h === 0) { resolve(file); return; }
-              if (w > maxWidth) { h = Math.round((h * maxWidth) / w); w = maxWidth; }
-              if (h > maxHeight) { w = Math.round((w * maxHeight) / h); h = maxHeight; }
-              var canvas = document.createElement('canvas');
-              canvas.width = w;
-              canvas.height = h;
-              canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-              canvas.toBlob(function(blob) {
-                if (!blob || blob.size === 0) { resolve(file); return; }
-                var origKB = Math.round(file.size / 1024);
-                var newKB = Math.round(blob.size / 1024);
-                if (origKB > 200) {
-                  showToast('Compressed: ' + (origKB > 1024 ? (origKB / 1024).toFixed(1) + 'MB' : origKB + 'KB') + ' \u2192 ' + (newKB > 1024 ? (newKB / 1024).toFixed(1) + 'MB' : newKB + 'KB'), 'success');
-                }
-                resolve(new File([blob], 'upload-' + Date.now() + '.jpg', { type: 'image/jpeg' }));
-              }, 'image/jpeg', targetQuality || 0.82);
-            } catch (err) { resolve(file); }
-          };
-          img.onerror = function() { resolve(file); };
-          img.src = e.target.result;
+    function processImage(file, maxWidth, maxHeight, callback) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var img = new Image();
+        img.onload = function() {
+          try {
+            var w = img.naturalWidth || img.width;
+            var h = img.naturalHeight || img.height;
+            if (w > maxWidth) { h = Math.round((h * maxWidth) / w); w = maxWidth; }
+            if (h > maxHeight) { w = Math.round((w * maxHeight) / h); h = maxHeight; }
+            var canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            canvas.toBlob(function(blob) {
+              if (blob && blob.size > 0) {
+                callback(new File([blob], 'upload-' + Date.now() + '.jpg', { type: 'image/jpeg' }));
+              } else {
+                callback(file);
+              }
+            }, 'image/jpeg', 0.80);
+          } catch (e) { callback(file); }
         };
-        reader.onerror = function() { resolve(file); };
-        reader.readAsDataURL(file);
+        img.onerror = function() { callback(file); };
+        img.src = e.target.result;
+      };
+      reader.onerror = function() { callback(file); };
+      reader.readAsDataURL(file);
+    }
+
+    function handleFileSelect(input, previewEl, maxW, maxH, fileList, index) {
+      if (!input.files || !input.files[0]) return;
+      var file = input.files[0];
+      previewEl.src = URL.createObjectURL(file);
+      previewEl.classList.remove('hidden');
+      if (typeof index !== 'undefined') {
+        fileList[index] = file;
+      } else {
+        fileList.length = 0;
+        fileList[0] = file;
+      }
+      processImage(file, maxW, maxH, function(resized) {
+        if (typeof index !== 'undefined') {
+          fileList[index] = resized;
+        } else {
+          fileList.length = 0;
+          fileList[0] = resized;
+        }
+        var origKB = Math.round(file.size / 1024);
+        var newKB = Math.round(resized.size / 1024);
+        if (origKB > 200) {
+          showToast('Ready: ' + (origKB > 1024 ? (origKB / 1024).toFixed(1) + 'MB' : origKB + 'KB') + ' \u2192 ' + (newKB > 1024 ? (newKB / 1024).toFixed(1) + 'MB' : newKB + 'KB'), 'success');
+        }
       });
     }
 
@@ -429,49 +449,28 @@
       document.getElementById('productModal').classList.remove('active');
     }
 
-    async function previewImage(input, previewId) {
-      var preview = document.getElementById(previewId);
-      if (input.files && input.files[0]) {
-        var file = input.files[0];
-        isResizing = true;
-        document.getElementById('saveBtn').textContent = 'Processing image...';
-        document.getElementById('saveBtn').disabled = true;
-        var resized = await compressImage(file, 1200, 1200, 0.82);
-        pendingFiles = [resized];
-        var reader = new FileReader();
-        reader.onload = function(e) { preview.src = e.target.result; preview.classList.remove('hidden'); };
-        reader.readAsDataURL(resized);
-        isResizing = false;
-        document.getElementById('saveBtn').textContent = 'Save Product';
-        document.getElementById('saveBtn').disabled = false;
-      }
+    function previewImage(input, previewId) {
+      handleFileSelect(input, document.getElementById(previewId), 1200, 1200, pendingFiles);
     }
 
-    async function previewGallery(input) {
+    function previewGallery(input) {
       var container = document.getElementById('galleryPreview');
       container.innerHTML = '';
       pendingGalleryFiles = [];
-      isResizing = true;
-      document.getElementById('saveBtn').textContent = 'Processing images...';
-      document.getElementById('saveBtn').disabled = true;
       var files = Array.from(input.files).slice(0, 6);
       for (var i = 0; i < files.length; i++) {
-        var resized = await compressImage(files[i], 800, 800, 0.82);
-        pendingGalleryFiles.push(resized);
-        var reader = new FileReader();
-        reader.onload = (function(r) {
-          return function(e) {
-            var img = document.createElement('img');
-            img.src = e.target.result;
-            img.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:6px;border:2px solid #ddd';
-            container.appendChild(img);
-          };
-        })(resized);
-        reader.readAsDataURL(resized);
+        (function(idx) {
+          var file = files[idx];
+          var thumb = document.createElement('img');
+          thumb.src = URL.createObjectURL(file);
+          thumb.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:6px;border:2px solid #ddd';
+          container.appendChild(thumb);
+          pendingGalleryFiles[idx] = file;
+          processImage(file, 800, 800, function(resized) {
+            pendingGalleryFiles[idx] = resized;
+          });
+        })(i);
       }
-      isResizing = false;
-      document.getElementById('saveBtn').textContent = 'Save Product';
-      document.getElementById('saveBtn').disabled = false;
     }
 
     // --- Save Product ---
@@ -484,7 +483,6 @@
       const urlText = document.getElementById('pImageUrl').value.trim();
 
       if (!name) { showToast('Product name is required', 'error'); return; }
-      if (isResizing) { showToast('Please wait for images to finish processing', 'error'); return; }
 
       const saveBtn = document.getElementById('saveBtn');
       saveBtn.textContent = 'Saving...';
