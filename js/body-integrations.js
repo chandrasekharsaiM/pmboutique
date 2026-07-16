@@ -38,7 +38,7 @@
 // --- WhatsApp Chat Widget ---
 // (function(){
 //   var div = document.createElement('div');
-//   div.innerHTML = '<a href="https://wa.me/9107947103883" target="_blank" style="position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;z-index:9999;text-decoration:none;">&#128172;</a>';
+//   div.innerHTML = '<a href="https://wa.me/918520910746" target="_blank" style="position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;z-index:9999;text-decoration:none;">&#128172;</a>';
 //   document.body.appendChild(div);
 // })();
 
