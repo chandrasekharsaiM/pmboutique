@@ -316,8 +316,8 @@
 
     // --- GitHub API ---
     async function ghAPI(method, endpoint, body) {
-      const opts = {
-        method,
+      var opts = {
+        method: method,
         headers: {
           'Authorization': 'token ' + ghConfig.token,
           'Accept': 'application/vnd.github.v3+json',
@@ -325,10 +325,11 @@
         }
       };
       if (body) opts.body = JSON.stringify(body);
-      const res = await fetch(`https://api.github.com/${endpoint}`, opts);
+      var res = await fetch('https://api.github.com/' + endpoint, opts);
       if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.message || 'API error');
+        var errText = '';
+        try { var err = await res.json(); errText = err.message || JSON.stringify(err); } catch(e) { errText = await res.text().catch(function(){ return 'unknown'; }); }
+        throw new Error('GitHub API ' + res.status + ': ' + errText);
       }
       return res.json();
     }
@@ -475,63 +476,71 @@
 
     // --- Save Product ---
     async function saveProduct() {
-      const editId = document.getElementById('editId').value;
-      const name = document.getElementById('pName').value.trim();
-      const collection = document.getElementById('pCollection').value;
-      const tag = document.getElementById('pTag').value || null;
-      const order = parseInt(document.getElementById('pOrder').value) || 1;
-      const urlText = document.getElementById('pImageUrl').value.trim();
+      var editId = document.getElementById('editId').value;
+      var name = document.getElementById('pName').value.trim();
+      var collection = document.getElementById('pCollection').value;
+      var tag = document.getElementById('pTag').value || null;
+      var order = parseInt(document.getElementById('pOrder').value) || 1;
+      var urlText = document.getElementById('pImageUrl').value.trim();
 
       if (!name) { showToast('Product name is required', 'error'); return; }
 
-      const saveBtn = document.getElementById('saveBtn');
+      var saveBtn = document.getElementById('saveBtn');
       saveBtn.textContent = 'Saving...';
       saveBtn.disabled = true;
 
       try {
-        let imagePath = '';
-        let gallery = [];
+        var imagePath = '';
+        var gallery = [];
 
-        const hasNewMainImage = pendingFiles.length > 0;
-        const hasNewGalleryImages = pendingGalleryFiles.length > 0;
+        var hasNewMainImage = pendingFiles.length > 0 && pendingFiles[0];
+        var hasNewGalleryImages = pendingGalleryFiles.length > 0;
+
+        showToast('Step 1/3: Reading image file...', 'success');
 
         if (hasNewMainImage) {
-          const file = pendingFiles[0];
-          const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-          const imgPath = `images/products/${slug}.jpg`;
-          const base64 = await fileToBase64(file);
-          await commitBinaryFile(imgPath, base64, `Admin: Upload ${name} image`);
+          var file = pendingFiles[0];
+          var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+          var imgPath = 'images/products/' + slug + '.jpg';
+          var base64 = await fileToBase64(file);
+          if (!base64) { throw new Error('Could not read image file'); }
+          showToast('Step 2/3: Uploading image to GitHub...', 'success');
+          await commitBinaryFile(imgPath, base64, 'Admin: Upload ' + name + ' image');
           imagePath = imgPath;
         }
 
         if (hasNewGalleryImages) {
-          for (let i = 0; i < pendingGalleryFiles.length; i++) {
-            const file = pendingGalleryFiles[i];
-            const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-            const imgPath = `images/products/${slug}-${i + 1}.jpg`;
-            const base64 = await fileToBase64(file);
-            await commitBinaryFile(imgPath, base64, `Admin: Upload ${name} gallery ${i + 1}`);
-            gallery.push(imgPath);
+          showToast('Step 2/3: Uploading gallery images...', 'success');
+          for (var i = 0; i < pendingGalleryFiles.length; i++) {
+            var gfile = pendingGalleryFiles[i];
+            if (!gfile) continue;
+            var gslug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            var gimgPath = 'images/products/' + gslug + '-' + (i + 1) + '.jpg';
+            var gbase64 = await fileToBase64(gfile);
+            if (gbase64) {
+              await commitBinaryFile(gimgPath, gbase64, 'Admin: Upload ' + name + ' gallery ' + (i + 1));
+              gallery.push(gimgPath);
+            }
           }
         }
 
         if (!imagePath && !hasNewGalleryImages && urlText) {
-          const urls = urlText.split(',').map(u => u.trim()).filter(Boolean);
+          var urls = urlText.split(',').map(function(u) { return u.trim(); }).filter(Boolean);
           imagePath = urls[0] || '';
           gallery = urls.slice(1);
         }
 
         if (!imagePath) {
-          showToast('Please provide an image', 'error');
+          showToast('Please provide an image or paste an image URL', 'error');
           saveBtn.textContent = 'Save Product';
           saveBtn.disabled = false;
           return;
         }
 
-        const id = editId || collection + '-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        var id = editId || collection + '-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
         if (editId) {
-          const idx = products.findIndex(p => p.id === editId);
+          var idx = products.findIndex(function(p) { return p.id === editId; });
           if (idx !== -1) {
             products[idx].name = name;
             products[idx].collection = collection;
@@ -541,17 +550,19 @@
             if (hasNewGalleryImages) products[idx].gallery = gallery;
           }
         } else {
-          products.push({ id, name, collection, image: imagePath, gallery, tag, order });
+          products.push({ id: id, name: name, collection: collection, image: imagePath, gallery: gallery, tag: tag, order: order });
         }
 
-        const json = JSON.stringify({ products }, null, 2);
-        await commitFile('data/products.json', json, `Admin: ${editId ? 'Update' : 'Add'} product "${name}"`);
+        showToast('Step 3/3: Saving product data...', 'success');
+        var json = JSON.stringify({ products: products }, null, 2);
+        await commitFile('data/products.json', json, 'Admin: ' + (editId ? 'Update' : 'Add') + ' product "' + name + '"');
 
         showToast(editId ? 'Product updated!' : 'Product added!', 'success');
         closeModal();
         await loadProducts();
       } catch (e) {
-        showToast('Error: ' + e.message, 'error');
+        showToast('Error at step: ' + e.message, 'error');
+        console.error('saveProduct error:', e);
       }
 
       saveBtn.textContent = 'Save Product';
@@ -577,10 +588,14 @@
 
     // --- Helpers ---
     function fileToBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = reject;
+      return new Promise(function(resolve) {
+        var reader = new FileReader();
+        reader.onload = function() {
+          var result = reader.result;
+          if (!result || result.indexOf(',') === -1) { resolve(''); return; }
+          resolve(result.split(',')[1]);
+        };
+        reader.onerror = function() { resolve(''); };
         reader.readAsDataURL(file);
       });
     }
