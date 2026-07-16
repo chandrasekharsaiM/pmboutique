@@ -231,17 +231,30 @@
       }
 
       try {
-        const res = await ghAPI('GET', `repos/${ghConfig.user}/${ghConfig.repo}`);
-        if (res.full_name) {
+        const res = await fetch(`https://api.github.com/repos/${ghConfig.user}/${ghConfig.repo}`, {
+          headers: {
+            'Authorization': 'token ' + ghConfig.token,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+        if (!res.ok) {
+          const err = await res.json();
+          if (res.status === 401) showToast('Invalid token. Generate a new one at github.com/settings/tokens', 'error');
+          else if (res.status === 404) showToast('Repository not found. Check username and repo name.', 'error');
+          else showToast('Error: ' + (err.message || res.status), 'error');
+          return;
+        }
+        const data = await res.json();
+        if (data.full_name) {
           localStorage.setItem('pm_admin_config', JSON.stringify(ghConfig));
-          document.getElementById('statusBadge').textContent = 'Connected: ' + res.full_name;
+          document.getElementById('statusBadge').textContent = 'Connected: ' + data.full_name;
           document.getElementById('statusBadge').classList.add('connected');
           document.getElementById('setupPanel').classList.add('hidden');
           document.getElementById('dashboard').classList.remove('hidden');
           await loadProducts();
         }
       } catch (e) {
-        showToast('Connection failed. Check credentials.', 'error');
+        showToast('Connection failed: ' + e.message, 'error');
       }
     }
 
