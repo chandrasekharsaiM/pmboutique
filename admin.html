@@ -208,13 +208,8 @@
     let pendingGalleryFiles = [];
     let isResizing = false;
 
-    function compressImage(file, maxWidth, maxHeight, quality) {
+    function compressImage(file, maxWidth, maxHeight, targetQuality) {
       return new Promise(function(resolve, reject) {
-        var validTypes = /^image\/(jpeg|png|webp|gif|bmp|tiff|heic|heif)$/;
-        if (!validTypes.test(file.type) && !file.name.match(/\.(jpe?g|png|webp|gif|bmp|tiff|heic|heif)$/i)) {
-          reject(new Error('Unsupported file type. Use JPG, PNG, or WebP.'));
-          return;
-        }
         var reader = new FileReader();
         reader.onload = function(e) {
           var img = new Image();
@@ -222,38 +217,28 @@
             try {
               var w = img.naturalWidth || img.width;
               var h = img.naturalHeight || img.height;
-              if (w === 0 || h === 0) { reject(new Error('Invalid image')); return; }
+              if (w === 0 || h === 0) { reject(new Error('Image has no dimensions')); return; }
               if (w > maxWidth) { h = Math.round((h * maxWidth) / w); w = maxWidth; }
               if (h > maxHeight) { w = Math.round((w * maxHeight) / h); h = maxHeight; }
               var canvas = document.createElement('canvas');
               canvas.width = w;
               canvas.height = h;
               canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-              var q = quality || 0.85;
-              var timeout = setTimeout(function() { reject(new Error('Processing timed out')); }, 20000);
-              function attemptEncode(qualityLevel) {
-                canvas.toBlob(function(blob) {
-                  clearTimeout(timeout);
-                  if (!blob || blob.size === 0) { reject(new Error('Encoding failed')); return; }
-                  if (blob.size > 1000000 && qualityLevel > 0.4) {
-                    attemptEncode(Math.max(0.4, qualityLevel - 0.15));
-                    return;
-                  }
-                  var origMB = (file.size / 1048576).toFixed(1);
-                  var newMB = (blob.size / 1048576).toFixed(1);
-                  if (file.size > 200000) {
-                    showToast('Compressed: ' + origMB + 'MB \u2192 ' + newMB + 'MB', 'success');
-                  }
-                  resolve(new File([blob], 'upload-' + Date.now() + '.jpg', { type: 'image/jpeg' }));
-                }, 'image/jpeg', qualityLevel);
-              }
-              attemptEncode(q);
+              canvas.toBlob(function(blob) {
+                if (!blob) { reject(new Error('Compression failed')); return; }
+                var origKB = Math.round(file.size / 1024);
+                var newKB = Math.round(blob.size / 1024);
+                if (origKB > 200) {
+                  showToast('Compressed: ' + (origKB > 1024 ? (origKB / 1024).toFixed(1) + 'MB' : origKB + 'KB') + ' \u2192 ' + (newKB > 1024 ? (newKB / 1024).toFixed(1) + 'MB' : newKB + 'KB'), 'success');
+                }
+                resolve(new File([blob], 'upload-' + Date.now() + '.jpg', { type: 'image/jpeg' }));
+              }, 'image/jpeg', targetQuality || 0.82);
             } catch (err) { reject(err); }
           };
-          img.onerror = function() { reject(new Error('Could not read image')); };
+          img.onerror = function() { reject(new Error('Cannot read this image. Try saving it as JPG first.')); };
           img.src = e.target.result;
         };
-        reader.onerror = function() { reject(new Error('Could not read file')); };
+        reader.onerror = function() { reject(new Error('Cannot read file')); };
         reader.readAsDataURL(file);
       });
     }
@@ -452,13 +437,16 @@
         document.getElementById('saveBtn').textContent = 'Compressing image...';
         document.getElementById('saveBtn').disabled = true;
         try {
-          var resized = await compressImage(file, 1200, 1200, 0.85);
+          var resized = await compressImage(file, 1200, 1200, 0.82);
+          if (resized.size > 800000) {
+            resized = await compressImage(resized, 1200, 1200, 0.5);
+          }
           pendingFiles = [resized];
           var reader = new FileReader();
           reader.onload = function(e) { preview.src = e.target.result; preview.classList.remove('hidden'); };
           reader.readAsDataURL(resized);
         } catch (err) {
-          showToast('Image failed: ' + err.message, 'error');
+          showToast('Failed: ' + err.message, 'error');
           pendingFiles = [];
         }
         isResizing = false;
@@ -477,7 +465,10 @@
       var files = Array.from(input.files).slice(0, 6);
       for (var i = 0; i < files.length; i++) {
         try {
-          var resized = await compressImage(files[i], 800, 800, 0.85);
+          var resized = await compressImage(files[i], 800, 800, 0.82);
+          if (resized.size > 600000) {
+            resized = await compressImage(resized, 800, 800, 0.5);
+          }
           pendingGalleryFiles.push(resized);
           var reader = new FileReader();
           reader.onload = (function(r) {
@@ -490,7 +481,7 @@
           })(resized);
           reader.readAsDataURL(resized);
         } catch (err) {
-          showToast('Gallery image ' + (i + 1) + ' failed: ' + err.message, 'error');
+          showToast('Image ' + (i + 1) + ' failed: ' + err.message, 'error');
         }
       }
       isResizing = false;
