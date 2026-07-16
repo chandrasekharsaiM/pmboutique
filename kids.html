@@ -151,8 +151,9 @@
 
       grid.innerHTML = products.map(function(p) {
         var tagHtml = p.tag ? '<span class="product-tag tag-' + p.tag + '">' + tagLabels[p.tag] + '</span>' : '';
-        var galleryJs = JSON.stringify(p.gallery || []);
-        return '<div class="product-card" onclick="openDesignModal(\'' + p.name.replace(/'/g, "\\'") + '\', \'' + p.image + '\', ' + galleryJs + ')">' +
+        var g = p.gallery || [];
+        var gStr = "'" + g.join("','") + "'";
+        return '<div class="product-card" onclick="openDesignModal(\'' + p.name.replace(/'/g, "\\'") + '\', \'' + p.image.replace(/'/g, "\\'") + '\', [' + gStr + '])">' +
           '<div class="product-card-image">' +
             '<img src="' + p.image + '" alt="' + p.name + '" loading="lazy">' +
             tagHtml +
