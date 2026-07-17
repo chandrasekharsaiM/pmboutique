@@ -79,7 +79,24 @@
     .debug-log .entry{padding:4px 0;border-bottom:1px solid #f0f0f0}
     .debug-log .entry.ok{color:var(--green)}.debug-log .entry.fail{color:var(--red)}.debug-log .entry.info{color:var(--gray)}
     .hidden{display:none!important}
-    @media(max-width:768px){.admin-header{padding:16px 20px;flex-direction:column;gap:10px}.toolbar{flex-direction:column;align-items:flex-start}.modal .form-row{grid-template-columns:1fr}.products-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}.modal{padding:20px}}
+    .deploy-overlay{position:fixed;inset:0;background:rgba(26,26,46,.92);z-index:3000;display:none;align-items:center;justify-content:center;padding:20px}
+    .deploy-overlay.active{display:flex}
+    .deploy-box{background:var(--white);border-radius:var(--radius);padding:40px;text-align:center;max-width:420px;width:100%}
+    .deploy-box h3{font-family:'Playfair Display',serif;margin-bottom:16px;font-size:22px}
+    .deploy-box p{color:var(--gray);font-size:14px;margin-bottom:24px;line-height:1.6}
+    .deploy-timer{font-size:48px;font-weight:700;color:var(--gold);margin:20px 0;font-variant-numeric:tabular-nums}
+    .deploy-progress{width:100%;height:6px;background:var(--light-gray);border-radius:3px;overflow:hidden;margin:16px 0}
+    .deploy-progress .bar{height:100%;background:var(--gold);border-radius:3px;transition:width 1s linear;width:0%}
+    .deploy-status{font-size:13px;color:var(--gray);margin-bottom:20px}
+    .deploy-status.success{color:var(--green);font-weight:600}
+    .deploy-actions{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+    .upload-progress{background:var(--white);border-radius:var(--radius);padding:20px;position:fixed;bottom:30px;left:30px;z-index:2500;box-shadow:0 4px 20px rgba(0,0,0,.15);max-width:320px;display:none}
+    .upload-progress.active{display:block}
+    .upload-progress h4{font-size:14px;margin-bottom:8px}
+    .upload-progress .bar-wrap{height:8px;background:var(--light-gray);border-radius:4px;overflow:hidden}
+    .upload-progress .bar-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .3s;width:0%}
+    .upload-progress .msg{font-size:12px;color:var(--gray);margin-top:8px}
+    @media(max-width:768px){.admin-header{padding:16px 20px;flex-direction:column;gap:10px}.toolbar{flex-direction:column;align-items:flex-start}.modal .form-row{grid-template-columns:1fr}.products-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}.modal{padding:20px}.deploy-box{padding:24px}.deploy-timer{font-size:36px}}
   </style>
 </head>
 <body>
@@ -148,6 +165,26 @@
   </div>
 
   <div class="toast" id="toast"></div>
+
+  <div class="deploy-overlay" id="deployOverlay">
+    <div class="deploy-box">
+      <h3 id="deployTitle">Uploading to GitHub...</h3>
+      <div class="deploy-progress"><div class="bar" id="deployBar"></div></div>
+      <div class="deploy-timer" id="deployTimer">--</div>
+      <p id="deployMsg">Images are being saved. Cloudflare will deploy automatically.</p>
+      <div class="deploy-status" id="deployStatus"></div>
+      <div class="deploy-actions" id="deployActions" style="display:none">
+        <a class="btn btn-primary" id="deployViewBtn" href="#" target="_blank">View Live Site</a>
+        <button class="btn btn-secondary" onclick="closeDeploy()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="upload-progress" id="uploadProgress">
+    <h4 id="uploadTitle">Uploading...</h4>
+    <div class="bar-wrap"><div class="bar-fill" id="uploadBar"></div></div>
+    <div class="msg" id="uploadMsg"></div>
+  </div>
 
   <script>
     var ghConfig={user:'',repo:'',token:''};
@@ -347,6 +384,62 @@
     function closeModal(){document.getElementById('productModal').classList.remove('active')}
     function previewMain(input){if(input.files&&input.files[0]){var p=document.getElementById('mainPreview');p.src=URL.createObjectURL(input.files[0]);p.classList.remove('hidden')}}
 
+    function showUploadProgress(title,msg,pct){
+      var el=document.getElementById('uploadProgress');
+      el.classList.add('active');
+      document.getElementById('uploadTitle').textContent=title;
+      document.getElementById('uploadMsg').textContent=msg;
+      document.getElementById('uploadBar').style.width=pct+'%';
+    }
+    function hideUploadProgress(){document.getElementById('uploadProgress').classList.remove('active')}
+
+    function showDeployOverlay(uploadSeconds){
+      var el=document.getElementById('deployOverlay');
+      el.classList.add('active');
+      document.getElementById('deployTitle').textContent='Saving to GitHub...';
+      document.getElementById('deployMsg').textContent='Images are being saved. Cloudflare will auto-deploy after save.';
+      document.getElementById('deployStatus').textContent='';
+      document.getElementById('deployStatus').className='deploy-status';
+      document.getElementById('deployActions').style.display='none';
+      document.getElementById('deployBar').style.width='0%';
+      document.getElementById('deployTimer').textContent=formatTime(uploadSeconds);
+    }
+    function formatTime(s){var m=Math.floor(s/60);var sec=s%60;return m+':'+(sec<10?'0':'')+sec}
+    function closeDeploy(){document.getElementById('deployOverlay').classList.remove('active')}
+
+    function startDeployCountdown(seconds){
+      var remaining=seconds;
+      var bar=document.getElementById('deployBar');
+      var timer=document.getElementById('deployTimer');
+      var status=document.getElementById('deployStatus');
+      var title=document.getElementById('deployTitle');
+      var msg=document.getElementById('deployMsg');
+      var actions=document.getElementById('deployActions');
+      var total=seconds;
+      var collection=window.location.pathname.indexOf('mens')!==-1?'mens':window.location.pathname.indexOf('kids')!==-1?'kids':'womens';
+      var liveUrl='https://pmboutique3.pages.dev/'+collection+'.html?cb='+Date.now();
+
+      status.textContent='Deployment usually takes 60-90 seconds after save completes.';
+      msg.textContent='Please wait — do NOT close this page.';
+      document.getElementById('deployViewBtn').href=liveUrl;
+
+      var iv=setInterval(function(){
+        remaining--;
+        timer.textContent=formatTime(remaining);
+        bar.style.width=Math.round(((total-remaining)/total)*100)+'%';
+        if(remaining<=0){
+          clearInterval(iv);
+          title.textContent='Deployment Ready!';
+          timer.textContent='';
+          bar.style.width='100%';
+          msg.textContent='Your site should be updated now. Click below to check.';
+          status.textContent='If images still don\'t show, do a hard refresh (Ctrl+Shift+R).';
+          status.className='deploy-status success';
+          actions.style.display='flex';
+        }
+      },1000);
+    }
+
     async function saveProduct(){
       var editId=document.getElementById('editProductId').value;
       var name=document.getElementById('pName').value.trim();
@@ -356,39 +449,51 @@
       if(!name){showToast('Product name required','error');return}
 
       var saveBtn=document.getElementById('saveBtn');saveBtn.textContent='Saving...';saveBtn.disabled=true;
+
+      var slug=name.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+      var totalFiles=0;
+      var imageInput=document.getElementById('pImage');
+      if(imageInput.files&&imageInput.files.length>0)totalFiles+=2;
+      for(var ci=0;ci<editDesigns.length;ci++){if(editDesigns[ci].newFiles)totalFiles+=editDesigns[ci].newFiles.length*2;}
+      totalFiles+=1;
+      var doneFiles=0;
+
+      showDeployOverlay(Math.max(90,totalFiles*6));
+
       try{
-        var slug=name.toLowerCase().replace(/[^a-z0-9]+/g,'-');
         var mainImage=oldMainPath;
-        var imageInput=document.getElementById('pImage');
 
         if(imageInput.files&&imageInput.files.length>0){
-          showToast('Uploading main image...','info');
+          showUploadProgress('Uploading main image...','Resizing and uploading to GitHub...',0);
           var rs=await resizeFile(imageInput.files[0],1200,1200);
           if(!rs||!rs.jpg)throw new Error('Resize failed');
           var b64=await toB64(rs.jpg);if(!b64)throw new Error('Conversion failed');
           var paths=imgPath(slug,0,0);
+          doneFiles++;showUploadProgress('Uploading main image...','1/'+totalFiles+' files',Math.round(doneFiles/totalFiles*100));
           await commitBin(paths.jpg,b64,'Admin: Upload '+name+' main');
           mainImage=paths.jpg;
-          if(rs.webp){var wb=await toB64(rs.webp);if(wb)await commitBin(paths.webp,wb,'Admin: Upload '+name+' main webp')}
+          if(rs.webp){var wb=await toB64(rs.webp);if(wb){doneFiles++;showUploadProgress('Uploading main image (webp)...',doneFiles+'/'+totalFiles+' files',Math.round(doneFiles/totalFiles*100));await commitBin(paths.webp,wb,'Admin: Upload '+name+' main webp')}}
         }
 
         for(var di=0;di<editDesigns.length;di++){
           var d=editDesigns[di];
           if(d.newFiles&&d.newFiles.length>0){
-            showToast('Uploading '+d.name+' images...','info');
             for(var fi=0;fi<d.newFiles.length;fi++){
+              showUploadProgress('Uploading '+d.name+'...',d.name+' image '+(fi+1)+' of '+d.newFiles.length,Math.round(doneFiles/totalFiles*100));
               var grs=await resizeFile(d.newFiles[fi],800,800);
               if(!grs||!grs.jpg){log('Resize failed','fail');continue}
               var gb=await toB64(grs.jpg);if(!gb){log('B64 failed','fail');continue}
               var gp=imgPath(slug,di,fi);
               await commitBin(gp.jpg,gb,'Admin: Upload '+name+' '+d.name+' img'+(fi+1));
               d.images.push(gp.jpg);
-              if(grs.webp){var gwb=await toB64(grs.webp);if(gwb)await commitBin(gp.webp,gwb,'Admin: Upload '+name+' '+d.name+' img'+(fi+1)+' webp')}
+              doneFiles++;showUploadProgress('Uploading '+d.name+'...',d.name+' image '+(fi+1)+' uploaded ('+doneFiles+'/'+totalFiles+')',Math.round(doneFiles/totalFiles*100));
+              if(grs.webp){var gwb=await toB64(grs.webp);if(gwb){doneFiles++;await commitBin(gp.webp,gwb,'Admin: Upload '+name+' '+d.name+' img'+(fi+1)+' webp')}}
             }
             d.newFiles=[];
           }
         }
 
+        showUploadProgress('Saving product data...','Updating products.json...',Math.round(doneFiles/totalFiles*100));
         var finalDesigns=editDesigns.map(function(d,i){
           return{designId:d.designId,name:d.name||'Design '+(i+1),images:d.images.slice()};
         });
@@ -409,9 +514,12 @@
           deleteFile(oldMainPath,'Admin: Remove old main for '+name).catch(function(){});
         }
 
-        showToast(editId?'Updated!':'Added!','success');alert(editId?'Product updated!':'Product added!');
+        hideUploadProgress();
+        showToast(editId?'Updated!':'Added!','success');
+        log((editId?'Updated':'Added')+' product: '+name,'ok');
         closeModal();await loadProducts();
-      }catch(e){showToast('Error: '+e.message,'error');alert('Error: '+e.message);log(e.message,'fail')}
+        startDeployCountdown(90);
+      }catch(e){hideUploadProgress();closeDeploy();showToast('Error: '+e.message,'error');alert('Error: '+e.message);log(e.message,'fail')}
       saveBtn.textContent='Save Product';saveBtn.disabled=false;
     }
 
