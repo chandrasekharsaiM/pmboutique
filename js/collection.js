@@ -123,37 +123,109 @@
     document.body.style.overflow = '';
   };
 
-  /* Zoom */
+  /* Slideshow / Zoom */
   var zoomImages = [], zoomImagesWebp = [], zoomIdx = 0;
+  var slideTimer = null, slidePaused = false, slideAutoPlay = true;
 
   window.openZoom = function (imgs, webps, idx) {
     zoomImages = imgs;
     zoomImagesWebp = webps || [];
     zoomIdx = idx;
+    slideAutoPlay = true;
+    slidePaused = false;
     updateZoomImage();
+    renderDots();
+    updatePlayBtn();
     document.getElementById('imgZoomOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
+    startSlideshow();
   };
+
+  function startSlideshow() {
+    stopSlideshow();
+    if (!slideAutoPlay || slidePaused || zoomImages.length <= 1) return;
+    slideTimer = setInterval(function () {
+      zoomIdx = (zoomIdx + 1) % zoomImages.length;
+      updateZoomImage();
+      updateDots();
+    }, 3000);
+  }
+
+  function stopSlideshow() {
+    if (slideTimer) { clearInterval(slideTimer); slideTimer = null; }
+  }
+
+  function resetSlideshow() {
+    stopSlideshow();
+    startSlideshow();
+  }
 
   function updateZoomImage() {
     var jpgSrc = zoomImages[zoomIdx] || '';
     var webpSrc = zoomImagesWebp[zoomIdx] || '';
-    var el = document.getElementById('imgZoomSrc');
-    var parent = el.parentElement;
-    var newImg = makePicture(jpgSrc, webpSrc, 'Zoom', 1200, 1500, '', 'eager');
     var container = document.getElementById('imgZoomContainer');
     if (!container) {
       container = document.createElement('div');
       container.id = 'imgZoomContainer';
       container.style.cssText = 'display:flex;align-items:center;justify-content:center;flex:1;min-height:0;';
-      parent.insertBefore(container, el);
+      var el = document.getElementById('imgZoomSrc');
+      el.parentElement.insertBefore(container, el);
       el.style.display = 'none';
     }
-    container.innerHTML = newImg;
+    container.innerHTML = makePicture(jpgSrc, webpSrc, 'Design ' + (zoomIdx + 1), 1200, 1500, 'zoom-slide-img', 'eager');
     document.getElementById('imgZoomCounter').textContent = (zoomIdx + 1) + ' / ' + zoomImages.length;
+    updateDots();
   }
 
+  function renderDots() {
+    var dotsWrap = document.getElementById('imgZoomDots');
+    if (!dotsWrap) return;
+    var max = Math.min(zoomImages.length, 30);
+    var html = '';
+    for (var i = 0; i < max; i++) {
+      html += '<span class="zoom-dot' + (i === zoomIdx ? ' active' : '') + '" data-i="' + i + '"></span>';
+    }
+    dotsWrap.innerHTML = html;
+    var dots = dotsWrap.querySelectorAll('.zoom-dot');
+    for (var d = 0; d < dots.length; d++) {
+      dots[d].addEventListener('click', (function (idx) {
+        return function (e) {
+          e.stopPropagation();
+          zoomIdx = idx;
+          updateZoomImage();
+          updateDots();
+          resetSlideshow();
+        };
+      })(d));
+    }
+  }
+
+  function updateDots() {
+    var dotsWrap = document.getElementById('imgZoomDots');
+    if (!dotsWrap) return;
+    var dots = dotsWrap.querySelectorAll('.zoom-dot');
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('active', i === zoomIdx);
+    }
+  }
+
+  function updatePlayBtn() {
+    var btn = document.getElementById('imgZoomPlay');
+    if (!btn) return;
+    btn.innerHTML = slidePaused
+      ? '<i class="fas fa-play"></i>'
+      : '<i class="fas fa-pause"></i>';
+  }
+
+  window.toggleSlidePlay = function () {
+    slidePaused = !slidePaused;
+    updatePlayBtn();
+    if (slidePaused) stopSlideshow();
+    else startSlideshow();
+  };
+
   window.closeZoom = function () {
+    stopSlideshow();
     document.getElementById('imgZoomOverlay').classList.remove('active');
     document.body.style.overflow = '';
   };
@@ -161,11 +233,13 @@
   window.zoomPrev = function () {
     zoomIdx = (zoomIdx - 1 + zoomImages.length) % zoomImages.length;
     updateZoomImage();
+    resetSlideshow();
   };
 
   window.zoomNext = function () {
     zoomIdx = (zoomIdx + 1) % zoomImages.length;
     updateZoomImage();
+    resetSlideshow();
   };
 
   /* Keyboard navigation */

@@ -552,13 +552,72 @@
 .img-zoom-prev { left: 12px; }
 .img-zoom-next { right: 12px; }
 .img-zoom-counter {
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
   color: rgba(255,255,255,0.7);
   font-size: 14px;
   font-family: 'Inter', sans-serif;
+}
+
+/* Zoom Slideshow Bottom Bar */
+.img-zoom-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px 20px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.5));
+  z-index: 2;
+}
+.img-zoom-dots {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 90vw;
+}
+.zoom-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+.zoom-dot.active {
+  background: var(--gold);
+  transform: scale(1.3);
+}
+.img-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.img-zoom-play {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+  touch-action: manipulation;
+}
+.img-zoom-play:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* Zoom Image Slide Animation */
+.zoom-slide-img {
+  transition: opacity 0.3s ease;
 }
 
 /* Responsive: Product Grid */
@@ -617,6 +676,13 @@
     width: 44px;
     height: 44px;
     font-size: 18px;
+  }
+  .img-zoom-bottom {
+    padding: 8px 12px 16px;
+  }
+  .zoom-dot {
+    width: 7px;
+    height: 7px;
   }
 }
 
@@ -684,8 +750,17 @@
   }
   .img-zoom-prev { left: 6px; }
   .img-zoom-next { right: 6px; }
-  .img-zoom-counter {
-    bottom: 16px;
+  .img-zoom-bottom {
+    padding: 6px 8px 12px;
+  }
+  .zoom-dot {
+    width: 6px;
+    height: 6px;
+    gap: 4px;
+  }
+  .img-zoom-play {
+    width: 32px;
+    height: 32px;
     font-size: 12px;
   }
 }

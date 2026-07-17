@@ -135,8 +135,15 @@
   <button class="img-zoom-close" onclick="closeZoom()"><i class="fas fa-times"></i></button>
   <button class="img-zoom-nav img-zoom-prev" onclick="zoomPrev()"><i class="fas fa-chevron-left"></i></button>
   <img id="imgZoomSrc" src="" alt="">
+  <div id="imgZoomContainer" style="display:flex;align-items:center;justify-content:center;flex:1;min-height:0;"></div>
   <button class="img-zoom-nav img-zoom-next" onclick="zoomNext()"><i class="fas fa-chevron-right"></i></button>
-  <div class="img-zoom-counter" id="imgZoomCounter"></div>
+  <div class="img-zoom-bottom">
+    <div class="img-zoom-dots" id="imgZoomDots"></div>
+    <div class="img-zoom-controls">
+      <button class="img-zoom-play" id="imgZoomPlay" onclick="toggleSlidePlay()"><i class="fas fa-pause"></i></button>
+      <span class="img-zoom-counter" id="imgZoomCounter"></span>
+    </div>
+  </div>
 </div>
 
 <script src="js/scripts.min.js"></script>
