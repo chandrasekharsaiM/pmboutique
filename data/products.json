@@ -49,14 +49,19 @@
       "id": "womens-silk-saree",
       "name": "Silk Saree",
       "collection": "womens",
-      "image": "images/collection-saree.jpg",
+      "image": "images/products/silk-saree-1784263449089.jpg",
       "gallery": [
         "images/collection-saree.jpg",
         "images/gallery-saree.jpg",
-        "images/collection-bridal.jpg"
+        "images/collection-bridal.jpg",
+        "images/products/silk-saree-1784263457464-g1.jpg"
       ],
       "tag": "bestseller",
-      "order": 2
+      "order": 2,
+      "imageWebp": "images/products/silk-saree-1784263449089.webp",
+      "galleryWebp": [
+        "images/products/silk-saree-1784263457464-g1.webp"
+      ]
     },
     {
       "id": "mens-embroidered-kurta",
