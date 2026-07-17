@@ -3,7 +3,7 @@
 (function () {
   'use strict';
 
-  var CACHE_V = '20260717d';
+  var CACHE_V = '20260717e';
   var tagLabels = { new: 'New', bestseller: 'Bestseller', limited: 'Limited', trending: 'Trending' };
 
   function getCollection() {
