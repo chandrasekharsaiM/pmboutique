@@ -70,6 +70,11 @@
     .modal .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .modal .image-preview { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-top: 8px; border: 2px dashed #ddd; }
     .modal .btn-row { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
+    .existing-images { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .existing-images .thumb-wrap { position: relative; width: 90px; height: 90px; border-radius: 8px; overflow: hidden; border: 2px solid #ddd; }
+    .existing-images .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .existing-images .thumb-wrap .remove-btn { position: absolute; top: 2px; right: 2px; width: 22px; height: 22px; border-radius: 50%; background: var(--red); color: white; border: none; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; line-height: 1; }
+    .existing-images .thumb-wrap .main-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.6); color: white; font-size: 10px; text-align: center; padding: 2px 0; }
 
     .toast { position: fixed; bottom: 30px; right: 30px; background: var(--dark); color: var(--white); padding: 14px 24px; border-radius: 8px; font-size: 14px; z-index: 2000; transform: translateY(100px); opacity: 0; transition: all 0.3s; max-width: 90vw; word-break: break-word; }
     .toast.show { transform: translateY(0); opacity: 1; }
@@ -181,13 +186,17 @@
           <input type="number" id="pOrder" placeholder="1" min="1">
         </div>
       </div>
+      <div class="form-group" id="existingSection" style="display:none">
+        <label>Existing Images (click × to remove)</label>
+        <div class="existing-images" id="existingImages"></div>
+      </div>
       <div class="form-group">
         <label>Product Image (auto-resized to 1200px)</label>
         <input type="file" id="pImage" accept="image/*" onchange="previewImage(this, 'mainPreview')">
         <img id="mainPreview" class="image-preview hidden" alt="Preview">
       </div>
       <div class="form-group">
-        <label>Gallery Images — up to 6, auto-resized to 800px</label>
+        <label>Gallery Images (add 5 for 6 total in modal popup, auto-resized to 800px)</label>
         <input type="file" id="pGallery" accept="image/*" multiple onchange="previewGallery(this)">
         <div id="galleryPreview" style="display:flex;gap:8px;margin-top:8px"></div>
       </div>
@@ -461,8 +470,14 @@
       document.getElementById('pGallery').value = '';
       document.getElementById('mainPreview').classList.add('hidden');
       document.getElementById('galleryPreview').innerHTML = '';
+      existingMainImage = '';
+      existingGalleryImages = [];
+      document.getElementById('existingSection').style.display = 'none';
       document.getElementById('productModal').classList.add('active');
     }
+
+    var existingMainImage = '';
+    var existingGalleryImages = [];
 
     function editProduct(id) {
       var p = products.find(function(x) { return x.id === id; });
@@ -473,13 +488,42 @@
       document.getElementById('pCollection').value = p.collection;
       document.getElementById('pTag').value = p.tag || '';
       document.getElementById('pOrder').value = p.order;
-      document.getElementById('pImageUrl').value = p.image + (p.gallery && p.gallery.length ? ', ' + p.gallery.join(', ') : '');
+      document.getElementById('pImageUrl').value = '';
       document.getElementById('pImage').value = '';
       document.getElementById('pGallery').value = '';
-      document.getElementById('mainPreview').src = p.image;
-      document.getElementById('mainPreview').classList.remove('hidden');
+      existingMainImage = p.image || '';
+      existingGalleryImages = (p.gallery || []).slice();
+      document.getElementById('existingSection').style.display = existingMainImage || existingGalleryImages.length ? '' : 'none';
+      renderExistingImages();
+      document.getElementById('mainPreview').classList.add('hidden');
       document.getElementById('galleryPreview').innerHTML = '';
       document.getElementById('productModal').classList.add('active');
+    }
+
+    function renderExistingImages() {
+      var container = document.getElementById('existingImages');
+      if (!container) return;
+      var all = [];
+      if (existingMainImage) all.push({ path: existingMainImage, type: 'main' });
+      for (var i = 0; i < existingGalleryImages.length; i++) {
+        all.push({ path: existingGalleryImages[i], type: 'gallery', idx: i });
+      }
+      if (all.length === 0) { container.innerHTML = '<p style="font-size:13px;color:var(--gray)">No existing images.</p>'; return; }
+      var html = '';
+      for (var j = 0; j < all.length; j++) {
+        var item = all[j];
+        html += '<div class="thumb-wrap">' +
+          '<img src="' + item.path + '" alt="" onerror="this.parentElement.style.display=\'none\'">' +
+          (item.type === 'main' ? '<span class="main-label">Main</span>' : '<button class="remove-btn" onclick="removeGalleryImage(' + item.idx + ')" title="Remove">&times;</button>') +
+          '</div>';
+      }
+      container.innerHTML = html;
+    }
+
+    function removeGalleryImage(idx) {
+      existingGalleryImages.splice(idx, 1);
+      renderExistingImages();
+      logEntry('Removed gallery image index ' + idx + ', remaining: ' + existingGalleryImages.length);
     }
 
     function closeModal() {
@@ -551,16 +595,22 @@
         if (galleryFiles.length > 0) {
           showToast('Uploading gallery images...', 'success');
           var gslug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+          var gStart = existingGalleryImages.length + 1;
           for (var i = 0; i < galleryFiles.length; i++) {
             logEntry('Resizing gallery image ' + (i + 1) + '...');
             var gresized = await resizeFile(galleryFiles[i], 800, 800);
             if (!gresized) { logEntry('Gallery resize failed for image ' + (i + 1) + ', skipping', 'fail'); continue; }
             var gbase64 = await fileToBase64(gresized);
             if (!gbase64) { logEntry('Gallery base64 failed for image ' + (i + 1) + ', skipping', 'fail'); continue; }
-            var gimgPath = 'images/products/' + gslug + '-' + (i + 1) + '.jpg';
-            await commitBinaryFile(gimgPath, gbase64, 'Admin: Upload ' + name + ' gallery ' + (i + 1));
-            gallery.push(gimgPath);
+            var gimgPath = 'images/products/' + gslug + '-' + (gStart + i) + '.jpg';
+            await commitBinaryFile(gimgPath, gbase64, 'Admin: Upload ' + name + ' gallery ' + (gStart + i));
+            existingGalleryImages.push(gimgPath);
           }
+        }
+
+        if (editId) {
+          imagePath = imagePath || existingMainImage;
+          gallery = existingGalleryImages.slice();
         }
 
         if (!imagePath && urlText) {
@@ -584,7 +634,7 @@
             products[idx].tag = tag;
             products[idx].order = order;
             products[idx].image = imagePath;
-            if (gallery.length > 0) products[idx].gallery = gallery;
+            products[idx].gallery = gallery;
           }
         } else {
           products.push({ id: id, name: name, collection: collection, image: imagePath, gallery: gallery, tag: tag, order: order });
