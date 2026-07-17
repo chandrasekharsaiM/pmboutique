@@ -8,10 +8,15 @@
       "gallery": [
         "images/products/bridal-lehenga-1.jpg",
         "images/products/bridal-lehenga-1784255919504-g1.jpg",
-        "images/products/bridal-lehenga-1784256427315-g1.jpg"
+        "images/products/bridal-lehenga-1784256427315-g1.jpg",
+        "images/products/bridal-lehenga-1784263679169-g1.jpg"
       ],
       "tag": "new",
-      "order": 1
+      "order": 1,
+      "imageWebp": "",
+      "galleryWebp": [
+        "images/products/bridal-lehenga-1784263679169-g1.webp"
+      ]
     },
     {
       "id": "mens-silk-sherwani",
