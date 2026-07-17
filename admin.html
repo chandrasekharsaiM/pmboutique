@@ -236,6 +236,10 @@
     var editingDesigns = [];
     var oldImagePaths = [];
 
+    function esc(str) {
+      return (str || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
     function logEntry(text, type) {
       var el = document.getElementById('debugEntries');
       if (!el) return;
@@ -436,8 +440,8 @@
         var imgCount = 0;
         (p.designs || []).forEach(function(d) { imgCount += (d.images || []).length; });
         return '<div class="product-item">' +
-          '<img src="' + (p.image || '') + '" alt="' + p.name + '" onerror="this.style.background=\'#f0ebe3\';this.alt=\'No Image\'">' +
-          '<div class="info"><h4>' + p.name + '</h4><div class="meta"><span>' + p.collection + '</span>' +
+          '<img src="' + (p.image || '') + '" alt="' + esc(p.name) + '" onerror="this.style.background=\'#f0ebe3\';this.alt=\'No Image\'">' +
+          '<div class="info"><h4>' + esc(p.name) + '</h4><div class="meta"><span>' + p.collection + '</span>' +
           (p.tag ? '<span class="tag tag-' + p.tag + '">' + p.tag + '</span>' : '') +
           '</div></div>' +
           '<div class="design-count">' + dc + ' designs · ' + imgCount + ' images</div>' +

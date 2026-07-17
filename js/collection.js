@@ -98,15 +98,16 @@
     var modalGrid = document.getElementById('designModalGrid');
     modalGrid.innerHTML = '';
 
-    var designs = (product.designs || []).slice(0, 6);
-    for (var i = 0; i < designs.length; i++) {
-      var d = designs[i];
-      var wrapper = document.createElement('div');
-      wrapper.className = 'design-modal-img-wrap';
-      wrapper.setAttribute('data-design-id', d.id);
-      wrapper.innerHTML = makePicture(
-        d.coverImage || d.images[0].jpg,
-        d.coverImageWebp || d.images[0].webp || '',
+      var designs = (product.designs || []).slice(0, 6);
+      for (var i = 0; i < designs.length; i++) {
+        var d = designs[i];
+        var firstImg = (d.images && d.images.length > 0) ? d.images[0] : {};
+        var wrapper = document.createElement('div');
+        wrapper.className = 'design-modal-img-wrap';
+        wrapper.setAttribute('data-design-id', d.id);
+        wrapper.innerHTML = makePicture(
+          d.coverImage || firstImg.jpg || '',
+          d.coverImageWebp || firstImg.webp || '',
         product.name + ' — ' + (d.name || 'Design ' + (i + 1)),
         400, 500, 'design-modal-img', 'lazy'
       );
