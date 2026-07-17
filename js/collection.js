@@ -103,16 +103,21 @@
     document.getElementById('designModalTitle').textContent = name;
     var modalGrid = document.getElementById('designModalGrid');
     modalGrid.innerHTML = '';
-    var jpgs = imgs.jpg || [];
-    var webps = imgs.webp || [];
+    var jpgs = (imgs.jpg || []).slice(0, 6);
+    var webps = (imgs.webp || []).slice(0, 6);
+    var totalImages = (imgs.jpg || []).length;
     for (var i = 0; i < jpgs.length; i++) {
       var wrapper = document.createElement('div');
       wrapper.className = 'design-modal-img-wrap';
       wrapper.innerHTML = makePicture(jpgs[i], webps[i] || '', name + ' Design ' + (i + 1), 400, 500, 'design-modal-img', 'lazy');
       var imgEl = wrapper.querySelector('img');
       imgEl.setAttribute('data-index', i);
-      imgEl.onclick = (function (idx) { return function (e) { e.stopPropagation(); openZoom(jpgs, webps, idx); }; })(i);
+      imgEl.onclick = (function (idx) { return function (e) { e.stopPropagation(); openZoom(imgs.jpg || [], imgs.webp || [], idx); }; })(i);
       modalGrid.appendChild(wrapper);
+    }
+    var subtitle = document.getElementById('designModalSubtitle');
+    if (subtitle) {
+      subtitle.textContent = '6 DESIGNS' + (totalImages > 6 ? ' · SCROLL TO SEE MORE' : '') + ' · TAP TO VIEW SLIDESHOW';
     }
     document.getElementById('designModal').classList.add('active');
     document.body.style.overflow = 'hidden';
