@@ -3,7 +3,7 @@
 (function () {
   'use strict';
 
-  var CACHE_V = '20260717e';
+  var CACHE_V = '20260718a';
   var tagLabels = { new: 'New', bestseller: 'Bestseller', limited: 'Limited', trending: 'Trending' };
 
   function getCollection() {
@@ -29,7 +29,7 @@
       ' loading="' + (loading || 'lazy') + '"' +
       ' decoding="async"' +
       (cls ? ' class="' + cls + '"' : '') +
-      ' onerror="this.style.display=\'none\'">';
+      ' onerror="if(!this.dataset.retried){this.dataset.retried=1;this.src=this.src.split(\'?\')[0]+\'?r=\'+Date.now();}else{this.style.display=\'none\';}">';
   }
 
   /* ===== Normalize any format into canonical shape ===== */
