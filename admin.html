@@ -233,15 +233,17 @@
       list.sort(function(a,b){return(a.order||0)-(b.order||0)});
       document.getElementById('productCount').textContent='('+list.length+')';
       grid.innerHTML=list.map(function(p){
+        var pid=p.productId||p.id||'';
         var dc=(p.designs||[]).length;
+        var imgSrc=p.mainImage||p.image||'';
         return '<div class="product-item">'+
-          '<img src="'+(p.mainImage||'')+'" alt="'+esc(p.name)+'" onerror="this.style.background=\'#f0ebe3\';this.alt=\'No Image\'">'+
+          '<img src="'+esc(imgSrc)+'" alt="'+esc(p.name)+'" onerror="this.style.background=\'#f0ebe3\';this.alt=\'No Image\'">'+
           '<div class="info"><h4>'+esc(p.name)+'</h4><div class="meta"><span>'+p.collection+'</span>'+
           (p.tag?'<span class="tag tag-'+p.tag+'">'+p.tag+'</span>':'')+'</div></div>'+
           '<div class="meta2">'+dc+' designs</div>'+
           '<div class="actions">'+
-          '<button class="btn btn-secondary btn-sm" onclick="editProduct(\''+esc(p.productId)+'\')">Edit</button>'+
-          '<button class="btn btn-danger btn-sm" onclick="deleteProduct(\''+esc(p.productId)+'\')">Delete</button>'+
+          '<button class="btn btn-secondary btn-sm" onclick="editProduct(\''+esc(pid)+'\')">Edit</button>'+
+          '<button class="btn btn-danger btn-sm" onclick="deleteProduct(\''+esc(pid)+'\')">Delete</button>'+
           '</div></div>';
       }).join('');
     }
@@ -265,26 +267,37 @@
     }
 
     function editProduct(pid){
-      var p=products.find(function(x){return x.productId===pid});
+      var p=products.find(function(x){return(x.productId||x.id)===pid});
       if(!p)return;
       document.getElementById('modalTitle').textContent='Edit Product';
-      document.getElementById('editProductId').value=p.productId;
+      document.getElementById('editProductId').value=p.productId||p.id;
       document.getElementById('pName').value=p.name;
       document.getElementById('pCollection').value=p.collection;
       document.getElementById('pTag').value=p.tag||'';
       document.getElementById('pOrder').value=p.order;
       document.getElementById('pImage').value='';
       document.getElementById('mainPreview').classList.add('hidden');
-      oldMainPath=p.mainImage||'';
+      oldMainPath=p.mainImage||p.image||'';
 
-      if(p.mainImage){
+      var imgForEdit=p.mainImage||p.image||'';
+      if(imgForEdit){
         document.getElementById('existingMainWrap').style.display='';
-        document.getElementById('existingMainWrap').innerHTML='<div class="thumb"><img src="'+p.mainImage+'" alt="" onerror="this.parentElement.style.display=\'none\'"><span class="lbl">Main Image</span></div>';
+        document.getElementById('existingMainWrap').innerHTML='<div class="thumb"><img src="'+esc(imgForEdit)+'" alt="" onerror="this.parentElement.style.display=\'none\'"><span class="lbl">Main Image</span></div>';
       }else{document.getElementById('existingMainWrap').style.display='none'}
 
       editDesigns=(p.designs||[]).map(function(d){
-        return{designId:d.designId,name:d.name,images:(d.images||[]).slice(),newFiles:[]};
+        var imgs=(d.images||[]).map(function(item){return typeof item==='string'?item:(item&&item.jpg?item.jpg:'')}).filter(function(s){return s});
+        return{designId:d.designId||d.id,name:d.name,images:imgs,newFiles:[]};
       });
+      if(!p.designs&&p.gallery&&p.gallery.length>0){
+        var allImgs=[oldMainPath].concat(p.gallery||[]).filter(function(s){return s});
+        editDesigns=[];
+        for(var gi=0;gi<6;gi++){
+          var dImgs=[];
+          for(var gj=0;gj<5;gj++){var gi2=(gi*5+gj)%allImgs.length;dImgs.push(allImgs[gi2])}
+          editDesigns.push({designId:uid('design'),name:'Design '+(gi+1),images:dImgs,newFiles:[]});
+        }
+      }
       while(editDesigns.length<6)editDesigns.push({designId:uid('design'),name:'Design '+(editDesigns.length+1),images:[],newFiles:[]});
       renderDesigns();
       document.getElementById('productModal').classList.add('active');
@@ -386,7 +399,7 @@
           mainImage:mainImage,designs:finalDesigns
         };
 
-        if(editId){var idx=products.findIndex(function(p){return p.productId===editId});if(idx!==-1)products[idx]=prod}
+        if(editId){var idx=products.findIndex(function(p){return(p.productId||p.id)===editId});if(idx!==-1)products[idx]=prod}
         else products.push(prod);
 
         var json=JSON.stringify({products:products},null,2);
@@ -403,10 +416,10 @@
     }
 
     async function deleteProduct(pid){
-      var p=products.find(function(x){return x.productId===pid});if(!p)return;
+      var p=products.find(function(x){return(x.productId||x.id)===pid});if(!p)return;
       if(!confirm('Delete "'+p.name+'"?'))return;
       try{
-        products=products.filter(function(x){return x.productId!==pid});
+        products=products.filter(function(x){return(x.productId||x.id)!==pid});
         await commitText('data/products.json',JSON.stringify({products:products},null,2),'Admin: Delete "'+p.name+'"');
         if(p.mainImage)deleteFile(p.mainImage,'Admin: Cleanup '+p.name).catch(function(){});
         (p.designs||[]).forEach(function(d){(d.images||[]).forEach(function(img){deleteFile(img,'Admin: Cleanup design img').catch(function(){})})});
