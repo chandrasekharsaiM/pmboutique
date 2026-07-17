@@ -42,6 +42,7 @@
     .btn-secondary { background: var(--light-gray); color: var(--dark); }
     .btn-secondary:hover { background: #e0d8cc; }
     .btn-sm { padding: 6px 14px; font-size: 12px; }
+    .btn-xs { padding: 4px 10px; font-size: 11px; }
 
     .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
     .toolbar h2 { font-family: 'Playfair Display', serif; font-size: 24px; }
@@ -62,14 +63,29 @@
     .tag-limited { background: #fce4ec; color: #c62828; }
     .tag-trending { background: #e3f2fd; color: #1565c0; }
     .product-item .actions { padding: 0 14px 14px; display: flex; gap: 8px; }
+    .product-item .design-count { font-size: 11px; color: var(--gray); padding: 0 14px 8px; }
 
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
     .modal-overlay.active { display: flex; }
-    .modal { background: var(--white); border-radius: var(--radius); width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; padding: 32px; }
+    .modal { background: var(--white); border-radius: var(--radius); width: 100%; max-width: 700px; max-height: 90vh; overflow-y: auto; padding: 32px; }
     .modal h3 { font-family: 'Playfair Display', serif; margin-bottom: 24px; }
     .modal .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .modal .image-preview { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-top: 8px; border: 2px dashed #ddd; }
     .modal .btn-row { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
+
+    .designs-section { margin-top: 24px; border-top: 2px solid var(--light-gray); padding-top: 20px; }
+    .designs-section h4 { font-family: 'Playfair Display', serif; margin-bottom: 16px; font-size: 18px; }
+    .design-card { background: var(--light-gray); border-radius: 8px; padding: 16px; margin-bottom: 12px; border: 1px solid #e0d8cc; }
+    .design-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .design-card-header h5 { font-size: 14px; font-weight: 600; }
+    .design-images { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .design-thumb { position: relative; width: 80px; height: 80px; border-radius: 6px; overflow: hidden; border: 2px solid #ddd; }
+    .design-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .design-thumb .remove-btn { position: absolute; top: 2px; right: 2px; width: 20px; height: 20px; border-radius: 50%; background: var(--red); color: white; border: none; cursor: pointer; font-size: 10px; display: flex; align-items: center; justify-content: center; line-height: 1; }
+    .design-thumb .img-count { position: absolute; bottom: 2px; left: 2px; background: rgba(0,0,0,0.6); color: #fff; font-size: 9px; padding: 1px 5px; border-radius: 3px; }
+    .add-design-btn { width: 100%; padding: 12px; border: 2px dashed #ccc; background: transparent; border-radius: 8px; cursor: pointer; font-size: 13px; color: var(--gray); font-family: 'Inter', sans-serif; transition: all 0.2s; }
+    .add-design-btn:hover { border-color: var(--gold); color: var(--gold); }
+
     .existing-images { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
     .existing-images .thumb-wrap { position: relative; width: 90px; height: 90px; border-radius: 8px; overflow: hidden; border: 2px solid #ddd; }
     .existing-images .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; }
@@ -95,6 +111,7 @@
       .toolbar { flex-direction: column; align-items: flex-start; }
       .modal .form-row { grid-template-columns: 1fr; }
       .products-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+      .modal { padding: 20px; }
     }
   </style>
 </head>
@@ -152,6 +169,7 @@
     </div>
   </div>
 
+  <!-- Product Modal -->
   <div class="modal-overlay" id="productModal">
     <div class="modal">
       <h3 id="modalTitle">Add Product</h3>
@@ -186,24 +204,22 @@
           <input type="number" id="pOrder" placeholder="1" min="1">
         </div>
       </div>
-      <div class="form-group" id="existingSection" style="display:none">
-        <label>Existing Images (click × to remove)</label>
-        <div class="existing-images" id="existingImages"></div>
-      </div>
       <div class="form-group">
-        <label>Product Image (auto-resized to 1200px)</label>
+        <label>Main Product Image (auto-resized to 1200px)</label>
         <input type="file" id="pImage" accept="image/*" onchange="previewImage(this, 'mainPreview')">
         <img id="mainPreview" class="image-preview hidden" alt="Preview">
       </div>
-      <div class="form-group">
-        <label>Gallery Images (up to 30, auto-resized to 800px)</label>
-        <input type="file" id="pGallery" accept="image/*" multiple onchange="previewGallery(this)">
-        <div id="galleryPreview" style="display:flex;gap:8px;margin-top:8px"></div>
+      <div id="existingMainWrap" class="form-group" style="display:none">
+        <label>Current Main Image</label>
+        <div class="existing-images"><div class="thumb-wrap" id="existingMainThumb"></div></div>
       </div>
-      <div class="form-group">
-        <label>Or paste image URLs (comma separated, for existing images)</label>
-        <input type="text" id="pImageUrl" placeholder="images/collection-saree.jpg, images/gallery-saree.jpg">
+
+      <div class="designs-section">
+        <h4>Designs (max 6, each with up to 5 images)</h4>
+        <div id="designsContainer"></div>
+        <button class="add-design-btn" id="addDesignBtn" onclick="addDesign()">+ Add Design</button>
       </div>
+
       <div class="btn-row">
         <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
         <button class="btn btn-primary" id="saveBtn" onclick="saveProduct()">Save Product</button>
@@ -217,6 +233,8 @@
     var ghConfig = { user: '', repo: '', token: '' };
     var products = [];
     var currentFilter = 'all';
+    var editingDesigns = [];
+    var oldImagePaths = [];
 
     function logEntry(text, type) {
       var el = document.getElementById('debugEntries');
@@ -237,6 +255,10 @@
       logEntry(msg, type);
     }
 
+    function uid(prefix) {
+      return prefix + '-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6);
+    }
+
     function resizeFile(file, maxW, maxH) {
       return new Promise(function(resolve) {
         if (!file || !file.type || !file.type.startsWith('image/')) {
@@ -250,7 +272,6 @@
             try {
               var w = img.naturalWidth || img.width;
               var h = img.naturalHeight || img.height;
-              logEntry('Original size: ' + w + 'x' + h);
               if (w > maxW) { h = Math.round((h * maxW) / w); w = maxW; }
               if (h > maxH) { w = Math.round((w * maxH) / h); h = maxH; }
               var canvas = document.createElement('canvas');
@@ -259,36 +280,25 @@
               canvas.getContext('2d').drawImage(img, 0, 0, w, h);
               var jpgDone = false, webpDone = false, jpgFile = null, webpFile = null;
               function checkDone() {
-                if (jpgDone && webpDone) {
-                  logEntry('Resized to: ' + w + 'x' + h + ', JPEG=' + (jpgFile ? Math.round(jpgFile.size / 1024) + 'KB' : 'none') + ', WebP=' + (webpFile ? Math.round(webpFile.size / 1024) + 'KB' : 'none'));
-                  resolve({ jpg: jpgFile || file, webp: webpFile });
-                }
+                if (jpgDone && webpDone) resolve({ jpg: jpgFile || file, webp: webpFile });
               }
               canvas.toBlob(function(blob) {
                 jpgFile = blob ? new File([blob], 'upload.jpg', { type: 'image/jpeg' }) : null;
-                jpgDone = true;
-                checkDone();
+                jpgDone = true; checkDone();
               }, 'image/jpeg', 0.80);
               canvas.toBlob(function(blob) {
                 webpFile = blob ? new File([blob], 'upload.webp', { type: 'image/webp' }) : null;
-                webpDone = true;
-                checkDone();
+                webpDone = true; checkDone();
               }, 'image/webp', 0.80);
             } catch (e) {
               logEntry('Resize error: ' + e.message, 'fail');
               resolve({ jpg: file, webp: null });
             }
           };
-          img.onerror = function() {
-            logEntry('Failed to decode image for resize', 'fail');
-            resolve({ jpg: file, webp: null });
-          };
+          img.onerror = function() { resolve({ jpg: file, webp: null }); };
           img.src = e.target.result;
         };
-        reader.onerror = function() {
-          logEntry('FileReader error', 'fail');
-          resolve({ jpg: null, webp: null });
-        };
+        reader.onerror = function() { resolve({ jpg: null, webp: null }); };
         reader.readAsDataURL(file);
       });
     }
@@ -300,14 +310,9 @@
         reader.onload = function() {
           var result = reader.result;
           if (!result || result.indexOf(',') === -1) { resolve(''); return; }
-          var b64 = result.split(',')[1];
-          logEntry('Base64 size: ' + Math.round(b64.length / 1024) + 'KB');
-          resolve(b64);
+          resolve(result.split(',')[1]);
         };
-        reader.onerror = function() {
-          logEntry('FileReader error in fileToBase64', 'fail');
-          resolve('');
-        };
+        reader.onerror = function() { resolve(''); };
         reader.readAsDataURL(file);
       });
     }
@@ -329,26 +334,16 @@
       ghConfig.user = document.getElementById('ghUser').value.trim();
       ghConfig.repo = document.getElementById('ghRepo').value.trim();
       ghConfig.token = document.getElementById('ghToken').value.trim();
-
-      if (!ghConfig.user || !ghConfig.repo || !ghConfig.token) {
-        showToast('Please fill all fields', 'error');
-        return;
-      }
-
+      if (!ghConfig.user || !ghConfig.repo || !ghConfig.token) { showToast('Please fill all fields', 'error'); return; }
       showToast('Connecting to GitHub...', 'info');
       try {
         var res = await fetch('https://api.github.com/repos/' + ghConfig.user + '/' + ghConfig.repo, {
-          headers: {
-            'Authorization': 'token ' + ghConfig.token,
-            'Accept': 'application/vnd.github.v3+json'
-          }
+          headers: { 'Authorization': 'token ' + ghConfig.token, 'Accept': 'application/vnd.github.v3+json' }
         });
         if (!res.ok) {
-          var errBody = await res.text();
-          try { var err = JSON.parse(errBody); errBody = err.message || errBody; } catch(e) {}
-          if (res.status === 401) showToast('Invalid token. Generate a new one at github.com/settings/tokens', 'error');
-          else if (res.status === 404) showToast('Repository not found. Check username and repo name.', 'error');
-          else showToast('GitHub ' + res.status + ': ' + errBody, 'error');
+          if (res.status === 401) showToast('Invalid token', 'error');
+          else if (res.status === 404) showToast('Repository not found', 'error');
+          else showToast('GitHub ' + res.status, 'error');
           return;
         }
         var data = await res.json();
@@ -361,28 +356,20 @@
           showToast('Connected!', 'success');
           await loadProducts();
         }
-      } catch (e) {
-        showToast('Connection failed: ' + e.message, 'error');
-      }
+      } catch (e) { showToast('Connection failed: ' + e.message, 'error'); }
     }
 
     async function ghAPI(method, endpoint, body) {
       var opts = {
         method: method,
-        headers: {
-          'Authorization': 'token ' + ghConfig.token,
-          'Accept': 'application/vnd.github.v3+json'
-        }
+        headers: { 'Authorization': 'token ' + ghConfig.token, 'Accept': 'application/vnd.github.v3+json' }
       };
-      if (body) {
-        opts.headers['Content-Type'] = 'application/json';
-        opts.body = JSON.stringify(body);
-      }
+      if (body) { opts.headers['Content-Type'] = 'application/json'; opts.body = JSON.stringify(body); }
       var res = await fetch('https://api.github.com/' + endpoint, opts);
       var resText = await res.text();
       if (!res.ok) {
         var errText = resText;
-        try { var errParsed = JSON.parse(resText); errText = errParsed.message || resText; } catch(e) {}
+        try { errText = JSON.parse(resText).message || resText; } catch(e) {}
         throw new Error('GitHub ' + res.status + ': ' + errText);
       }
       try { return JSON.parse(resText); } catch(e) { return {}; }
@@ -392,61 +379,37 @@
       try {
         var file = await ghAPI('GET', 'repos/' + ghConfig.user + '/' + ghConfig.repo + '/contents/' + path);
         return file.sha;
-      } catch(e) {
-        logEntry('getFileSHA (' + path + '): ' + e.message, 'fail');
-        return null;
-      }
+      } catch(e) { return null; }
     }
 
     async function commitFile(path, content, message) {
-      logEntry('Committing text file: ' + path);
       var sha = await getFileSHA(path);
-      var body = {
-        message: message,
-        content: btoa(unescape(encodeURIComponent(content))),
-        branch: 'main'
-      };
+      var body = { message: message, content: btoa(unescape(encodeURIComponent(content))), branch: 'main' };
       if (sha) body.sha = sha;
-      var result = await ghAPI('PUT', 'repos/' + ghConfig.user + '/' + ghConfig.repo + '/contents/' + path, body);
-      logEntry('Committed: ' + path + (result.commit ? ' (sha: ' + result.commit.sha.substring(0,7) + ')' : ''), 'ok');
-      return result;
+      return await ghAPI('PUT', 'repos/' + ghConfig.user + '/' + ghConfig.repo + '/contents/' + path, body);
     }
 
     async function commitBinaryFile(path, base64Data, message) {
-      logEntry('Uploading image: ' + path + ' (' + Math.round(base64Data.length * 0.75 / 1024) + 'KB)');
       var sha = await getFileSHA(path);
-      if (sha === null) {
-        logEntry('Could not get SHA for ' + path + ' (file may not exist yet, creating new)', 'info');
-      }
-      var body = {
-        message: message,
-        content: base64Data,
-        branch: 'main'
-      };
+      var body = { message: message, content: base64Data, branch: 'main' };
       if (sha) body.sha = sha;
       var result = await ghAPI('PUT', 'repos/' + ghConfig.user + '/' + ghConfig.repo + '/contents/' + path, body);
-      if (!result || !result.commit) throw new Error('Upload failed for ' + path + ': no commit in response');
-      logEntry('Uploaded: ' + path + ' (commit: ' + result.commit.sha.substring(0,7) + ')', 'ok');
+      if (!result || !result.commit) throw new Error('Upload failed for ' + path);
       return result;
     }
 
     async function deleteRemoteFile(path, message) {
       var sha = await getFileSHA(path);
-      if (!sha) { logEntry('Skip delete (not found): ' + path, 'info'); return null; }
-      logEntry('Deleting old image: ' + path);
-      var result = await ghAPI('DELETE', 'repos/' + ghConfig.user + '/' + ghConfig.repo + '/contents/' + path, {
-        message: message,
-        sha: sha,
-        branch: 'main'
+      if (!sha) return null;
+      return await ghAPI('DELETE', 'repos/' + ghConfig.user + '/' + ghConfig.repo + '/contents/' + path, {
+        message: message, sha: sha, branch: 'main'
       });
-      logEntry('Deleted: ' + path, 'ok');
-      return result;
     }
 
-    function uniqueImagePath(slug, index) {
+    function uniqueImagePath(slug, designIdx, imgIdx) {
       var ts = Date.now();
-      if (index === 0) return { jpg: 'images/products/' + slug + '-' + ts + '.jpg', webp: 'images/products/' + slug + '-' + ts + '.webp' };
-      return { jpg: 'images/products/' + slug + '-' + ts + '-g' + index + '.jpg', webp: 'images/products/' + slug + '-' + ts + '-g' + index + '.webp' };
+      var base = 'images/products/' + slug + '-' + ts + '-d' + designIdx + 'i' + imgIdx;
+      return { jpg: base + '.jpg', webp: base + '.webp' };
     }
 
     async function loadProducts() {
@@ -455,7 +418,6 @@
         var file = await ghAPI('GET', 'repos/' + ghConfig.user + '/' + ghConfig.repo + '/contents/data/products.json');
         var decoded = decodeURIComponent(escape(atob(file.content)));
         products = JSON.parse(decoded).products || [];
-        logEntry('Loaded ' + products.length + ' products', 'ok');
         renderProducts();
       } catch (e) {
         showToast('Could not load products.json: ' + e.message, 'error');
@@ -470,11 +432,15 @@
       filtered.sort(function(a, b) { return a.order - b.order; });
       document.getElementById('productCount').textContent = '(' + filtered.length + ')';
       grid.innerHTML = filtered.map(function(p) {
+        var dc = (p.designs || []).length;
+        var imgCount = 0;
+        (p.designs || []).forEach(function(d) { imgCount += (d.images || []).length; });
         return '<div class="product-item">' +
-          '<img src="' + p.image + '" alt="' + p.name + '" onerror="this.style.background=\'#f0ebe3\';this.alt=\'No Image\'">' +
+          '<img src="' + (p.image || '') + '" alt="' + p.name + '" onerror="this.style.background=\'#f0ebe3\';this.alt=\'No Image\'">' +
           '<div class="info"><h4>' + p.name + '</h4><div class="meta"><span>' + p.collection + '</span>' +
           (p.tag ? '<span class="tag tag-' + p.tag + '">' + p.tag + '</span>' : '') +
           '</div></div>' +
+          '<div class="design-count">' + dc + ' designs · ' + imgCount + ' images</div>' +
           '<div class="actions">' +
           '<button class="btn btn-secondary btn-sm" onclick="editProduct(\'' + p.id + '\')">Edit</button>' +
           '<button class="btn btn-danger btn-sm" onclick="deleteProduct(\'' + p.id + '\')">Delete</button>' +
@@ -496,23 +462,14 @@
       document.getElementById('pCollection').value = 'womens';
       document.getElementById('pTag').value = '';
       document.getElementById('pOrder').value = products.length + 1;
-      document.getElementById('pImageUrl').value = '';
       document.getElementById('pImage').value = '';
-      document.getElementById('pGallery').value = '';
       document.getElementById('mainPreview').classList.add('hidden');
-      document.getElementById('galleryPreview').innerHTML = '';
-      existingMainImage = '';
-      existingMainWebp = '';
-      existingGalleryImages = [];
-      existingGalleryWebp = [];
-      document.getElementById('existingSection').style.display = 'none';
+      document.getElementById('existingMainWrap').style.display = 'none';
+      editingDesigns = [];
+      oldImagePaths = [];
+      renderDesigns();
       document.getElementById('productModal').classList.add('active');
     }
-
-    var existingMainImage = '';
-    var existingMainWebp = '';
-    var existingGalleryImages = [];
-    var existingGalleryWebp = [];
 
     function editProduct(id) {
       var p = products.find(function(x) { return x.id === id; });
@@ -523,44 +480,135 @@
       document.getElementById('pCollection').value = p.collection;
       document.getElementById('pTag').value = p.tag || '';
       document.getElementById('pOrder').value = p.order;
-      document.getElementById('pImageUrl').value = '';
       document.getElementById('pImage').value = '';
-      document.getElementById('pGallery').value = '';
-      existingMainImage = p.image || '';
-      existingMainWebp = p.imageWebp || '';
-      existingGalleryImages = (p.gallery || []).slice();
-      existingGalleryWebp = (p.galleryWebp || []).slice();
-      document.getElementById('existingSection').style.display = existingMainImage || existingGalleryImages.length ? '' : 'none';
-      renderExistingImages();
       document.getElementById('mainPreview').classList.add('hidden');
-      document.getElementById('galleryPreview').innerHTML = '';
+
+      if (p.image) {
+        document.getElementById('existingMainWrap').style.display = '';
+        document.getElementById('existingMainThumb').innerHTML =
+          '<img src="' + p.image + '" alt="Main" onerror="this.parentElement.style.display=\'none\'">' +
+          '<span class="main-label">Main</span>';
+      } else {
+        document.getElementById('existingMainWrap').style.display = 'none';
+      }
+
+      editingDesigns = (p.designs || []).map(function(d) {
+        return {
+          id: d.id,
+          name: d.name,
+          coverImage: d.coverImage || '',
+          coverImageWebp: d.coverImageWebp || '',
+          images: (d.images || []).map(function(img) {
+            return { id: img.id, jpg: img.jpg, webp: img.webp || '' };
+          }),
+          newFiles: []
+        };
+      });
+      oldImagePaths = [];
+      (p.designs || []).forEach(function(d) {
+        (d.images || []).forEach(function(img) {
+          if (img.jpg) oldImagePaths.push(img.jpg);
+          if (img.webp) oldImagePaths.push(img.webp);
+        });
+      });
+      if (p.image) oldImagePaths.push(p.image);
+      if (p.imageWebp) oldImagePaths.push(p.imageWebp);
+
+      renderDesigns();
       document.getElementById('productModal').classList.add('active');
     }
 
-    function renderExistingImages() {
-      var container = document.getElementById('existingImages');
+    function renderDesigns() {
+      var container = document.getElementById('designsContainer');
       if (!container) return;
-      var all = [];
-      if (existingMainImage) all.push({ path: existingMainImage, type: 'main' });
-      for (var i = 0; i < existingGalleryImages.length; i++) {
-        all.push({ path: existingGalleryImages[i], type: 'gallery', idx: i });
+      container.innerHTML = '';
+      for (var i = 0; i < editingDesigns.length; i++) {
+        var d = editingDesigns[i];
+        var card = document.createElement('div');
+        card.className = 'design-card';
+        card.setAttribute('data-idx', i);
+        var imgCount = d.images.length;
+        var newCount = d.newFiles ? d.newFiles.length : 0;
+        var html = '<div class="design-card-header">' +
+          '<h5>' + (d.name || 'Design ' + (i + 1)) + ' <span style="font-weight:400;font-size:12px;color:var(--gray)">(' + imgCount + ' images' + (newCount ? ' + ' + newCount + ' new' : '') + ')</span></h5>' +
+          '<div style="display:flex;gap:6px">' +
+          '<button class="btn btn-secondary btn-xs" onclick="renameDesign(' + i + ')">Rename</button>' +
+          '<button class="btn btn-danger btn-xs" onclick="removeDesign(' + i + ')">Delete</button>' +
+          '</div></div>';
+
+        html += '<div class="design-images">';
+        for (var j = 0; j < d.images.length; j++) {
+          var img = d.images[j];
+          html += '<div class="design-thumb">' +
+            '<img src="' + img.jpg + '" alt="" onerror="this.parentElement.style.display=\'none\'">' +
+            '<button class="remove-btn" onclick="removeDesignImage(' + i + ',' + j + ')" title="Remove">&times;</button>' +
+            '</div>';
+        }
+        for (var k = 0; k < (d.newFiles || []).length; k++) {
+          html += '<div class="design-thumb">' +
+            '<img src="' + URL.createObjectURL(d.newFiles[k].jpg) + '" alt="New">' +
+            '<button class="remove-btn" onclick="removeDesignNewFile(' + i + ',' + k + ')" title="Remove">&times;</button>' +
+            '</div>';
+        }
+        html += '</div>';
+
+        html += '<input type="file" id="designFile_' + i + '" accept="image/*" multiple style="display:none" onchange="addDesignFiles(' + i + ', this)">';
+        html += '<button class="btn btn-secondary btn-sm" onclick="document.getElementById(\'designFile_' + i + '\').click()">+ Add Images (max 5)</button>';
+
+        card.innerHTML = html;
+        container.appendChild(card);
       }
-      if (all.length === 0) { container.innerHTML = '<p style="font-size:13px;color:var(--gray)">No existing images.</p>'; return; }
-      var html = '';
-      for (var j = 0; j < all.length; j++) {
-        var item = all[j];
-        html += '<div class="thumb-wrap">' +
-          '<img src="' + item.path + '" alt="" onerror="this.parentElement.style.display=\'none\'">' +
-          (item.type === 'main' ? '<span class="main-label">Main</span>' : '<button class="remove-btn" onclick="removeGalleryImage(' + item.idx + ')" title="Remove">&times;</button>') +
-          '</div>';
-      }
-      container.innerHTML = html;
     }
 
-    function removeGalleryImage(idx) {
-      existingGalleryImages.splice(idx, 1);
-      renderExistingImages();
-      logEntry('Removed gallery image index ' + idx + ', remaining: ' + existingGalleryImages.length);
+    function addDesign() {
+      if (editingDesigns.length >= 6) { showToast('Maximum 6 designs per product', 'error'); return; }
+      editingDesigns.push({
+        id: uid('d'),
+        name: 'Design ' + (editingDesigns.length + 1),
+        coverImage: '',
+        coverImageWebp: '',
+        images: [],
+        newFiles: []
+      });
+      renderDesigns();
+    }
+
+    function renameDesign(idx) {
+      var name = prompt('Design name:', editingDesigns[idx].name);
+      if (name && name.trim()) {
+        editingDesigns[idx].name = name.trim();
+        renderDesigns();
+      }
+    }
+
+    function removeDesign(idx) {
+      if (!confirm('Delete this design and all its images?')) return;
+      editingDesigns.splice(idx, 1);
+      renderDesigns();
+    }
+
+    function addDesignFiles(designIdx, input) {
+      var d = editingDesigns[designIdx];
+      if (!d) return;
+      var maxSlots = 5 - d.images.length - (d.newFiles || []).length;
+      if (maxSlots <= 0) { showToast('Design already has 5 images', 'error'); return; }
+      var files = Array.from(input.files).slice(0, maxSlots);
+      if (!d.newFiles) d.newFiles = [];
+      for (var i = 0; i < files.length; i++) {
+        d.newFiles.push({ jpg: files[i], webp: null, jpgB64: '', webpB64: '' });
+      }
+      input.value = '';
+      renderDesigns();
+    }
+
+    function removeDesignImage(designIdx, imgIdx) {
+      editingDesigns[designIdx].images.splice(imgIdx, 1);
+      renderDesigns();
+    }
+
+    function removeDesignNewFile(designIdx, fileIdx) {
+      editingDesigns[designIdx].newFiles.splice(fileIdx, 1);
+      renderDesigns();
     }
 
     function closeModal() {
@@ -572,21 +620,7 @@
         var preview = document.getElementById(previewId);
         preview.src = URL.createObjectURL(input.files[0]);
         preview.classList.remove('hidden');
-        logEntry('Main image selected: ' + input.files[0].name + ' (' + Math.round(input.files[0].size / 1024) + 'KB)');
       }
-    }
-
-    function previewGallery(input) {
-      var container = document.getElementById('galleryPreview');
-      container.innerHTML = '';
-      var files = Array.from(input.files).slice(0, 30);
-      for (var i = 0; i < files.length; i++) {
-        var thumb = document.createElement('img');
-        thumb.src = URL.createObjectURL(files[i]);
-        thumb.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:6px;border:2px solid #ddd';
-        container.appendChild(thumb);
-      }
-      logEntry('Gallery images selected: ' + files.length);
     }
 
     async function saveProduct() {
@@ -595,11 +629,9 @@
       var collection = document.getElementById('pCollection').value;
       var tag = document.getElementById('pTag').value || null;
       var order = parseInt(document.getElementById('pOrder').value) || 1;
-      var urlText = document.getElementById('pImageUrl').value.trim();
       var imageInput = document.getElementById('pImage');
-      var galleryInput = document.getElementById('pGallery');
 
-      if (!name) { showToast('Product name is required', 'error'); alert('Product name is required'); return; }
+      if (!name) { showToast('Product name is required', 'error'); return; }
 
       var saveBtn = document.getElementById('saveBtn');
       saveBtn.textContent = 'Saving...';
@@ -609,137 +641,108 @@
         var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         var imagePath = '';
         var imageWebp = '';
-        var gallery = [];
-        var galleryWebp = [];
         var oldMainPath = '';
         var oldMainWebp = '';
-        var oldGalleryPaths = [];
-        var oldGalleryWebps = [];
-
-        var mainFile = (imageInput.files && imageInput.files.length > 0) ? imageInput.files[0] : null;
-        var galleryFiles = (galleryInput.files && galleryInput.files.length > 0) ? Array.from(galleryInput.files).slice(0, 30) : [];
 
         if (editId) {
           var existing = products.find(function(p) { return p.id === editId; });
           if (existing) {
             oldMainPath = existing.image || '';
             oldMainWebp = existing.imageWebp || '';
-            oldGalleryPaths = (existing.gallery || []).slice();
-            oldGalleryWebps = (existing.galleryWebp || []).slice();
           }
+          imagePath = oldMainPath;
+          imageWebp = oldMainWebp;
         }
 
-        logEntry('Save: edit=' + (editId || 'new') + ', newMain=' + (mainFile ? 'yes' : 'no') + ', newGallery=' + galleryFiles.length + ', urlText=' + (urlText ? 'yes' : 'no'));
+        var mainFile = imageInput.files && imageInput.files.length > 0 ? imageInput.files[0] : null;
 
         if (mainFile) {
-          showToast('Resizing main image...', 'success');
+          showToast('Uploading main image...', 'info');
           var resized = await resizeFile(mainFile, 1200, 1200);
           if (!resized || !resized.jpg) throw new Error('Image resize failed');
           var base64 = await fileToBase64(resized.jpg);
           if (!base64) throw new Error('Image conversion failed');
-          var paths = uniqueImagePath(slug, 0);
+          var paths = uniqueImagePath(slug, 0, 0);
           imagePath = paths.jpg;
           imageWebp = paths.webp;
-          showToast('Uploading main image...', 'success');
-          await commitBinaryFile(imagePath, base64, 'Admin: Upload ' + name + ' image');
+          await commitBinaryFile(imagePath, base64, 'Admin: Upload ' + name + ' main image');
           if (resized.webp) {
             var webpB64 = await fileToBase64(resized.webp);
-            if (webpB64) {
-              await commitBinaryFile(imageWebp, webpB64, 'Admin: Upload ' + name + ' image (WebP)');
-            }
+            if (webpB64) await commitBinaryFile(imageWebp, webpB64, 'Admin: Upload ' + name + ' main image (WebP)');
           }
         }
 
-        var newGalleryPaths = [];
-        var newGalleryWebps = [];
-        if (galleryFiles.length > 0) {
-          showToast('Uploading ' + galleryFiles.length + ' gallery images...', 'success');
-          for (var i = 0; i < galleryFiles.length; i++) {
-            var gresized = await resizeFile(galleryFiles[i], 800, 800);
-            if (!gresized || !gresized.jpg) { logEntry('Gallery resize failed #' + (i+1), 'fail'); continue; }
-            var gbase64 = await fileToBase64(gresized.jpg);
-            if (!gbase64) { logEntry('Gallery base64 failed #' + (i+1), 'fail'); continue; }
-            var gpaths = uniqueImagePath(slug, i + 1);
-            await commitBinaryFile(gpaths.jpg, gbase64, 'Admin: Upload ' + name + ' gallery ' + (i + 1));
-            newGalleryPaths.push(gpaths.jpg);
-            if (gresized.webp) {
-              var gwB64 = await fileToBase64(gresized.webp);
-              if (gwB64) {
-                await commitBinaryFile(gpaths.webp, gwB64, 'Admin: Upload ' + name + ' gallery ' + (i + 1) + ' (WebP)');
-                newGalleryWebps.push(gpaths.webp);
+        var totalDesigns = editingDesigns.length;
+        for (var di = 0; di < totalDesigns; di++) {
+          var design = editingDesigns[di];
+          if (design.newFiles && design.newFiles.length > 0) {
+            showToast('Uploading ' + design.name + ' images...', 'info');
+            for (var fi = 0; fi < design.newFiles.length; fi++) {
+              var nf = design.newFiles[fi];
+              var gResized = await resizeFile(nf.jpg, 800, 800);
+              if (!gResized || !gResized.jpg) { logEntry('Design image resize failed', 'fail'); continue; }
+              var gB64 = await fileToBase64(gResized.jpg);
+              if (!gB64) { logEntry('Design image base64 failed', 'fail'); continue; }
+              var gPaths = uniqueImagePath(slug, di, fi);
+              await commitBinaryFile(gPaths.jpg, gB64, 'Admin: Upload ' + name + ' ' + design.name + ' image ' + (fi + 1));
+              var newImg = { id: uid('i'), jpg: gPaths.jpg, webp: '' };
+              if (gResized.webp) {
+                var gwB64 = await fileToBase64(gResized.webp);
+                if (gwB64) {
+                  await commitBinaryFile(gPaths.webp, gwB64, 'Admin: Upload ' + name + ' ' + design.name + ' image ' + (fi + 1) + ' (WebP)');
+                  newImg.webp = gPaths.webp;
+                }
               }
+              design.images.push(newImg);
             }
+            design.newFiles = [];
           }
         }
 
-        if (editId) {
-          imagePath = imagePath || oldMainPath;
-          imageWebp = imageWebp || oldMainWebp;
-          gallery = existingGalleryImages.concat(newGalleryPaths);
-          galleryWebp = existingGalleryWebp.concat(newGalleryWebps);
-        }
+        var finalDesigns = editingDesigns.map(function(d, i) {
+          return {
+            id: d.id,
+            name: d.name,
+            coverImage: d.images.length > 0 ? d.images[0].jpg : '',
+            coverImageWebp: d.images.length > 0 ? d.images[0].webp : '',
+            images: d.images.map(function(img) { return { id: img.id, jpg: img.jpg, webp: img.webp || '' }; })
+          };
+        });
 
-        if (!imagePath && urlText) {
-          var urls = urlText.split(',').map(function(u) { return u.trim(); }).filter(Boolean);
-          imagePath = urls[0] || '';
-          gallery = urls.slice(1);
-          logEntry('Using URL paths: main=' + imagePath + ', gallery=' + gallery.length);
-        }
-
-        if (!imagePath) {
-          throw new Error('No image provided. Select a file or paste an image URL.');
-        }
-
-        var id = editId || (collection + '-' + slug);
+        var productData = {
+          id: editId || (collection + '-' + slug),
+          name: name,
+          collection: collection,
+          image: imagePath,
+          imageWebp: imageWebp,
+          tag: tag,
+          order: order,
+          designs: finalDesigns
+        };
 
         if (editId) {
           var idx = products.findIndex(function(p) { return p.id === editId; });
-          if (idx !== -1) {
-            products[idx].name = name;
-            products[idx].collection = collection;
-            products[idx].tag = tag;
-            products[idx].order = order;
-            products[idx].image = imagePath;
-            products[idx].imageWebp = imageWebp;
-            products[idx].gallery = gallery;
-            products[idx].galleryWebp = galleryWebp;
-          }
+          if (idx !== -1) products[idx] = productData;
         } else {
-          products.push({ id: id, name: name, collection: collection, image: imagePath, imageWebp: imageWebp, gallery: gallery, galleryWebp: galleryWebp, tag: tag, order: order });
+          products.push(productData);
         }
 
-        showToast('Saving products.json...', 'success');
+        showToast('Saving products.json...', 'info');
         var json = JSON.stringify({ products: products }, null, 2);
         await commitFile('data/products.json', json, 'Admin: ' + (editId ? 'Update' : 'Add') + ' product "' + name + '"');
 
         if (editId && oldMainPath && oldMainPath !== imagePath) {
-          deleteRemoteFile(oldMainPath, 'Admin: Remove old image for ' + name).catch(function(e) {
-            logEntry('Old image cleanup skipped: ' + e.message, 'info');
-          });
-          if (oldMainWebp) deleteRemoteFile(oldMainWebp, 'Admin: Remove old WebP for ' + name).catch(function() {});
-        }
-        if (editId && oldGalleryPaths.length) {
-          var kept = existingGalleryImages.slice();
-          var keptW = existingGalleryWebp.slice();
-          for (var g = 0; g < oldGalleryPaths.length; g++) {
-            if (kept.indexOf(oldGalleryPaths[g]) === -1) {
-              deleteRemoteFile(oldGalleryPaths[g], 'Admin: Remove old gallery for ' + name).catch(function(e) {
-                logEntry('Old gallery cleanup skipped: ' + e.message, 'info');
-              });
-              if (oldGalleryWebps[g]) deleteRemoteFile(oldGalleryWebps[g], 'Admin: Remove old gallery WebP for ' + name).catch(function() {});
-            }
-          }
+          deleteRemoteFile(oldMainPath, 'Admin: Remove old main for ' + name).catch(function() {});
+          if (oldMainWebp) deleteRemoteFile(oldMainWebp, 'Admin: Remove old main WebP for ' + name).catch(function() {});
         }
 
         showToast(editId ? 'Product updated!' : 'Product added!', 'success');
-        alert(editId ? 'Product updated successfully!' : 'Product added successfully!');
+        alert(editId ? 'Product updated!' : 'Product added!');
         closeModal();
         await loadProducts();
       } catch (e) {
-        var errMsg = 'Error: ' + e.message;
-        showToast(errMsg, 'error');
-        logEntry(errMsg, 'fail');
-        alert(errMsg);
+        showToast('Error: ' + e.message, 'error');
+        alert('Error: ' + e.message);
         console.error('saveProduct error:', e);
       }
 
@@ -750,7 +753,7 @@
     async function deleteProduct(id) {
       var p = products.find(function(x) { return x.id === id; });
       if (!p) return;
-      if (!confirm('Delete "' + p.name + '"? This will remove it from the site.')) return;
+      if (!confirm('Delete "' + p.name + '"?')) return;
 
       try {
         products = products.filter(function(x) { return x.id !== id; });
@@ -759,22 +762,17 @@
 
         if (p.image) deleteRemoteFile(p.image, 'Admin: Cleanup image for ' + p.name).catch(function() {});
         if (p.imageWebp) deleteRemoteFile(p.imageWebp, 'Admin: Cleanup WebP for ' + p.name).catch(function() {});
-        if (p.gallery && p.gallery.length) {
-          for (var i = 0; i < p.gallery.length; i++) {
-            deleteRemoteFile(p.gallery[i], 'Admin: Cleanup gallery for ' + p.name).catch(function() {});
-          }
-        }
-        if (p.galleryWebp && p.galleryWebp.length) {
-          for (var j = 0; j < p.galleryWebp.length; j++) {
-            deleteRemoteFile(p.galleryWebp[j], 'Admin: Cleanup gallery WebP for ' + p.name).catch(function() {});
-          }
-        }
+        (p.designs || []).forEach(function(d) {
+          (d.images || []).forEach(function(img) {
+            if (img.jpg) deleteRemoteFile(img.jpg, 'Admin: Cleanup design image for ' + p.name).catch(function() {});
+            if (img.webp) deleteRemoteFile(img.webp, 'Admin: Cleanup design image WebP for ' + p.name).catch(function() {});
+          });
+        });
 
         showToast('Product deleted!', 'success');
         await loadProducts();
       } catch (e) {
         showToast('Error: ' + e.message, 'error');
-        alert('Delete failed: ' + e.message);
       }
     }
   </script>

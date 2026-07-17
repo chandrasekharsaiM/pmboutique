@@ -5,18 +5,75 @@
       "name": "Bridal Lehenga",
       "collection": "womens",
       "image": "images/products/bridal-lehenga-1784256425057.jpg",
-      "gallery": [
-        "images/products/bridal-lehenga-1784255919504-g1.jpg",
-        "images/products/bridal-lehenga-1784256427315-g1.jpg",
-        "images/products/bridal-lehenga-1784263679169-g1.jpg",
-        "images/products/bridal-lehenga-1784265226195-g1.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
       "order": 1,
-      "imageWebp": "",
-      "galleryWebp": [
-        "images/products/bridal-lehenga-1784263679169-g1.webp",
-        "images/products/bridal-lehenga-1784265226195-g1.webp"
+      "designs": [
+        {
+          "id": "d-1784266022445-9q0shh",
+          "name": "Design 1",
+          "coverImage": "images/products/bridal-lehenga-1784256425057.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022446-p0lmwe",
+              "jpg": "images/products/bridal-lehenga-1784256425057.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022447-cj752c",
+          "name": "Design 2",
+          "coverImage": "images/products/bridal-lehenga-1784255919504-g1.jpg",
+          "coverImageWebp": "images/products/bridal-lehenga-1784263679169-g1.webp",
+          "images": [
+            {
+              "id": "i-1784266022448-h9edfj",
+              "jpg": "images/products/bridal-lehenga-1784255919504-g1.jpg",
+              "webp": "images/products/bridal-lehenga-1784263679169-g1.webp"
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022449-65ujhl",
+          "name": "Design 3",
+          "coverImage": "images/products/bridal-lehenga-1784256427315-g1.jpg",
+          "coverImageWebp": "images/products/bridal-lehenga-1784265226195-g1.webp",
+          "images": [
+            {
+              "id": "i-1784266022450-i4km1p",
+              "jpg": "images/products/bridal-lehenga-1784256427315-g1.jpg",
+              "webp": "images/products/bridal-lehenga-1784265226195-g1.webp"
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022451-undmbu",
+          "name": "Design 4",
+          "coverImage": "images/products/bridal-lehenga-1784263679169-g1.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022452-zh9mqw",
+              "jpg": "images/products/bridal-lehenga-1784263679169-g1.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022453-k7qsp4",
+          "name": "Design 5",
+          "coverImage": "images/products/bridal-lehenga-1784265226195-g1.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022454-q0ro9c",
+              "jpg": "images/products/bridal-lehenga-1784265226195-g1.jpg",
+              "webp": ""
+            }
+          ]
+        }
       ]
     },
     {
@@ -24,18 +81,88 @@
       "name": "Silk Sherwani",
       "collection": "mens",
       "image": "images/mens/mens-sherwani.jpg",
-      "gallery": [
-        "images/mens/mens-sherwani.jpg",
-        "images/mens/mens-wedding-sherwani.jpg",
-        "images/mens/mens-churidar.jpg",
-        "images/products/silk-sherwani-1784255974566-g1.jpg",
-        "images/products/silk-sherwani-1784260540926-g1.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
       "order": 1,
-      "imageWebp": "",
-      "galleryWebp": [
-        "images/products/silk-sherwani-1784260540926-g1.webp"
+      "designs": [
+        {
+          "id": "d-1784266022455-abfrua",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-sherwani.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022456-3m6q2w",
+              "jpg": "images/mens/mens-sherwani.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022457-ksrv21",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-sherwani.jpg",
+          "coverImageWebp": "images/products/silk-sherwani-1784260540926-g1.webp",
+          "images": [
+            {
+              "id": "i-1784266022458-yzl2nt",
+              "jpg": "images/mens/mens-sherwani.jpg",
+              "webp": "images/products/silk-sherwani-1784260540926-g1.webp"
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022459-w82im9",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-wedding-sherwani.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022460-vx0tcw",
+              "jpg": "images/mens/mens-wedding-sherwani.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022461-rfs783",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-churidar.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022462-6c9ant",
+              "jpg": "images/mens/mens-churidar.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022463-vqe7a6",
+          "name": "Design 5",
+          "coverImage": "images/products/silk-sherwani-1784255974566-g1.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022464-8bdglh",
+              "jpg": "images/products/silk-sherwani-1784255974566-g1.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022465-4uo240",
+          "name": "Design 6",
+          "coverImage": "images/products/silk-sherwani-1784260540926-g1.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022466-gfw0o0",
+              "jpg": "images/products/silk-sherwani-1784260540926-g1.jpg",
+              "webp": ""
+            }
+          ]
+        }
       ]
     },
     {
@@ -43,30 +170,138 @@
       "name": "Little Princess Lehenga",
       "collection": "kids",
       "image": "images/kids/kids-lehenga-1.jpg",
-      "gallery": [
-        "images/kids/kids-lehenga-1.jpg",
-        "images/kids/kids-printed-lehenga.jpg",
-        "images/kids/extra/kids-lehenga-4.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 1
+      "order": 1,
+      "designs": [
+        {
+          "id": "d-1784266022467-0lhnvl",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-lehenga-1.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022468-af53su",
+              "jpg": "images/kids/kids-lehenga-1.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022469-ve78cy",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-lehenga-1.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022470-9jysyc",
+              "jpg": "images/kids/kids-lehenga-1.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022471-dibwhb",
+          "name": "Design 3",
+          "coverImage": "images/kids/kids-printed-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022472-qyr8wk",
+              "jpg": "images/kids/kids-printed-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022473-g9soer",
+          "name": "Design 4",
+          "coverImage": "images/kids/extra/kids-lehenga-4.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022474-ejja00",
+              "jpg": "images/kids/extra/kids-lehenga-4.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-silk-saree",
       "name": "Silk Saree",
       "collection": "womens",
       "image": "images/products/silk-saree-1784263449089.jpg",
-      "gallery": [
-        "images/collection-saree.jpg",
-        "images/gallery-saree.jpg",
-        "images/collection-bridal.jpg",
-        "images/products/silk-saree-1784263457464-g1.jpg"
-      ],
+      "imageWebp": "images/products/silk-saree-1784263449089.webp",
       "tag": "bestseller",
       "order": 2,
-      "imageWebp": "images/products/silk-saree-1784263449089.webp",
-      "galleryWebp": [
-        "images/products/silk-saree-1784263457464-g1.webp"
+      "designs": [
+        {
+          "id": "d-1784266022475-u850bc",
+          "name": "Design 1",
+          "coverImage": "images/products/silk-saree-1784263449089.jpg",
+          "coverImageWebp": "images/products/silk-saree-1784263449089.webp",
+          "images": [
+            {
+              "id": "i-1784266022476-3ucyz8",
+              "jpg": "images/products/silk-saree-1784263449089.jpg",
+              "webp": "images/products/silk-saree-1784263449089.webp"
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022477-chnpzu",
+          "name": "Design 2",
+          "coverImage": "images/collection-saree.jpg",
+          "coverImageWebp": "images/products/silk-saree-1784263457464-g1.webp",
+          "images": [
+            {
+              "id": "i-1784266022478-1ldsc2",
+              "jpg": "images/collection-saree.jpg",
+              "webp": "images/products/silk-saree-1784263457464-g1.webp"
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022479-w1kpju",
+          "name": "Design 3",
+          "coverImage": "images/gallery-saree.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022480-l8ff32",
+              "jpg": "images/gallery-saree.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022481-9e7h0e",
+          "name": "Design 4",
+          "coverImage": "images/collection-bridal.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022482-syocxh",
+              "jpg": "images/collection-bridal.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022483-cxdbes",
+          "name": "Design 5",
+          "coverImage": "images/products/silk-saree-1784263457464-g1.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022484-uljces",
+              "jpg": "images/products/silk-saree-1784263457464-g1.jpg",
+              "webp": ""
+            }
+          ]
+        }
       ]
     },
     {
@@ -74,650 +309,3150 @@
       "name": "Embroidered Kurta",
       "collection": "mens",
       "image": "images/mens/mens-kurta.jpg",
-      "gallery": [
-        "images/mens/mens-kurta.jpg",
-        "images/mens/mens-kurta-set.jpg",
-        "images/mens/mens-churidar.jpg"
-      ],
+      "imageWebp": "",
       "tag": "bestseller",
-      "order": 2
+      "order": 2,
+      "designs": [
+        {
+          "id": "d-1784266022485-vz3yvw",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-kurta.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022486-mxvxqq",
+              "jpg": "images/mens/mens-kurta.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022487-skd0ak",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-kurta.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022488-toy5ux",
+              "jpg": "images/mens/mens-kurta.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022489-4vjzgj",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-kurta-set.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022490-8u0glz",
+              "jpg": "images/mens/mens-kurta-set.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022491-de8rrf",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-churidar.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022492-4hne6q",
+              "jpg": "images/mens/mens-churidar.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-kurta-set",
       "name": "Kids Kurta Set",
       "collection": "kids",
       "image": "images/kids/kids-kurta.jpg",
-      "gallery": [
-        "images/kids/kids-kurta.jpg",
-        "images/kids/extra/kids-kurta-2.jpg",
-        "images/kids/extra/kids-embroidered-kurta.jpg"
-      ],
+      "imageWebp": "",
       "tag": "bestseller",
-      "order": 2
+      "order": 2,
+      "designs": [
+        {
+          "id": "d-1784266022493-mip0sh",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-kurta.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022494-m2ee0v",
+              "jpg": "images/kids/kids-kurta.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022495-z3n7nq",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-kurta.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022496-7vrkgm",
+              "jpg": "images/kids/kids-kurta.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022497-a927dh",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-kurta-2.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022498-laswmz",
+              "jpg": "images/kids/extra/kids-kurta-2.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022499-zm7ra0",
+          "name": "Design 4",
+          "coverImage": "images/kids/extra/kids-embroidered-kurta.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022500-257ty7",
+              "jpg": "images/kids/extra/kids-embroidered-kurta.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-designer-gown",
       "name": "Designer Gown",
       "collection": "womens",
       "image": "images/gallery-party.jpg",
-      "gallery": [
-        "images/gallery-party.jpg",
-        "images/collection-lehenga.jpg",
-        "images/gallery-bridal.jpg"
-      ],
+      "imageWebp": "",
       "tag": "limited",
-      "order": 3
+      "order": 3,
+      "designs": [
+        {
+          "id": "d-1784266022501-vl7owu",
+          "name": "Design 1",
+          "coverImage": "images/gallery-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022502-fbkwd2",
+              "jpg": "images/gallery-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022503-y8v07h",
+          "name": "Design 2",
+          "coverImage": "images/gallery-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022504-l7obhr",
+              "jpg": "images/gallery-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022505-uirpne",
+          "name": "Design 3",
+          "coverImage": "images/collection-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022506-mffgt0",
+              "jpg": "images/collection-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022507-hewl7o",
+          "name": "Design 4",
+          "coverImage": "images/gallery-bridal.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022508-tdhz7u",
+              "jpg": "images/gallery-bridal.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-bandhgala-suit",
       "name": "Bandhgala Suit",
       "collection": "mens",
       "image": "images/mens/mens-bandhgala.jpg",
-      "gallery": [
-        "images/mens/mens-bandhgala.jpg",
-        "images/mens/mens-blazer.jpg",
-        "images/mens/mens-formal-shirt.jpg"
-      ],
+      "imageWebp": "",
       "tag": "limited",
-      "order": 3
+      "order": 3,
+      "designs": [
+        {
+          "id": "d-1784266022509-rgyhpl",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-bandhgala.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022510-f9vrby",
+              "jpg": "images/mens/mens-bandhgala.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022511-d2p4me",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-bandhgala.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022512-04qtdg",
+              "jpg": "images/mens/mens-bandhgala.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022513-f5lj5r",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-blazer.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022514-doveuq",
+              "jpg": "images/mens/mens-blazer.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022515-mkgbpw",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-formal-shirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022516-j34r97",
+              "jpg": "images/mens/mens-formal-shirt.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-festive-frock",
       "name": "Festive Frock",
       "collection": "kids",
       "image": "images/kids/kids-frock.jpg",
-      "gallery": [
-        "images/kids/kids-frock.jpg",
-        "images/kids/extra/kids-frock-2.jpg",
-        "images/kids/extra/kids-cotton-frock.jpg"
-      ],
+      "imageWebp": "",
       "tag": "limited",
-      "order": 3
+      "order": 3,
+      "designs": [
+        {
+          "id": "d-1784266022517-ny1dz5",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-frock.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022518-a87box",
+              "jpg": "images/kids/kids-frock.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022519-5550dm",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-frock.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022520-hprgul",
+              "jpg": "images/kids/kids-frock.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022521-3uv8u7",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-frock-2.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022522-o1puls",
+              "jpg": "images/kids/extra/kids-frock-2.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022523-7gkzhz",
+          "name": "Design 4",
+          "coverImage": "images/kids/extra/kids-cotton-frock.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022524-xa6tbe",
+              "jpg": "images/kids/extra/kids-cotton-frock.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-festive-lehenga",
       "name": "Festive Lehenga",
       "collection": "womens",
       "image": "images/collection-lehenga.jpg",
-      "gallery": [
-        "images/collection-lehenga.jpg",
-        "images/collection-bridal.jpg",
-        "images/gallery-lehenga.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 4
+      "order": 4,
+      "designs": [
+        {
+          "id": "d-1784266022525-uikd06",
+          "name": "Design 1",
+          "coverImage": "images/collection-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022526-4djd3z",
+              "jpg": "images/collection-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022527-loyrmr",
+          "name": "Design 2",
+          "coverImage": "images/collection-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022528-2l64ph",
+              "jpg": "images/collection-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022529-scy77a",
+          "name": "Design 3",
+          "coverImage": "images/collection-bridal.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022530-6pt8gc",
+              "jpg": "images/collection-bridal.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022531-s7ldk4",
+          "name": "Design 4",
+          "coverImage": "images/gallery-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022532-49ljww",
+              "jpg": "images/gallery-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-wedding-sherwani",
       "name": "Wedding Sherwani",
       "collection": "mens",
       "image": "images/mens/mens-wedding-sherwani.jpg",
-      "gallery": [
-        "images/mens/mens-wedding-sherwani.jpg",
-        "images/mens/mens-sherwani.jpg",
-        "images/mens/mens-pathani.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 4
+      "order": 4,
+      "designs": [
+        {
+          "id": "d-1784266022533-gw498n",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-wedding-sherwani.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022534-1ziqfa",
+              "jpg": "images/mens/mens-wedding-sherwani.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022535-crdoiu",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-wedding-sherwani.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022536-wfyzea",
+              "jpg": "images/mens/mens-wedding-sherwani.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022537-jzycm7",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-sherwani.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022538-u8oob8",
+              "jpg": "images/mens/mens-sherwani.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022539-v0nbqn",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-pathani.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022540-mwbsvi",
+              "jpg": "images/mens/mens-pathani.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-flower-girl-lehenga",
       "name": "Flower Girl Lehenga",
       "collection": "kids",
       "image": "images/kids/kids-lehenga-2.jpg",
-      "gallery": [
-        "images/kids/kids-lehenga-2.jpg",
-        "images/kids/extra/kids-printed-lehenga.jpg",
-        "images/kids/extra/kids-ghagra.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 4
+      "order": 4,
+      "designs": [
+        {
+          "id": "d-1784266022541-uzawzw",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-lehenga-2.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022542-j9x2ii",
+              "jpg": "images/kids/kids-lehenga-2.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022543-xszgtw",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-lehenga-2.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022544-vphr9s",
+              "jpg": "images/kids/kids-lehenga-2.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022545-c37c7b",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-printed-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022546-5xsx1o",
+              "jpg": "images/kids/extra/kids-printed-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022547-94nfuj",
+          "name": "Design 4",
+          "coverImage": "images/kids/extra/kids-ghagra.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022548-9ap5vc",
+              "jpg": "images/kids/extra/kids-ghagra.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-embroidered-blouse",
       "name": "Embroidered Blouse",
       "collection": "womens",
       "image": "images/collection-blouse.jpg",
-      "gallery": [
-        "images/collection-blouse.jpg",
-        "images/gallery-blouse.jpg",
-        "images/collection-bridal.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 5
+      "order": 5,
+      "designs": [
+        {
+          "id": "d-1784266022549-ez8ip6",
+          "name": "Design 1",
+          "coverImage": "images/collection-blouse.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022550-cs93nj",
+              "jpg": "images/collection-blouse.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022551-2cex7s",
+          "name": "Design 2",
+          "coverImage": "images/collection-blouse.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022552-d3onoy",
+              "jpg": "images/collection-blouse.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022553-0rkz6b",
+          "name": "Design 3",
+          "coverImage": "images/gallery-blouse.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022554-81kky8",
+              "jpg": "images/gallery-blouse.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022555-01g05p",
+          "name": "Design 4",
+          "coverImage": "images/collection-bridal.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022556-6a9yrs",
+              "jpg": "images/collection-bridal.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-linen-kurta-set",
       "name": "Linen Kurta Set",
       "collection": "mens",
       "image": "images/mens/mens-kurta-set.jpg",
-      "gallery": [
-        "images/mens/mens-kurta-set.jpg",
-        "images/mens/mens-kurta.jpg",
-        "images/mens/mens-churidar.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 5
+      "order": 5,
+      "designs": [
+        {
+          "id": "d-1784266022557-1d4znm",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-kurta-set.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022558-32eqfc",
+              "jpg": "images/mens/mens-kurta-set.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022559-pdan4d",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-kurta-set.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022560-nilo3u",
+              "jpg": "images/mens/mens-kurta-set.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022561-da7ra4",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-kurta.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022562-bdwopf",
+              "jpg": "images/mens/mens-kurta.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022563-f39v75",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-churidar.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022564-xjoko4",
+              "jpg": "images/mens/mens-churidar.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-mini-sherwani",
       "name": "Mini Sherwani",
       "collection": "kids",
       "image": "images/kids/kids-sherwani.jpg",
-      "gallery": [
-        "images/kids/kids-sherwani.jpg",
-        "images/kids/extra/kids-sherwani-2.jpg",
-        "images/kids/extra/kids-wedding-2.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 5
+      "order": 5,
+      "designs": [
+        {
+          "id": "d-1784266022565-i6kh06",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-sherwani.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022566-njuvp0",
+              "jpg": "images/kids/kids-sherwani.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022567-80nod3",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-sherwani.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022568-n2syut",
+              "jpg": "images/kids/kids-sherwani.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022569-xnyrur",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-sherwani-2.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022570-aahyrq",
+              "jpg": "images/kids/extra/kids-sherwani-2.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022571-uwalkj",
+          "name": "Design 4",
+          "coverImage": "images/kids/extra/kids-wedding-2.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022572-migk40",
+              "jpg": "images/kids/extra/kids-wedding-2.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-party-wear-suit",
       "name": "Party Wear Suit",
       "collection": "womens",
       "image": "images/gallery-party.jpg",
-      "gallery": [
-        "images/gallery-party.jpg",
-        "images/collection-stitching.jpg",
-        "images/collection-saree.jpg"
-      ],
+      "imageWebp": "",
       "tag": "bestseller",
-      "order": 6
+      "order": 6,
+      "designs": [
+        {
+          "id": "d-1784266022573-h2p2ie",
+          "name": "Design 1",
+          "coverImage": "images/gallery-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022574-m9cad2",
+              "jpg": "images/gallery-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022575-8l8i6u",
+          "name": "Design 2",
+          "coverImage": "images/gallery-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022576-uecebw",
+              "jpg": "images/gallery-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022577-ti4is3",
+          "name": "Design 3",
+          "coverImage": "images/collection-stitching.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022578-z5joo8",
+              "jpg": "images/collection-stitching.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022579-qxn5o9",
+          "name": "Design 4",
+          "coverImage": "images/collection-saree.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022580-dchnrk",
+              "jpg": "images/collection-saree.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-nehru-jacket",
       "name": "Nehru Jacket",
       "collection": "mens",
       "image": "images/mens/mens-nehru-jacket.jpg",
-      "gallery": [
-        "images/mens/mens-nehru-jacket.jpg",
-        "images/mens/mens-blazer.jpg",
-        "images/mens/mens-bandhgala.jpg"
-      ],
+      "imageWebp": "",
       "tag": "bestseller",
-      "order": 6
+      "order": 6,
+      "designs": [
+        {
+          "id": "d-1784266022581-sabe4t",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-nehru-jacket.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022582-rxw4ek",
+              "jpg": "images/mens/mens-nehru-jacket.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022583-87bvj8",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-nehru-jacket.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022584-huc4tn",
+              "jpg": "images/mens/mens-nehru-jacket.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022585-yhpkzd",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-blazer.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022586-nkodki",
+              "jpg": "images/mens/mens-blazer.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022587-mecl83",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-bandhgala.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022588-nflkfp",
+              "jpg": "images/mens/mens-bandhgala.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-dhoti-set",
       "name": "Traditional Dhoti Set",
       "collection": "kids",
       "image": "images/kids/kids-dhoti.jpg",
-      "gallery": [
-        "images/kids/kids-dhoti.jpg",
-        "images/kids/extra/kids-kurta-2.jpg",
-        "images/kids/kids-sherwani.jpg"
-      ],
+      "imageWebp": "",
       "tag": "bestseller",
-      "order": 6
+      "order": 6,
+      "designs": [
+        {
+          "id": "d-1784266022589-psnccc",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-dhoti.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022590-2uggyw",
+              "jpg": "images/kids/kids-dhoti.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022591-et2nrm",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-dhoti.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022592-gyidls",
+              "jpg": "images/kids/kids-dhoti.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022593-2tnhlc",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-kurta-2.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022594-nstlzv",
+              "jpg": "images/kids/extra/kids-kurta-2.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022595-vivt5w",
+          "name": "Design 4",
+          "coverImage": "images/kids/kids-sherwani.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022596-cxpjcs",
+              "jpg": "images/kids/kids-sherwani.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-anarkali-gown",
       "name": "Anarkali Gown",
       "collection": "womens",
       "image": "images/gallery-lehenga.jpg",
-      "gallery": [
-        "images/gallery-lehenga.jpg",
-        "images/gallery-party.jpg",
-        "images/collection-lehenga.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 7
+      "order": 7,
+      "designs": [
+        {
+          "id": "d-1784266022597-1to8jf",
+          "name": "Design 1",
+          "coverImage": "images/gallery-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022598-yi3b4l",
+              "jpg": "images/gallery-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022599-215gir",
+          "name": "Design 2",
+          "coverImage": "images/gallery-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022600-fyuhs1",
+              "jpg": "images/gallery-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022601-oewiok",
+          "name": "Design 3",
+          "coverImage": "images/gallery-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022602-7p2f6h",
+              "jpg": "images/gallery-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022603-4k7ays",
+          "name": "Design 4",
+          "coverImage": "images/collection-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022604-en1z3y",
+              "jpg": "images/collection-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-formal-blazer",
       "name": "Formal Blazer",
       "collection": "mens",
       "image": "images/mens/mens-blazer.jpg",
-      "gallery": [
-        "images/mens/mens-blazer.jpg",
-        "images/mens/mens-bandhgala.jpg",
-        "images/mens/mens-formal-shirt.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 7
+      "order": 7,
+      "designs": [
+        {
+          "id": "d-1784266022605-phskrg",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-blazer.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022606-x1pu34",
+              "jpg": "images/mens/mens-blazer.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022607-kxg93l",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-blazer.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022608-juj11b",
+              "jpg": "images/mens/mens-blazer.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022609-0iyn4z",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-bandhgala.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022610-vc226c",
+              "jpg": "images/mens/mens-bandhgala.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022611-w3go7u",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-formal-shirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022612-uob0rr",
+              "jpg": "images/mens/mens-formal-shirt.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-party-frock",
       "name": "Party Wear Frock",
       "collection": "kids",
       "image": "images/kids/kids-frock.jpg",
-      "gallery": [
-        "images/kids/kids-frock.jpg",
-        "images/kids/extra/kids-party-wear.jpg",
-        "images/kids/extra/kids-frock-2.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 7
+      "order": 7,
+      "designs": [
+        {
+          "id": "d-1784266022613-8xffn4",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-frock.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022614-xzuaqn",
+              "jpg": "images/kids/kids-frock.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022615-y87s7o",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-frock.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022616-kyo0fq",
+              "jpg": "images/kids/kids-frock.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022617-9xzhi4",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-party-wear.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022618-gbh8v6",
+              "jpg": "images/kids/extra/kids-party-wear.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022619-48n6k4",
+          "name": "Design 4",
+          "coverImage": "images/kids/extra/kids-frock-2.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022620-dela9b",
+              "jpg": "images/kids/extra/kids-frock-2.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-handloom-saree",
       "name": "Handloom Saree",
       "collection": "womens",
       "image": "images/gallery-saree.jpg",
-      "gallery": [
-        "images/gallery-saree.jpg",
-        "images/collection-saree.jpg",
-        "images/collection-bridal.jpg"
-      ],
+      "imageWebp": "",
       "tag": "limited",
-      "order": 8
+      "order": 8,
+      "designs": [
+        {
+          "id": "d-1784266022621-vpzdle",
+          "name": "Design 1",
+          "coverImage": "images/gallery-saree.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022622-itqfb4",
+              "jpg": "images/gallery-saree.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022623-edd994",
+          "name": "Design 2",
+          "coverImage": "images/gallery-saree.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022624-mrcepl",
+              "jpg": "images/gallery-saree.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022625-efg6f4",
+          "name": "Design 3",
+          "coverImage": "images/collection-saree.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022626-tpq024",
+              "jpg": "images/collection-saree.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022627-5l2rmt",
+          "name": "Design 4",
+          "coverImage": "images/collection-bridal.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022628-99n38f",
+              "jpg": "images/collection-bridal.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-pathani-set",
       "name": "Pathani Set",
       "collection": "mens",
       "image": "images/mens/mens-pathani.jpg",
-      "gallery": [
-        "images/mens/mens-pathani.jpg",
-        "images/mens/mens-kurta.jpg",
-        "images/mens/mens-churidar.jpg"
-      ],
+      "imageWebp": "",
       "tag": "limited",
-      "order": 8
+      "order": 8,
+      "designs": [
+        {
+          "id": "d-1784266022629-073kuw",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-pathani.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022630-vida2b",
+              "jpg": "images/mens/mens-pathani.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022631-5vvm9j",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-pathani.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022632-v4s4oz",
+              "jpg": "images/mens/mens-pathani.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022633-6dfbxf",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-kurta.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022634-aauj0v",
+              "jpg": "images/mens/mens-kurta.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022635-7hjfgg",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-churidar.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022636-f3372e",
+              "jpg": "images/mens/mens-churidar.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-silk-dhoti",
       "name": "Silk Dhoti Set",
       "collection": "kids",
       "image": "images/kids/kids-dhoti.jpg",
-      "gallery": [
-        "images/kids/kids-dhoti.jpg",
-        "images/kids/kids-kurta.jpg",
-        "images/kids/extra/kids-embroidered-kurta.jpg"
-      ],
+      "imageWebp": "",
       "tag": "limited",
-      "order": 8
+      "order": 8,
+      "designs": [
+        {
+          "id": "d-1784266022637-7geet5",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-dhoti.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022638-4e8975",
+              "jpg": "images/kids/kids-dhoti.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022639-zu9ose",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-dhoti.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022640-j0m603",
+              "jpg": "images/kids/kids-dhoti.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022641-x1ninx",
+          "name": "Design 3",
+          "coverImage": "images/kids/kids-kurta.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022642-t8avwn",
+              "jpg": "images/kids/kids-kurta.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022643-p4ladv",
+          "name": "Design 4",
+          "coverImage": "images/kids/extra/kids-embroidered-kurta.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022644-kanw7t",
+              "jpg": "images/kids/extra/kids-embroidered-kurta.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-custom-stitched-set",
       "name": "Custom Stitched Set",
       "collection": "womens",
       "image": "images/collection-stitching.jpg",
-      "gallery": [
-        "images/collection-stitching.jpg",
-        "images/gallery-stitching.jpg",
-        "images/collection-blouse.jpg"
-      ],
+      "imageWebp": "",
       "tag": "bestseller",
-      "order": 9
+      "order": 9,
+      "designs": [
+        {
+          "id": "d-1784266022645-2ptkfd",
+          "name": "Design 1",
+          "coverImage": "images/collection-stitching.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022646-ukg00r",
+              "jpg": "images/collection-stitching.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022647-uwyino",
+          "name": "Design 2",
+          "coverImage": "images/collection-stitching.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022648-0utzh0",
+              "jpg": "images/collection-stitching.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022649-9xhfv7",
+          "name": "Design 3",
+          "coverImage": "images/gallery-stitching.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022650-aej92p",
+              "jpg": "images/gallery-stitching.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022651-ojsp74",
+          "name": "Design 4",
+          "coverImage": "images/collection-blouse.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022652-bl6qk0",
+              "jpg": "images/collection-blouse.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-formal-shirt",
       "name": "Formal Shirt",
       "collection": "mens",
       "image": "images/mens/mens-formal-shirt.jpg",
-      "gallery": [
-        "images/mens/mens-formal-shirt.jpg",
-        "images/mens/mens-blazer.jpg",
-        "images/mens/mens-trousers.jpg"
-      ],
+      "imageWebp": "",
       "tag": "bestseller",
-      "order": 9
+      "order": 9,
+      "designs": [
+        {
+          "id": "d-1784266022653-jimlqr",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-formal-shirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022654-pnzxpx",
+              "jpg": "images/mens/mens-formal-shirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022655-tlw5fk",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-formal-shirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022656-d65sjf",
+              "jpg": "images/mens/mens-formal-shirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022657-yctnzw",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-blazer.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022658-pkyp0q",
+              "jpg": "images/mens/mens-blazer.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022659-g9bkf4",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-trousers.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022660-ofngan",
+              "jpg": "images/mens/mens-trousers.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-printed-tshirt",
       "name": "Boys Printed T-Shirt",
       "collection": "kids",
       "image": "images/kids/kids-tshirt.jpg",
-      "gallery": [
-        "images/kids/kids-tshirt.jpg",
-        "images/kids/kids-jeans.jpg",
-        "images/kids/extra/kids-pant-suit.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 9
+      "order": 9,
+      "designs": [
+        {
+          "id": "d-1784266022661-881gib",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-tshirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022662-yrcf79",
+              "jpg": "images/kids/kids-tshirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022663-leuf8d",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-tshirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022664-hb6mxx",
+              "jpg": "images/kids/kids-tshirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022665-dhnnn9",
+          "name": "Design 3",
+          "coverImage": "images/kids/kids-jeans.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022666-c7i54h",
+              "jpg": "images/kids/kids-jeans.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022667-2b23mm",
+          "name": "Design 4",
+          "coverImage": "images/kids/extra/kids-pant-suit.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022668-aqnc6l",
+              "jpg": "images/kids/extra/kids-pant-suit.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-sharara-set",
       "name": "Sharara Set",
       "collection": "womens",
       "image": "images/collection-party.jpg",
-      "gallery": [
-        "images/collection-party.jpg",
-        "images/gallery-party.jpg",
-        "images/collection-lehenga.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 10
+      "order": 10,
+      "designs": [
+        {
+          "id": "d-1784266022669-10sp9b",
+          "name": "Design 1",
+          "coverImage": "images/collection-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022670-lfj6xq",
+              "jpg": "images/collection-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022671-unstid",
+          "name": "Design 2",
+          "coverImage": "images/collection-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022672-o3geyt",
+              "jpg": "images/collection-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022673-xjqoii",
+          "name": "Design 3",
+          "coverImage": "images/gallery-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022674-fwdhhw",
+              "jpg": "images/gallery-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022675-qdk5tr",
+          "name": "Design 4",
+          "coverImage": "images/collection-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022676-0phd0d",
+              "jpg": "images/collection-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-cotton-trousers",
       "name": "Cotton Trousers",
       "collection": "mens",
       "image": "images/mens/mens-cotton-trousers.jpg",
-      "gallery": [
-        "images/mens/mens-cotton-trousers.jpg",
-        "images/mens/mens-formal-trousers.jpg",
-        "images/mens/mens-slim-pants.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 10
+      "order": 10,
+      "designs": [
+        {
+          "id": "d-1784266022677-yj31id",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-cotton-trousers.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022678-65f587",
+              "jpg": "images/mens/mens-cotton-trousers.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022679-in7r06",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-cotton-trousers.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022680-5rzwxv",
+              "jpg": "images/mens/mens-cotton-trousers.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022681-t2pk2z",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-formal-trousers.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022682-ggzo3t",
+              "jpg": "images/mens/mens-formal-trousers.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022683-tx2ivc",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-slim-pants.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022684-virtzc",
+              "jpg": "images/mens/mens-slim-pants.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-crop-top-skirt",
       "name": "Girls Crop Top & Skirt",
       "collection": "kids",
       "image": "images/kids/kids-crop-top.jpg",
-      "gallery": [
-        "images/kids/kids-crop-top.jpg",
-        "images/kids/extra/kids-party-wear.jpg",
-        "images/kids/kids-palazzo.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 10
+      "order": 10,
+      "designs": [
+        {
+          "id": "d-1784266022685-uugls2",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-crop-top.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022686-umj66h",
+              "jpg": "images/kids/kids-crop-top.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022687-cuibj6",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-crop-top.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022688-2mp7ql",
+              "jpg": "images/kids/kids-crop-top.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022689-57dls3",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-party-wear.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022690-yf1dou",
+              "jpg": "images/kids/extra/kids-party-wear.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022691-jerkh6",
+          "name": "Design 4",
+          "coverImage": "images/kids/kids-palazzo.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022692-36lmso",
+              "jpg": "images/kids/kids-palazzo.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-chiffon-saree",
       "name": "Chiffon Saree",
       "collection": "womens",
       "image": "images/gallery-fabric.jpg",
-      "gallery": [
-        "images/gallery-fabric.jpg",
-        "images/collection-saree.jpg",
-        "images/gallery-saree.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 11
+      "order": 11,
+      "designs": [
+        {
+          "id": "d-1784266022693-cnkzoy",
+          "name": "Design 1",
+          "coverImage": "images/gallery-fabric.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022694-rt7y7y",
+              "jpg": "images/gallery-fabric.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022695-jpotdv",
+          "name": "Design 2",
+          "coverImage": "images/gallery-fabric.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022696-eyk3uq",
+              "jpg": "images/gallery-fabric.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022697-vylj9k",
+          "name": "Design 3",
+          "coverImage": "images/collection-saree.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022698-7s3arl",
+              "jpg": "images/collection-saree.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022699-g1nn3u",
+          "name": "Design 4",
+          "coverImage": "images/gallery-saree.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022700-zqiv3f",
+              "jpg": "images/gallery-saree.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-printed-tshirt",
       "name": "Printed T-Shirt",
       "collection": "mens",
       "image": "images/mens/mens-tshirt.jpg",
-      "gallery": [
-        "images/mens/mens-tshirt.jpg",
-        "images/mens/mens-polo.jpg",
-        "images/mens/mens-half-sleeve.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 11
+      "order": 11,
+      "designs": [
+        {
+          "id": "d-1784266022701-jvnekg",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-tshirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022702-qfs52a",
+              "jpg": "images/mens/mens-tshirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022703-b5u52p",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-tshirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022704-09y8j9",
+              "jpg": "images/mens/mens-tshirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022705-0w7wr4",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-polo.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022706-ymys44",
+              "jpg": "images/mens/mens-polo.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022707-vj0jwa",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-half-sleeve.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022708-nhci07",
+              "jpg": "images/mens/mens-half-sleeve.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-denim-jeans",
       "name": "Boys Denim Jeans",
       "collection": "kids",
       "image": "images/kids/kids-jeans.jpg",
-      "gallery": [
-        "images/kids/kids-jeans.jpg",
-        "images/kids/extra/kids-pant-suit.jpg",
-        "images/kids/kids-formal-shirt.jpg"
-      ],
+      "imageWebp": "",
       "tag": null,
-      "order": 11
+      "order": 11,
+      "designs": [
+        {
+          "id": "d-1784266022709-a7ypoa",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-jeans.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022710-aan6pm",
+              "jpg": "images/kids/kids-jeans.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022711-t6qq9e",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-jeans.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022712-8wxane",
+              "jpg": "images/kids/kids-jeans.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022713-pothhl",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-pant-suit.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022714-0fx2ks",
+              "jpg": "images/kids/extra/kids-pant-suit.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022715-1qlm1s",
+          "name": "Design 4",
+          "coverImage": "images/kids/kids-formal-shirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022716-s68q3o",
+              "jpg": "images/kids/kids-formal-shirt.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-a-line-lehenga",
       "name": "A-Line Lehenga",
       "collection": "womens",
       "image": "images/gallery-bridal.jpg",
-      "gallery": [
-        "images/gallery-bridal.jpg",
-        "images/collection-bridal.jpg",
-        "images/collection-lehenga.jpg"
-      ],
+      "imageWebp": "",
       "tag": "limited",
-      "order": 12
+      "order": 12,
+      "designs": [
+        {
+          "id": "d-1784266022717-j39nnh",
+          "name": "Design 1",
+          "coverImage": "images/gallery-bridal.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022718-rp8j75",
+              "jpg": "images/gallery-bridal.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022719-n8noqv",
+          "name": "Design 2",
+          "coverImage": "images/gallery-bridal.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022720-0xwf8f",
+              "jpg": "images/gallery-bridal.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022721-tmytay",
+          "name": "Design 3",
+          "coverImage": "images/collection-bridal.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022722-5q35ub",
+              "jpg": "images/collection-bridal.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022723-m31vtx",
+          "name": "Design 4",
+          "coverImage": "images/collection-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022724-cawtsl",
+              "jpg": "images/collection-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-slim-fit-pants",
       "name": "Slim Fit Pants",
       "collection": "mens",
       "image": "images/mens/mens-slim-pants.jpg",
-      "gallery": [
-        "images/mens/mens-slim-pants.jpg",
-        "images/mens/mens-formal-trousers.jpg",
-        "images/mens/mens-jeans.jpg"
-      ],
+      "imageWebp": "",
       "tag": "limited",
-      "order": 12
+      "order": 12,
+      "designs": [
+        {
+          "id": "d-1784266022725-klagfm",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-slim-pants.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022726-a33e1p",
+              "jpg": "images/mens/mens-slim-pants.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022727-118wer",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-slim-pants.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022728-23qvs5",
+              "jpg": "images/mens/mens-slim-pants.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022729-jb75hq",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-formal-trousers.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022730-jo06x5",
+              "jpg": "images/mens/mens-formal-trousers.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022731-0256qi",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-jeans.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022732-ffddky",
+              "jpg": "images/mens/mens-jeans.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-anarkali-set",
       "name": "Ethnic Anarkali Set",
       "collection": "kids",
       "image": "images/kids/kids-anarkali.jpg",
-      "gallery": [
-        "images/kids/kids-anarkali.jpg",
-        "images/kids/extra/kids-anarkali-2.jpg",
-        "images/kids/extra/kids-ghagra.jpg"
-      ],
+      "imageWebp": "",
       "tag": "bestseller",
-      "order": 12
+      "order": 12,
+      "designs": [
+        {
+          "id": "d-1784266022733-yxihnr",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-anarkali.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022734-z8ikig",
+              "jpg": "images/kids/kids-anarkali.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022735-vcom78",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-anarkali.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022736-x5peu3",
+              "jpg": "images/kids/kids-anarkali.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022737-iewkxi",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-anarkali-2.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022738-2zwkmh",
+              "jpg": "images/kids/extra/kids-anarkali-2.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022739-07kn6r",
+          "name": "Design 4",
+          "coverImage": "images/kids/extra/kids-ghagra.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022740-slq7cu",
+              "jpg": "images/kids/extra/kids-ghagra.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-printed-kurti",
       "name": "Printed Kurti",
       "collection": "womens",
       "image": "images/collection-blouse.jpg",
-      "gallery": [
-        "images/collection-blouse.jpg",
-        "images/gallery-blouse.jpg",
-        "images/collection-party.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 13
+      "order": 13,
+      "designs": [
+        {
+          "id": "d-1784266022741-x2qrda",
+          "name": "Design 1",
+          "coverImage": "images/collection-blouse.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022742-qw7ulg",
+              "jpg": "images/collection-blouse.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022743-97j280",
+          "name": "Design 2",
+          "coverImage": "images/collection-blouse.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022744-g3nllw",
+              "jpg": "images/collection-blouse.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022745-rvfrcf",
+          "name": "Design 3",
+          "coverImage": "images/gallery-blouse.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022746-ytvmvs",
+              "jpg": "images/gallery-blouse.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022747-l7edm2",
+          "name": "Design 4",
+          "coverImage": "images/collection-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022748-9j527e",
+              "jpg": "images/collection-party.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-casual-polo",
       "name": "Casual Polo Shirt",
       "collection": "mens",
       "image": "images/mens/mens-polo.jpg",
-      "gallery": [
-        "images/mens/mens-polo.jpg",
-        "images/mens/mens-tshirt.jpg",
-        "images/mens/mens-half-sleeve.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 13
+      "order": 13,
+      "designs": [
+        {
+          "id": "d-1784266022749-83joch",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-polo.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022750-illx6n",
+              "jpg": "images/mens/mens-polo.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022751-kxrbf8",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-polo.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022752-dlyyai",
+              "jpg": "images/mens/mens-polo.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022753-8jascf",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-tshirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022754-fi6jy6",
+              "jpg": "images/mens/mens-tshirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022755-c1p9k5",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-half-sleeve.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022756-0f42xp",
+              "jpg": "images/mens/mens-half-sleeve.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-formal-shirt",
       "name": "Boys Formal Shirt",
       "collection": "kids",
       "image": "images/kids/kids-formal-shirt.jpg",
-      "gallery": [
-        "images/kids/kids-formal-shirt.jpg",
-        "images/kids/extra/kids-pant-suit.jpg",
-        "images/kids/extra/kids-sherwani-2.jpg"
-      ],
+      "imageWebp": "",
       "tag": "limited",
-      "order": 13
+      "order": 13,
+      "designs": [
+        {
+          "id": "d-1784266022757-zxm71q",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-formal-shirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022758-8q2btv",
+              "jpg": "images/kids/kids-formal-shirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022759-36vy3o",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-formal-shirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022760-5fvnbz",
+              "jpg": "images/kids/kids-formal-shirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022761-bem0a0",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-pant-suit.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022762-maq55e",
+              "jpg": "images/kids/extra/kids-pant-suit.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022763-yjbq90",
+          "name": "Design 4",
+          "coverImage": "images/kids/extra/kids-sherwani-2.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022764-njqi4b",
+              "jpg": "images/kids/extra/kids-sherwani-2.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-patiala-suit",
       "name": "Patiala Suit",
       "collection": "womens",
       "image": "images/collection-stitching.jpg",
-      "gallery": [
-        "images/collection-stitching.jpg",
-        "images/gallery-stitching.jpg",
-        "images/collection-saree.jpg"
-      ],
+      "imageWebp": "",
       "tag": "bestseller",
-      "order": 14
+      "order": 14,
+      "designs": [
+        {
+          "id": "d-1784266022765-m62maq",
+          "name": "Design 1",
+          "coverImage": "images/collection-stitching.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022766-3m26m4",
+              "jpg": "images/collection-stitching.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022767-p9i8p1",
+          "name": "Design 2",
+          "coverImage": "images/collection-stitching.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022768-hxote0",
+              "jpg": "images/collection-stitching.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022769-0ltc8s",
+          "name": "Design 3",
+          "coverImage": "images/gallery-stitching.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022770-fjzvza",
+              "jpg": "images/gallery-stitching.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022771-6dzgmq",
+          "name": "Design 4",
+          "coverImage": "images/collection-saree.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022772-5ynguf",
+              "jpg": "images/collection-saree.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-churidar-kurta",
       "name": "Churidar Kurta",
       "collection": "mens",
       "image": "images/mens/mens-churidar.jpg",
-      "gallery": [
-        "images/mens/mens-churidar.jpg",
-        "images/mens/mens-kurta.jpg",
-        "images/mens/mens-pathani.jpg"
-      ],
+      "imageWebp": "",
       "tag": "bestseller",
-      "order": 14
+      "order": 14,
+      "designs": [
+        {
+          "id": "d-1784266022773-i9zki6",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-churidar.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022774-1jz1xz",
+              "jpg": "images/mens/mens-churidar.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022775-vnx4jd",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-churidar.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022776-mehdy8",
+              "jpg": "images/mens/mens-churidar.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022777-d48d3p",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-kurta.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022778-n9hu2k",
+              "jpg": "images/mens/mens-kurta.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022779-5f88qu",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-pathani.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022780-9bk2uf",
+              "jpg": "images/mens/mens-pathani.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-palazzo-set",
       "name": "Girls Palazzo Set",
       "collection": "kids",
       "image": "images/kids/kids-palazzo.jpg",
-      "gallery": [
-        "images/kids/kids-palazzo.jpg",
-        "images/kids/extra/kids-cotton-frock.jpg",
-        "images/kids/kids-anarkali.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 14
+      "order": 14,
+      "designs": [
+        {
+          "id": "d-1784266022781-5ws8al",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-palazzo.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022782-cpty9j",
+              "jpg": "images/kids/kids-palazzo.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022783-wufl46",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-palazzo.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022784-idmuro",
+              "jpg": "images/kids/kids-palazzo.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022785-fo4cle",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-cotton-frock.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022786-w23d6k",
+              "jpg": "images/kids/extra/kids-cotton-frock.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022787-1w7z0t",
+          "name": "Design 4",
+          "coverImage": "images/kids/kids-anarkali.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022788-mobmwl",
+              "jpg": "images/kids/kids-anarkali.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-crop-top-lehenga",
       "name": "Crop Top Lehenga",
       "collection": "womens",
       "image": "images/collection-lehenga.jpg",
-      "gallery": [
-        "images/collection-lehenga.jpg",
-        "images/gallery-lehenga.jpg",
-        "images/collection-bridal.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 15
+      "order": 15,
+      "designs": [
+        {
+          "id": "d-1784266022789-9mkhdc",
+          "name": "Design 1",
+          "coverImage": "images/collection-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022790-16xfxo",
+              "jpg": "images/collection-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022791-qmyiq4",
+          "name": "Design 2",
+          "coverImage": "images/collection-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022792-428wi8",
+              "jpg": "images/collection-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022793-0p5fw5",
+          "name": "Design 3",
+          "coverImage": "images/gallery-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022794-bb5s0j",
+              "jpg": "images/gallery-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022795-5nmuk0",
+          "name": "Design 4",
+          "coverImage": "images/collection-bridal.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022796-lmu2f6",
+              "jpg": "images/collection-bridal.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-denim-jeans",
       "name": "Denim Jeans",
       "collection": "mens",
       "image": "images/mens/mens-jeans.jpg",
-      "gallery": [
-        "images/mens/mens-jeans.jpg",
-        "images/mens/mens-slim-pants.jpg",
-        "images/mens/mens-shorts.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 15
+      "order": 15,
+      "designs": [
+        {
+          "id": "d-1784266022797-c17776",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-jeans.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022798-b6w6tp",
+              "jpg": "images/mens/mens-jeans.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022799-nfnkca",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-jeans.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022800-uzkxbg",
+              "jpg": "images/mens/mens-jeans.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022801-yucrmw",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-slim-pants.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022802-si6r6l",
+              "jpg": "images/mens/mens-slim-pants.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022803-3vgvhu",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-shorts.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022804-3c0ako",
+              "jpg": "images/mens/mens-shorts.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-shorts-tee",
       "name": "Boys Shorts & Tee Combo",
       "collection": "kids",
       "image": "images/kids/kids-shorts-tee.jpg",
-      "gallery": [
-        "images/kids/kids-shorts-tee.jpg",
-        "images/kids/kids-tshirt.jpg",
-        "images/kids/kids-jeans.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 15
+      "order": 15,
+      "designs": [
+        {
+          "id": "d-1784266022805-gy2au7",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-shorts-tee.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022806-qn7k9o",
+              "jpg": "images/kids/kids-shorts-tee.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022807-7b2tjh",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-shorts-tee.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022808-wj4ajh",
+              "jpg": "images/kids/kids-shorts-tee.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022809-xphkmw",
+          "name": "Design 3",
+          "coverImage": "images/kids/kids-tshirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022810-eg7o3g",
+              "jpg": "images/kids/kids-tshirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022811-6peb6r",
+          "name": "Design 4",
+          "coverImage": "images/kids/kids-jeans.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022812-mg32rp",
+              "jpg": "images/kids/kids-jeans.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-banarasi-saree",
       "name": "Banarasi Saree",
       "collection": "womens",
       "image": "images/gallery-saree.jpg",
-      "gallery": [
-        "images/gallery-saree.jpg",
-        "images/collection-saree.jpg",
-        "images/collection-bridal.jpg"
-      ],
+      "imageWebp": "",
       "tag": "limited",
-      "order": 16
+      "order": 16,
+      "designs": [
+        {
+          "id": "d-1784266022813-5s5arv",
+          "name": "Design 1",
+          "coverImage": "images/gallery-saree.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022814-erapsb",
+              "jpg": "images/gallery-saree.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022815-f2gdjz",
+          "name": "Design 2",
+          "coverImage": "images/gallery-saree.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022816-yr2rbq",
+              "jpg": "images/gallery-saree.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022817-zfbeuj",
+          "name": "Design 3",
+          "coverImage": "images/collection-saree.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022818-zos2sc",
+              "jpg": "images/collection-saree.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022819-fcik40",
+          "name": "Design 4",
+          "coverImage": "images/collection-bridal.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022820-jcupfg",
+              "jpg": "images/collection-bridal.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-linen-shirt",
       "name": "Linen Shirt",
       "collection": "mens",
       "image": "images/mens/mens-linen-shirt.jpg",
-      "gallery": [
-        "images/mens/mens-linen-shirt.jpg",
-        "images/mens/mens-formal-shirt.jpg",
-        "images/mens/mens-half-sleeve.jpg"
-      ],
+      "imageWebp": "",
       "tag": "bestseller",
-      "order": 16
+      "order": 16,
+      "designs": [
+        {
+          "id": "d-1784266022821-qkhie4",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-linen-shirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022822-it17dk",
+              "jpg": "images/mens/mens-linen-shirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022823-m15131",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-linen-shirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022824-mobhkw",
+              "jpg": "images/mens/mens-linen-shirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022825-5dby0q",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-formal-shirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022826-e6yanh",
+              "jpg": "images/mens/mens-formal-shirt.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022827-rfhwyd",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-half-sleeve.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022828-5j1lnd",
+              "jpg": "images/mens/mens-half-sleeve.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-wedding-suit",
       "name": "Kids Wedding Suit",
       "collection": "kids",
       "image": "images/kids/kids-wedding.jpg",
-      "gallery": [
-        "images/kids/kids-wedding.jpg",
-        "images/kids/extra/kids-wedding-2.jpg",
-        "images/kids/extra/kids-ceremonial-wear.jpg"
-      ],
+      "imageWebp": "",
       "tag": "bestseller",
-      "order": 16
+      "order": 16,
+      "designs": [
+        {
+          "id": "d-1784266022829-jnt443",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-wedding.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022830-5bldqu",
+              "jpg": "images/kids/kids-wedding.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022831-58k5xk",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-wedding.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022832-j331u4",
+              "jpg": "images/kids/kids-wedding.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022833-yk6cps",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-wedding-2.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022834-s3ylyd",
+              "jpg": "images/kids/extra/kids-wedding-2.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022835-jhoet2",
+          "name": "Design 4",
+          "coverImage": "images/kids/extra/kids-ceremonial-wear.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022836-vxfhov",
+              "jpg": "images/kids/extra/kids-ceremonial-wear.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-dhoti-pant-set",
       "name": "Dhoti Pant Set",
       "collection": "womens",
       "image": "images/collection-party.jpg",
-      "gallery": [
-        "images/collection-party.jpg",
-        "images/gallery-party.jpg",
-        "images/collection-blouse.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 17
+      "order": 17,
+      "designs": [
+        {
+          "id": "d-1784266022837-md7bs4",
+          "name": "Design 1",
+          "coverImage": "images/collection-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022838-omliqa",
+              "jpg": "images/collection-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022839-wjzjw9",
+          "name": "Design 2",
+          "coverImage": "images/collection-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022840-74u2pv",
+              "jpg": "images/collection-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022841-tkuu4x",
+          "name": "Design 3",
+          "coverImage": "images/gallery-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022842-4feu0l",
+              "jpg": "images/gallery-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022843-altqfi",
+          "name": "Design 4",
+          "coverImage": "images/collection-blouse.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022844-py0lnv",
+              "jpg": "images/collection-blouse.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-formal-trousers",
       "name": "Formal Trousers",
       "collection": "mens",
       "image": "images/mens/mens-formal-trousers.jpg",
-      "gallery": [
-        "images/mens/mens-formal-trousers.jpg",
-        "images/mens/mens-cotton-trousers.jpg",
-        "images/mens/mens-slim-pants.jpg"
-      ],
+      "imageWebp": "",
       "tag": "limited",
-      "order": 17
+      "order": 17,
+      "designs": [
+        {
+          "id": "d-1784266022845-mjgtly",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-formal-trousers.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022846-hrdpvq",
+              "jpg": "images/mens/mens-formal-trousers.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022847-48wr29",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-formal-trousers.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022848-qxa8sz",
+              "jpg": "images/mens/mens-formal-trousers.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022849-0gj1or",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-cotton-trousers.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022850-6ck405",
+              "jpg": "images/mens/mens-cotton-trousers.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022851-vw3l64",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-slim-pants.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022852-isztn2",
+              "jpg": "images/mens/mens-slim-pants.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kids-sharara-set",
       "name": "Girls Sharara Set",
       "collection": "kids",
       "image": "images/kids/kids-sharara.jpg",
-      "gallery": [
-        "images/kids/kids-sharara.jpg",
-        "images/kids/extra/kids-anarkali-2.jpg",
-        "images/kids/extra/kids-ethnic-wear.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 17
+      "order": 17,
+      "designs": [
+        {
+          "id": "d-1784266022853-jlrpmm",
+          "name": "Design 1",
+          "coverImage": "images/kids/kids-sharara.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022854-3lplmc",
+              "jpg": "images/kids/kids-sharara.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022855-m2taew",
+          "name": "Design 2",
+          "coverImage": "images/kids/kids-sharara.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022856-5gijkt",
+              "jpg": "images/kids/kids-sharara.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022857-v8ptid",
+          "name": "Design 3",
+          "coverImage": "images/kids/extra/kids-anarkali-2.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022858-ekvpyh",
+              "jpg": "images/kids/extra/kids-anarkali-2.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022859-i2hgoe",
+          "name": "Design 4",
+          "coverImage": "images/kids/extra/kids-ethnic-wear.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022860-9x99c7",
+              "jpg": "images/kids/extra/kids-ethnic-wear.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "womens-georgette-gown",
       "name": "Georgette Gown",
       "collection": "womens",
       "image": "images/gallery-party.jpg",
-      "gallery": [
-        "images/gallery-party.jpg",
-        "images/gallery-lehenga.jpg",
-        "images/collection-lehenga.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 18
+      "order": 18,
+      "designs": [
+        {
+          "id": "d-1784266022861-ja66yb",
+          "name": "Design 1",
+          "coverImage": "images/gallery-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022862-evrcny",
+              "jpg": "images/gallery-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022863-khcp3i",
+          "name": "Design 2",
+          "coverImage": "images/gallery-party.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022864-bbghiv",
+              "jpg": "images/gallery-party.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022865-gvpo21",
+          "name": "Design 3",
+          "coverImage": "images/gallery-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022866-t82aeu",
+              "jpg": "images/gallery-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022867-vtgkm9",
+          "name": "Design 4",
+          "coverImage": "images/collection-lehenga.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022868-4zmrl2",
+              "jpg": "images/collection-lehenga.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-printed-shorts",
       "name": "Printed Shorts",
       "collection": "mens",
       "image": "images/mens/mens-shorts.jpg",
-      "gallery": [
-        "images/mens/mens-shorts.jpg",
-        "images/mens/mens-jeans.jpg",
-        "images/mens/mens-slim-pants.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
-      "order": 18
+      "order": 18,
+      "designs": [
+        {
+          "id": "d-1784266022869-knzuzh",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-shorts.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022870-7ksafx",
+              "jpg": "images/mens/mens-shorts.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022871-1twf27",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-shorts.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022872-mhi7t3",
+              "jpg": "images/mens/mens-shorts.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022873-wlxy2s",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-jeans.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022874-ezu0pd",
+              "jpg": "images/mens/mens-jeans.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022875-coolbc",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-slim-pants.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022876-5sz2vt",
+              "jpg": "images/mens/mens-slim-pants.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mens-half-sleeve-shirt",
       "name": "Half Sleeve Shirt",
       "collection": "mens",
       "image": "images/mens/mens-half-sleeve.jpg",
-      "gallery": [
-        "images/mens/mens-half-sleeve.jpg",
-        "images/mens/mens-polo.jpg",
-        "images/mens/mens-tshirt.jpg"
-      ],
+      "imageWebp": "",
       "tag": "trending",
-      "order": 19
+      "order": 19,
+      "designs": [
+        {
+          "id": "d-1784266022877-u7ivsm",
+          "name": "Design 1",
+          "coverImage": "images/mens/mens-half-sleeve.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022878-fkjuhj",
+              "jpg": "images/mens/mens-half-sleeve.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022879-cl5sdh",
+          "name": "Design 2",
+          "coverImage": "images/mens/mens-half-sleeve.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022880-z6jgwc",
+              "jpg": "images/mens/mens-half-sleeve.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022881-06t3a1",
+          "name": "Design 3",
+          "coverImage": "images/mens/mens-polo.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022882-jj6myb",
+              "jpg": "images/mens/mens-polo.jpg",
+              "webp": ""
+            }
+          ]
+        },
+        {
+          "id": "d-1784266022883-lac475",
+          "name": "Design 4",
+          "coverImage": "images/mens/mens-tshirt.jpg",
+          "coverImageWebp": "",
+          "images": [
+            {
+              "id": "i-1784266022884-y3pkd5",
+              "jpg": "images/mens/mens-tshirt.jpg",
+              "webp": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

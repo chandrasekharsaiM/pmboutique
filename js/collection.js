@@ -1,8 +1,10 @@
-/* Collection Page — shared product rendering (mobile-first) */
+/* Collection Page — shared product rendering (mobile-first)
+   Structure: Collection → Products → Designs (max 6) → Images (max 5 per design)
+   Every level has unique stable IDs. Images lazy-loaded per design. */
 (function () {
   'use strict';
 
-  var CACHE_V = '20260717';
+  var CACHE_V = '20260717b';
   var tagLabels = { new: 'New', bestseller: 'Bestseller', limited: 'Limited', trending: 'Trending' };
 
   function getCollection() {
@@ -15,15 +17,6 @@
   function cb(url) {
     if (!url) return '';
     return url + (url.indexOf('?') === -1 ? '?v=' : '&v=') + CACHE_V;
-  }
-
-  function isWebpSupported() {
-    if (typeof window._webpCheck !== 'undefined') return window._webpCheck;
-    try {
-      var c = document.createElement('canvas');
-      window._webpCheck = c.toDataURL && c.toDataURL('image/webp').indexOf('data:image/webp') === 0;
-    } catch (e) { window._webpCheck = false; }
-    return window._webpCheck;
   }
 
   function makePicture(jpgSrc, webpSrc, alt, w, h, cls, loadingAttr) {
@@ -56,17 +49,16 @@
     for (var i = 0; i < products.length; i++) {
       var p = products[i];
       var tagHtml = p.tag ? '<span class="product-tag tag-' + p.tag + '">' + (tagLabels[p.tag] || p.tag) + '</span>' : '';
-      var allImages = [p.image].concat(p.gallery || []);
-      var allImagesWebp = [p.imageWebp || ''].concat(p.galleryWebp || []);
-      var imgData = { jpg: allImages, webp: allImagesWebp };
-      html += '<div class="product-card" data-images=\'' + JSON.stringify(imgData).replace(/'/g, '&#39;') + '\' data-name="' + (p.name || '').replace(/"/g, '&quot;') + '">' +
+      var designs = p.designs || [];
+      var designCount = designs.length;
+      html += '<div class="product-card" data-product-id="' + (p.id || '') + '" data-design-count="' + designCount + '">' +
         '<div class="product-card-image">' +
           makePicture(p.image, p.imageWebp || '', p.name, 600, 750, '', 'lazy') +
           tagHtml +
         '</div>' +
         '<div class="product-card-info">' +
           '<h3 class="product-card-title">' + (p.name || '') + '</h3>' +
-          '<p class="product-card-cta">View Latest Designs <i class="fas fa-arrow-right"></i></p>' +
+          '<p class="product-card-cta">View ' + designCount + ' Designs <i class="fas fa-arrow-right"></i></p>' +
         '</div>' +
       '</div>';
     }
@@ -75,10 +67,9 @@
     var cards = grid.querySelectorAll('.product-card');
     for (var j = 0; j < cards.length; j++) {
       cards[j].addEventListener('click', function () {
-        var name = this.getAttribute('data-name');
-        var imgs;
-        try { imgs = JSON.parse(this.getAttribute('data-images')); } catch (e) { imgs = { jpg: [], webp: [] }; }
-        openDesignModal(name, imgs);
+        var pid = this.getAttribute('data-product-id');
+        var product = products.find(function (x) { return x.id === pid; });
+        if (product) openDesignModal(product);
       });
     }
   }
@@ -98,27 +89,48 @@
       grid.innerHTML = '<div class="collection-empty" style="color:#c0392b">Failed to load products. Please refresh the page.</div>';
     });
 
-  /* Design Modal */
-  window.openDesignModal = function (name, imgs) {
-    document.getElementById('designModalTitle').textContent = name;
+  /* Design Modal — shows up to 6 design thumbnails per product */
+  var currentProduct = null;
+
+  window.openDesignModal = function (product) {
+    currentProduct = product;
+    document.getElementById('designModalTitle').textContent = product.name;
     var modalGrid = document.getElementById('designModalGrid');
     modalGrid.innerHTML = '';
-    var jpgs = (imgs.jpg || []).slice(0, 6);
-    var webps = (imgs.webp || []).slice(0, 6);
-    var totalImages = (imgs.jpg || []).length;
-    for (var i = 0; i < jpgs.length; i++) {
+
+    var designs = (product.designs || []).slice(0, 6);
+    for (var i = 0; i < designs.length; i++) {
+      var d = designs[i];
       var wrapper = document.createElement('div');
       wrapper.className = 'design-modal-img-wrap';
-      wrapper.innerHTML = makePicture(jpgs[i], webps[i] || '', name + ' Design ' + (i + 1), 400, 500, 'design-modal-img', 'lazy');
-      var imgEl = wrapper.querySelector('img');
-      imgEl.setAttribute('data-index', i);
-      imgEl.onclick = (function (idx) { return function (e) { e.stopPropagation(); openZoom(imgs.jpg || [], imgs.webp || [], idx); }; })(i);
+      wrapper.setAttribute('data-design-id', d.id);
+      wrapper.innerHTML = makePicture(
+        d.coverImage || d.images[0].jpg,
+        d.coverImageWebp || d.images[0].webp || '',
+        product.name + ' — ' + (d.name || 'Design ' + (i + 1)),
+        400, 500, 'design-modal-img', 'lazy'
+      );
+      var designLabel = document.createElement('div');
+      designLabel.className = 'design-label';
+      designLabel.textContent = d.name || 'Design ' + (i + 1);
+      wrapper.appendChild(designLabel);
+      wrapper.addEventListener('click', (function (design) {
+        return function (e) {
+          e.stopPropagation();
+          openDesignSlideshow(design);
+        };
+      })(d));
       modalGrid.appendChild(wrapper);
     }
+
     var subtitle = document.getElementById('designModalSubtitle');
     if (subtitle) {
-      subtitle.textContent = '6 DESIGNS' + (totalImages > 6 ? ' · SCROLL TO SEE MORE' : '') + ' · TAP TO VIEW SLIDESHOW';
+      var total = (product.designs || []).length;
+      subtitle.textContent = designs.length + ' DESIGNS' +
+        (total > 6 ? ' · SCROLL TO SEE MORE' : '') +
+        ' · TAP TO VIEW SLIDESHOW';
     }
+
     document.getElementById('designModal').classList.add('active');
     document.body.style.overflow = 'hidden';
   };
@@ -126,16 +138,24 @@
   window.closeDesignModal = function () {
     document.getElementById('designModal').classList.remove('active');
     document.body.style.overflow = '';
+    currentProduct = null;
   };
 
-  /* Slideshow / Zoom */
+  /* Slideshow / Zoom — shows images for a single design, auto-advancing */
   var zoomImages = [], zoomImagesWebp = [], zoomIdx = 0;
   var slideTimer = null, slidePaused = false, slideAutoPlay = true;
 
-  window.openZoom = function (imgs, webps, idx) {
-    zoomImages = imgs;
-    zoomImagesWebp = webps || [];
-    zoomIdx = idx;
+  window.openDesignSlideshow = function (design) {
+    zoomImages = [];
+    zoomImagesWebp = [];
+    var images = design.images || [];
+    for (var i = 0; i < images.length && i < 5; i++) {
+      if (images[i].jpg) zoomImages.push(images[i].jpg);
+      if (images[i].webp) zoomImagesWebp.push(images[i].webp);
+      else zoomImagesWebp.push('');
+    }
+    if (zoomImages.length === 0) return;
+    zoomIdx = 0;
     slideAutoPlay = true;
     slidePaused = false;
     updateZoomImage();
@@ -174,10 +194,12 @@
       container.id = 'imgZoomContainer';
       container.style.cssText = 'display:flex;align-items:center;justify-content:center;flex:1;min-height:0;';
       var el = document.getElementById('imgZoomSrc');
-      el.parentElement.insertBefore(container, el);
-      el.style.display = 'none';
+      if (el) {
+        el.parentElement.insertBefore(container, el);
+        el.style.display = 'none';
+      }
     }
-    container.innerHTML = makePicture(jpgSrc, webpSrc, 'Design ' + (zoomIdx + 1), 1200, 1500, 'zoom-slide-img', 'eager');
+    container.innerHTML = makePicture(jpgSrc, webpSrc, 'Design Image ' + (zoomIdx + 1), 1200, 1500, 'zoom-slide-img', 'eager');
     document.getElementById('imgZoomCounter').textContent = (zoomIdx + 1) + ' / ' + zoomImages.length;
     updateDots();
   }
@@ -185,7 +207,7 @@
   function renderDots() {
     var dotsWrap = document.getElementById('imgZoomDots');
     if (!dotsWrap) return;
-    var max = Math.min(zoomImages.length, 30);
+    var max = Math.min(zoomImages.length, 10);
     var html = '';
     for (var i = 0; i < max; i++) {
       html += '<span class="zoom-dot' + (i === zoomIdx ? ' active' : '') + '" data-i="' + i + '"></span>';
