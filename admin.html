@@ -240,7 +240,7 @@
     function resizeFile(file, maxW, maxH) {
       return new Promise(function(resolve) {
         if (!file || !file.type || !file.type.startsWith('image/')) {
-          resolve(null);
+          resolve({ jpg: null, webp: null });
           return;
         }
         var reader = new FileReader();
@@ -257,29 +257,37 @@
               canvas.width = w;
               canvas.height = h;
               canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-              canvas.toBlob(function(blob) {
-                if (blob) {
-                  logEntry('Resized to: ' + w + 'x' + h + ', ' + Math.round(blob.size / 1024) + 'KB');
-                  resolve(new File([blob], 'upload.jpg', { type: 'image/jpeg' }));
-                } else {
-                  logEntry('Canvas toBlob returned null, using original file');
-                  resolve(file);
+              var jpgDone = false, webpDone = false, jpgFile = null, webpFile = null;
+              function checkDone() {
+                if (jpgDone && webpDone) {
+                  logEntry('Resized to: ' + w + 'x' + h + ', JPEG=' + (jpgFile ? Math.round(jpgFile.size / 1024) + 'KB' : 'none') + ', WebP=' + (webpFile ? Math.round(webpFile.size / 1024) + 'KB' : 'none'));
+                  resolve({ jpg: jpgFile || file, webp: webpFile });
                 }
+              }
+              canvas.toBlob(function(blob) {
+                jpgFile = blob ? new File([blob], 'upload.jpg', { type: 'image/jpeg' }) : null;
+                jpgDone = true;
+                checkDone();
               }, 'image/jpeg', 0.80);
+              canvas.toBlob(function(blob) {
+                webpFile = blob ? new File([blob], 'upload.webp', { type: 'image/webp' }) : null;
+                webpDone = true;
+                checkDone();
+              }, 'image/webp', 0.80);
             } catch (e) {
               logEntry('Resize error: ' + e.message, 'fail');
-              resolve(file);
+              resolve({ jpg: file, webp: null });
             }
           };
           img.onerror = function() {
             logEntry('Failed to decode image for resize', 'fail');
-            resolve(file);
+            resolve({ jpg: file, webp: null });
           };
           img.src = e.target.result;
         };
         reader.onerror = function() {
           logEntry('FileReader error', 'fail');
-          resolve(null);
+          resolve({ jpg: null, webp: null });
         };
         reader.readAsDataURL(file);
       });
@@ -437,8 +445,8 @@
 
     function uniqueImagePath(slug, index) {
       var ts = Date.now();
-      if (index === 0) return 'images/products/' + slug + '-' + ts + '.jpg';
-      return 'images/products/' + slug + '-' + ts + '-g' + index + '.jpg';
+      if (index === 0) return { jpg: 'images/products/' + slug + '-' + ts + '.jpg', webp: 'images/products/' + slug + '-' + ts + '.webp' };
+      return { jpg: 'images/products/' + slug + '-' + ts + '-g' + index + '.jpg', webp: 'images/products/' + slug + '-' + ts + '-g' + index + '.webp' };
     }
 
     async function loadProducts() {
@@ -494,13 +502,17 @@
       document.getElementById('mainPreview').classList.add('hidden');
       document.getElementById('galleryPreview').innerHTML = '';
       existingMainImage = '';
+      existingMainWebp = '';
       existingGalleryImages = [];
+      existingGalleryWebp = [];
       document.getElementById('existingSection').style.display = 'none';
       document.getElementById('productModal').classList.add('active');
     }
 
     var existingMainImage = '';
+    var existingMainWebp = '';
     var existingGalleryImages = [];
+    var existingGalleryWebp = [];
 
     function editProduct(id) {
       var p = products.find(function(x) { return x.id === id; });
@@ -515,7 +527,9 @@
       document.getElementById('pImage').value = '';
       document.getElementById('pGallery').value = '';
       existingMainImage = p.image || '';
+      existingMainWebp = p.imageWebp || '';
       existingGalleryImages = (p.gallery || []).slice();
+      existingGalleryWebp = (p.galleryWebp || []).slice();
       document.getElementById('existingSection').style.display = existingMainImage || existingGalleryImages.length ? '' : 'none';
       renderExistingImages();
       document.getElementById('mainPreview').classList.add('hidden');
@@ -594,9 +608,13 @@
       try {
         var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         var imagePath = '';
+        var imageWebp = '';
         var gallery = [];
+        var galleryWebp = [];
         var oldMainPath = '';
+        var oldMainWebp = '';
         var oldGalleryPaths = [];
+        var oldGalleryWebps = [];
 
         var mainFile = (imageInput.files && imageInput.files.length > 0) ? imageInput.files[0] : null;
         var galleryFiles = (galleryInput.files && galleryInput.files.length > 0) ? Array.from(galleryInput.files).slice(0, 6) : [];
@@ -605,7 +623,9 @@
           var existing = products.find(function(p) { return p.id === editId; });
           if (existing) {
             oldMainPath = existing.image || '';
+            oldMainWebp = existing.imageWebp || '';
             oldGalleryPaths = (existing.gallery || []).slice();
+            oldGalleryWebps = (existing.galleryWebp || []).slice();
           }
         }
 
@@ -614,31 +634,49 @@
         if (mainFile) {
           showToast('Resizing main image...', 'success');
           var resized = await resizeFile(mainFile, 1200, 1200);
-          if (!resized) throw new Error('Image resize failed');
-          var base64 = await fileToBase64(resized);
+          if (!resized || !resized.jpg) throw new Error('Image resize failed');
+          var base64 = await fileToBase64(resized.jpg);
           if (!base64) throw new Error('Image conversion failed');
-          imagePath = uniqueImagePath(slug, 0);
+          var paths = uniqueImagePath(slug, 0);
+          imagePath = paths.jpg;
+          imageWebp = paths.webp;
           showToast('Uploading main image...', 'success');
           await commitBinaryFile(imagePath, base64, 'Admin: Upload ' + name + ' image');
+          if (resized.webp) {
+            var webpB64 = await fileToBase64(resized.webp);
+            if (webpB64) {
+              await commitBinaryFile(imageWebp, webpB64, 'Admin: Upload ' + name + ' image (WebP)');
+            }
+          }
         }
 
         var newGalleryPaths = [];
+        var newGalleryWebps = [];
         if (galleryFiles.length > 0) {
           showToast('Uploading ' + galleryFiles.length + ' gallery images...', 'success');
           for (var i = 0; i < galleryFiles.length; i++) {
             var gresized = await resizeFile(galleryFiles[i], 800, 800);
-            if (!gresized) { logEntry('Gallery resize failed #' + (i+1), 'fail'); continue; }
-            var gbase64 = await fileToBase64(gresized);
+            if (!gresized || !gresized.jpg) { logEntry('Gallery resize failed #' + (i+1), 'fail'); continue; }
+            var gbase64 = await fileToBase64(gresized.jpg);
             if (!gbase64) { logEntry('Gallery base64 failed #' + (i+1), 'fail'); continue; }
-            var gPath = uniqueImagePath(slug, i + 1);
-            await commitBinaryFile(gPath, gbase64, 'Admin: Upload ' + name + ' gallery ' + (i + 1));
-            newGalleryPaths.push(gPath);
+            var gpaths = uniqueImagePath(slug, i + 1);
+            await commitBinaryFile(gpaths.jpg, gbase64, 'Admin: Upload ' + name + ' gallery ' + (i + 1));
+            newGalleryPaths.push(gpaths.jpg);
+            if (gresized.webp) {
+              var gwB64 = await fileToBase64(gresized.webp);
+              if (gwB64) {
+                await commitBinaryFile(gpaths.webp, gwB64, 'Admin: Upload ' + name + ' gallery ' + (i + 1) + ' (WebP)');
+                newGalleryWebps.push(gpaths.webp);
+              }
+            }
           }
         }
 
         if (editId) {
           imagePath = imagePath || oldMainPath;
+          imageWebp = imageWebp || oldMainWebp;
           gallery = existingGalleryImages.concat(newGalleryPaths);
+          galleryWebp = existingGalleryWebp.concat(newGalleryWebps);
         }
 
         if (!imagePath && urlText) {
@@ -662,10 +700,12 @@
             products[idx].tag = tag;
             products[idx].order = order;
             products[idx].image = imagePath;
+            products[idx].imageWebp = imageWebp;
             products[idx].gallery = gallery;
+            products[idx].galleryWebp = galleryWebp;
           }
         } else {
-          products.push({ id: id, name: name, collection: collection, image: imagePath, gallery: gallery, tag: tag, order: order });
+          products.push({ id: id, name: name, collection: collection, image: imagePath, imageWebp: imageWebp, gallery: gallery, galleryWebp: galleryWebp, tag: tag, order: order });
         }
 
         showToast('Saving products.json...', 'success');
@@ -676,14 +716,17 @@
           deleteRemoteFile(oldMainPath, 'Admin: Remove old image for ' + name).catch(function(e) {
             logEntry('Old image cleanup skipped: ' + e.message, 'info');
           });
+          if (oldMainWebp) deleteRemoteFile(oldMainWebp, 'Admin: Remove old WebP for ' + name).catch(function() {});
         }
         if (editId && oldGalleryPaths.length) {
           var kept = existingGalleryImages.slice();
+          var keptW = existingGalleryWebp.slice();
           for (var g = 0; g < oldGalleryPaths.length; g++) {
             if (kept.indexOf(oldGalleryPaths[g]) === -1) {
               deleteRemoteFile(oldGalleryPaths[g], 'Admin: Remove old gallery for ' + name).catch(function(e) {
                 logEntry('Old gallery cleanup skipped: ' + e.message, 'info');
               });
+              if (oldGalleryWebps[g]) deleteRemoteFile(oldGalleryWebps[g], 'Admin: Remove old gallery WebP for ' + name).catch(function() {});
             }
           }
         }
@@ -715,9 +758,15 @@
         await commitFile('data/products.json', json, 'Admin: Delete product "' + p.name + '"');
 
         if (p.image) deleteRemoteFile(p.image, 'Admin: Cleanup image for ' + p.name).catch(function() {});
+        if (p.imageWebp) deleteRemoteFile(p.imageWebp, 'Admin: Cleanup WebP for ' + p.name).catch(function() {});
         if (p.gallery && p.gallery.length) {
           for (var i = 0; i < p.gallery.length; i++) {
             deleteRemoteFile(p.gallery[i], 'Admin: Cleanup gallery for ' + p.name).catch(function() {});
+          }
+        }
+        if (p.galleryWebp && p.galleryWebp.length) {
+          for (var j = 0; j < p.galleryWebp.length; j++) {
+            deleteRemoteFile(p.galleryWebp[j], 'Admin: Cleanup gallery WebP for ' + p.name).catch(function() {});
           }
         }
 

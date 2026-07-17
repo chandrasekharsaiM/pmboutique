@@ -141,3 +141,34 @@
   font-weight: 500;
   margin-top: 16px;
 }
+
+/* Mobile: show captions without hover */
+@media (max-width: 768px) {
+  .g-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .lb-prev {
+    left: 8px;
+  }
+  .lb-next {
+    right: 8px;
+  }
+  .lb-close {
+    top: -44px;
+    right: 0;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-auto-rows: 200px;
+    gap: 8px;
+  }
+  .g-item:nth-child(1) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
