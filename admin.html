@@ -405,8 +405,11 @@
     }
 
     async function commitBinaryFile(path, base64Data, message) {
-      logEntry('Uploading image: ' + path + ' (' + Math.round(base64Data.length * 0.75 / 1024) + 'KB estimated)');
+      logEntry('Uploading image: ' + path + ' (' + Math.round(base64Data.length * 0.75 / 1024) + 'KB)');
       var sha = await getFileSHA(path);
+      if (sha === null) {
+        logEntry('Could not get SHA for ' + path + ' (file may not exist yet, creating new)', 'info');
+      }
       var body = {
         message: message,
         content: base64Data,
@@ -414,8 +417,28 @@
       };
       if (sha) body.sha = sha;
       var result = await ghAPI('PUT', 'repos/' + ghConfig.user + '/' + ghConfig.repo + '/contents/' + path, body);
-      logEntry('Image uploaded: ' + path, 'ok');
+      if (!result || !result.commit) throw new Error('Upload failed for ' + path + ': no commit in response');
+      logEntry('Uploaded: ' + path + ' (commit: ' + result.commit.sha.substring(0,7) + ')', 'ok');
       return result;
+    }
+
+    async function deleteRemoteFile(path, message) {
+      var sha = await getFileSHA(path);
+      if (!sha) { logEntry('Skip delete (not found): ' + path, 'info'); return null; }
+      logEntry('Deleting old image: ' + path);
+      var result = await ghAPI('DELETE', 'repos/' + ghConfig.user + '/' + ghConfig.repo + '/contents/' + path, {
+        message: message,
+        sha: sha,
+        branch: 'main'
+      });
+      logEntry('Deleted: ' + path, 'ok');
+      return result;
+    }
+
+    function uniqueImagePath(slug, index) {
+      var ts = Date.now();
+      if (index === 0) return 'images/products/' + slug + '-' + ts + '.jpg';
+      return 'images/products/' + slug + '-' + ts + '-g' + index + '.jpg';
     }
 
     async function loadProducts() {
@@ -569,48 +592,53 @@
       saveBtn.disabled = true;
 
       try {
+        var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         var imagePath = '';
         var gallery = [];
+        var oldMainPath = '';
+        var oldGalleryPaths = [];
 
         var mainFile = (imageInput.files && imageInput.files.length > 0) ? imageInput.files[0] : null;
         var galleryFiles = (galleryInput.files && galleryInput.files.length > 0) ? Array.from(galleryInput.files).slice(0, 6) : [];
 
-        logEntry('Save start: editId=' + (editId || 'none') + ', mainFile=' + (mainFile ? mainFile.name : 'none') + ', galleryFiles=' + galleryFiles.length + ', urlText=' + (urlText ? 'yes' : 'none'));
-
-        if (mainFile) {
-          showToast('Step 1: Resizing image...', 'success');
-          logEntry('Resizing main image...');
-          var resized = await resizeFile(mainFile, 1200, 1200);
-          if (!resized) throw new Error('Image resize returned null');
-          var base64 = await fileToBase64(resized);
-          if (!base64) throw new Error('Image base64 conversion failed');
-          var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-          var imgPath = 'images/products/' + slug + '.jpg';
-          showToast('Step 2: Uploading image to GitHub...', 'success');
-          await commitBinaryFile(imgPath, base64, 'Admin: Upload ' + name + ' image');
-          imagePath = imgPath;
-          showToast('Step 3: Image uploaded!', 'success');
+        if (editId) {
+          var existing = products.find(function(p) { return p.id === editId; });
+          if (existing) {
+            oldMainPath = existing.image || '';
+            oldGalleryPaths = (existing.gallery || []).slice();
+          }
         }
 
+        logEntry('Save: edit=' + (editId || 'new') + ', newMain=' + (mainFile ? 'yes' : 'no') + ', newGallery=' + galleryFiles.length + ', urlText=' + (urlText ? 'yes' : 'no'));
+
+        if (mainFile) {
+          showToast('Resizing main image...', 'success');
+          var resized = await resizeFile(mainFile, 1200, 1200);
+          if (!resized) throw new Error('Image resize failed');
+          var base64 = await fileToBase64(resized);
+          if (!base64) throw new Error('Image conversion failed');
+          imagePath = uniqueImagePath(slug, 0);
+          showToast('Uploading main image...', 'success');
+          await commitBinaryFile(imagePath, base64, 'Admin: Upload ' + name + ' image');
+        }
+
+        var newGalleryPaths = [];
         if (galleryFiles.length > 0) {
-          showToast('Uploading gallery images...', 'success');
-          var gslug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-          var gStart = existingGalleryImages.length + 1;
+          showToast('Uploading ' + galleryFiles.length + ' gallery images...', 'success');
           for (var i = 0; i < galleryFiles.length; i++) {
-            logEntry('Resizing gallery image ' + (i + 1) + '...');
             var gresized = await resizeFile(galleryFiles[i], 800, 800);
-            if (!gresized) { logEntry('Gallery resize failed for image ' + (i + 1) + ', skipping', 'fail'); continue; }
+            if (!gresized) { logEntry('Gallery resize failed #' + (i+1), 'fail'); continue; }
             var gbase64 = await fileToBase64(gresized);
-            if (!gbase64) { logEntry('Gallery base64 failed for image ' + (i + 1) + ', skipping', 'fail'); continue; }
-            var gimgPath = 'images/products/' + gslug + '-' + (gStart + i) + '.jpg';
-            await commitBinaryFile(gimgPath, gbase64, 'Admin: Upload ' + name + ' gallery ' + (gStart + i));
-            existingGalleryImages.push(gimgPath);
+            if (!gbase64) { logEntry('Gallery base64 failed #' + (i+1), 'fail'); continue; }
+            var gPath = uniqueImagePath(slug, i + 1);
+            await commitBinaryFile(gPath, gbase64, 'Admin: Upload ' + name + ' gallery ' + (i + 1));
+            newGalleryPaths.push(gPath);
           }
         }
 
         if (editId) {
-          imagePath = imagePath || existingMainImage;
-          gallery = existingGalleryImages.slice();
+          imagePath = imagePath || oldMainPath;
+          gallery = existingGalleryImages.concat(newGalleryPaths);
         }
 
         if (!imagePath && urlText) {
@@ -621,10 +649,10 @@
         }
 
         if (!imagePath) {
-          throw new Error('No image provided. Select a file or paste an image URL above.');
+          throw new Error('No image provided. Select a file or paste an image URL.');
         }
 
-        var id = editId || (collection + '-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+        var id = editId || (collection + '-' + slug);
 
         if (editId) {
           var idx = products.findIndex(function(p) { return p.id === editId; });
@@ -643,6 +671,22 @@
         showToast('Saving products.json...', 'success');
         var json = JSON.stringify({ products: products }, null, 2);
         await commitFile('data/products.json', json, 'Admin: ' + (editId ? 'Update' : 'Add') + ' product "' + name + '"');
+
+        if (editId && oldMainPath && oldMainPath !== imagePath) {
+          deleteRemoteFile(oldMainPath, 'Admin: Remove old image for ' + name).catch(function(e) {
+            logEntry('Old image cleanup skipped: ' + e.message, 'info');
+          });
+        }
+        if (editId && oldGalleryPaths.length) {
+          var kept = existingGalleryImages.slice();
+          for (var g = 0; g < oldGalleryPaths.length; g++) {
+            if (kept.indexOf(oldGalleryPaths[g]) === -1) {
+              deleteRemoteFile(oldGalleryPaths[g], 'Admin: Remove old gallery for ' + name).catch(function(e) {
+                logEntry('Old gallery cleanup skipped: ' + e.message, 'info');
+              });
+            }
+          }
+        }
 
         showToast(editId ? 'Product updated!' : 'Product added!', 'success');
         alert(editId ? 'Product updated successfully!' : 'Product added successfully!');
@@ -663,12 +707,20 @@
     async function deleteProduct(id) {
       var p = products.find(function(x) { return x.id === id; });
       if (!p) return;
-      if (!confirm('Delete "' + p.name + '"? This will be committed to GitHub.')) return;
+      if (!confirm('Delete "' + p.name + '"? This will remove it from the site.')) return;
 
       try {
         products = products.filter(function(x) { return x.id !== id; });
         var json = JSON.stringify({ products: products }, null, 2);
         await commitFile('data/products.json', json, 'Admin: Delete product "' + p.name + '"');
+
+        if (p.image) deleteRemoteFile(p.image, 'Admin: Cleanup image for ' + p.name).catch(function() {});
+        if (p.gallery && p.gallery.length) {
+          for (var i = 0; i < p.gallery.length; i++) {
+            deleteRemoteFile(p.gallery[i], 'Admin: Cleanup gallery for ' + p.name).catch(function() {});
+          }
+        }
+
         showToast('Product deleted!', 'success');
         await loadProducts();
       } catch (e) {
