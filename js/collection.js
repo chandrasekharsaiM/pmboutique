@@ -1,12 +1,9 @@
-/* Collection Page — shared product rendering (mobile-first)
-   Data structure:
-     product.productId, product.mainImage, product.designs[]
-     design.designId, design.images[] (flat string paths, exactly 5)
+/* Collection Page — handles BOTH old format (id/image/gallery) and new format (productId/mainImage/designs)
    Flow: Product card → Design modal (6 thumbnails) → Slideshow (5 images, auto-play) */
 (function () {
   'use strict';
 
-  var CACHE_V = '20260717c';
+  var CACHE_V = '20260717d';
   var tagLabels = { new: 'New', bestseller: 'Bestseller', limited: 'Limited', trending: 'Trending' };
 
   function getCollection() {
@@ -35,11 +32,67 @@
       ' onerror="this.style.display=\'none\'">';
   }
 
+  /* ===== Normalize any format into canonical shape ===== */
+  function normalizeProduct(p) {
+    var pid = p.productId || p.id || '';
+    var mainImg = p.mainImage || p.image || '';
+    var designs = [];
+
+    if (p.designs && p.designs.length > 0) {
+      for (var i = 0; i < p.designs.length; i++) {
+        var d = p.designs[i];
+        var images = [];
+        if (d.images && d.images.length > 0) {
+          for (var j = 0; j < d.images.length; j++) {
+            var item = d.images[j];
+            if (typeof item === 'string') {
+              images.push(item);
+            } else if (item && item.jpg) {
+              images.push(item.jpg);
+            }
+          }
+        }
+        designs.push({ designId: d.designId || d.id || ('d-' + i), name: d.name || ('Design ' + (i + 1)), images: images });
+      }
+    } else if (p.gallery && p.gallery.length > 0) {
+      var allImages = [mainImg].concat(p.gallery);
+      var allWebp = [(p.imageWebp || '')].concat(p.galleryWebp || []);
+      var idx = 0;
+      for (var dIdx = 0; dIdx < 6; dIdx++) {
+        var dImages = [];
+        for (var k = 0; k < 5; k++) {
+          var imgIdx = idx % allImages.length;
+          if (allImages[imgIdx]) dImages.push(allImages[imgIdx]);
+          idx++;
+        }
+        if (dImages.length > 0) {
+          designs.push({ designId: 'design_' + (dIdx + 1), name: 'Design ' + (dIdx + 1), images: dImages });
+        }
+      }
+    }
+
+    while (designs.length < 6) {
+      var lastImg = mainImg || (designs.length > 0 && designs[0].images.length > 0 ? designs[0].images[0] : '');
+      var padImages = [];
+      for (var p2 = 0; p2 < 5; p2++) padImages.push(lastImg);
+      designs.push({ designId: 'design_' + (designs.length + 1), name: 'Design ' + (designs.length + 1), images: padImages });
+    }
+
+    return {
+      productId: pid,
+      name: p.name || '',
+      collection: p.collection || '',
+      tag: p.tag || null,
+      order: p.order || 0,
+      mainImage: mainImg,
+      designs: designs.slice(0, 6)
+    };
+  }
+
   var collection = getCollection();
   var grid = document.getElementById('productGrid');
   if (!grid) return;
 
-  /* ---- Render product cards ---- */
   function renderProducts(products) {
     if (!products.length) {
       grid.innerHTML = '<div class="collection-empty">No products found in this collection.</div>';
@@ -48,9 +101,8 @@
 
     var html = '';
     for (var i = 0; i < products.length; i++) {
-      var p = products[i];
+      var p = normalizeProduct(products[i]);
       var tagHtml = p.tag ? '<span class="product-tag tag-' + p.tag + '">' + (tagLabels[p.tag] || p.tag) + '</span>' : '';
-      var designCount = (p.designs || []).length;
       html += '<div class="product-card" data-pid="' + esc(p.productId) + '">' +
         '<div class="product-card-image">' +
           img(p.mainImage, p.name, 600, 750, '', 'lazy') +
@@ -58,7 +110,7 @@
         '</div>' +
         '<div class="product-card-info">' +
           '<h3 class="product-card-title">' + esc(p.name) + '</h3>' +
-          '<p class="product-card-cta">View ' + designCount + ' Designs <i class="fas fa-arrow-right"></i></p>' +
+          '<p class="product-card-cta">View ' + p.designs.length + ' Designs <i class="fas fa-arrow-right"></i></p>' +
         '</div>' +
       '</div>';
     }
@@ -68,18 +120,17 @@
     for (var j = 0; j < cards.length; j++) {
       cards[j].addEventListener('click', function () {
         var pid = this.getAttribute('data-pid');
-        var product = products.find(function (x) { return x.productId === pid; });
-        if (product) openDesignModal(product);
+        var raw = products.find(function (x) { return (x.productId || x.id) === pid; });
+        if (raw) {
+          var normalized = normalizeProduct(raw);
+          openDesignModal(normalized);
+        }
       });
     }
   }
 
-  /* ---- Fetch and render ---- */
   fetch('data/products.json?v=' + Date.now())
-    .then(function (r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    })
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(function (data) {
       var products = (data.products || [])
         .filter(function (p) { return p.collection === collection; })
@@ -90,9 +141,7 @@
       grid.innerHTML = '<div class="collection-empty" style="color:#c0392b">Failed to load products. Please refresh the page.</div>';
     });
 
-  /* ================================================================
-     DESIGN MODAL — shows 6 design thumbnails (first image of each)
-     ================================================================ */
+  /* ===== DESIGN MODAL ===== */
   var currentProduct = null;
 
   window.openDesignModal = function (product) {
@@ -101,27 +150,24 @@
     modalGrid.innerHTML = '';
     document.getElementById('designModalTitle').textContent = product.name;
 
-    var designs = (product.designs || []).slice(0, 6);
+    var designs = product.designs.slice(0, 6);
     for (var i = 0; i < designs.length; i++) {
       var d = designs[i];
-      var cover = (d.images && d.images.length > 0) ? d.images[0] : '';
+      var cover = d.images.length > 0 ? d.images[0] : '';
 
       var wrap = document.createElement('div');
       wrap.className = 'design-modal-img-wrap';
       wrap.setAttribute('data-di', String(i));
-      wrap.innerHTML = img(cover, d.name || 'Design ' + (i + 1), 400, 500, 'design-modal-img', 'lazy');
+      wrap.innerHTML = img(cover, d.name, 400, 500, 'design-modal-img', 'lazy');
 
       var label = document.createElement('div');
       label.className = 'design-label';
-      label.textContent = d.name || 'Design ' + (i + 1);
+      label.textContent = d.name;
       wrap.appendChild(label);
 
-      wrap.addEventListener('click', (function (design, index) {
-        return function (e) {
-          e.stopPropagation();
-          openDesignSlideshow(design, index);
-        };
-      })(d, i));
+      wrap.addEventListener('click', (function (design) {
+        return function (e) { e.stopPropagation(); openDesignSlideshow(design); };
+      })(d));
 
       modalGrid.appendChild(wrap);
     }
@@ -139,19 +185,15 @@
     currentProduct = null;
   };
 
-  /* ================================================================
-     SLIDESHOW / ZOOM — 5 images per design, auto-advancing
-     ================================================================ */
+  /* ===== SLIDESHOW / ZOOM ===== */
   var slides = [], slideIdx = 0;
   var slideTimer = null, slidePaused = false;
 
-  window.openDesignSlideshow = function (design, startIdx) {
+  window.openDesignSlideshow = function (design) {
     slides = (design.images || []).slice(0, 5);
     if (slides.length === 0) return;
-    slideIdx = startIdx || 0;
-    if (slideIdx >= slides.length) slideIdx = 0;
+    slideIdx = 0;
     slidePaused = false;
-
     renderZoomImage();
     renderDots();
     updatePlayBtn();
@@ -170,10 +212,7 @@
     }, 3000);
   }
 
-  function stopAutoPlay() {
-    if (slideTimer) { clearInterval(slideTimer); slideTimer = null; }
-  }
-
+  function stopAutoPlay() { if (slideTimer) { clearInterval(slideTimer); slideTimer = null; } }
   function resetAutoPlay() { stopAutoPlay(); startAutoPlay(); }
 
   function renderZoomImage() {
@@ -184,10 +223,7 @@
       container.id = 'imgZoomContainer';
       container.style.cssText = 'display:flex;align-items:center;justify-content:center;flex:1;min-height:0;';
       var old = document.getElementById('imgZoomSrc');
-      if (old && old.parentElement) {
-        old.parentElement.insertBefore(container, old);
-        old.style.display = 'none';
-      }
+      if (old && old.parentElement) { old.parentElement.insertBefore(container, old); old.style.display = 'none'; }
     }
     container.innerHTML = img(src, 'Image ' + (slideIdx + 1), 1200, 1500, 'zoom-slide-img', 'eager');
     document.getElementById('imgZoomCounter').textContent = (slideIdx + 1) + ' / ' + slides.length;
@@ -205,13 +241,7 @@
     var dots = wrap.querySelectorAll('.zoom-dot');
     for (var d = 0; d < dots.length; d++) {
       dots[d].addEventListener('click', (function (idx) {
-        return function (e) {
-          e.stopPropagation();
-          slideIdx = idx;
-          renderZoomImage();
-          updateDots();
-          resetAutoPlay();
-        };
+        return function (e) { e.stopPropagation(); slideIdx = idx; renderZoomImage(); updateDots(); resetAutoPlay(); };
       })(d));
     }
   }
@@ -220,9 +250,7 @@
     var wrap = document.getElementById('imgZoomDots');
     if (!wrap) return;
     var dots = wrap.querySelectorAll('.zoom-dot');
-    for (var i = 0; i < dots.length; i++) {
-      dots[i].classList.toggle('active', i === slideIdx);
-    }
+    for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('active', i === slideIdx);
   }
 
   function updatePlayBtn() {
@@ -231,86 +259,34 @@
     btn.innerHTML = slidePaused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
   }
 
-  window.toggleSlidePlay = function () {
-    slidePaused = !slidePaused;
-    updatePlayBtn();
-    if (slidePaused) stopAutoPlay();
-    else startAutoPlay();
-  };
+  window.toggleSlidePlay = function () { slidePaused = !slidePaused; updatePlayBtn(); if (slidePaused) stopAutoPlay(); else startAutoPlay(); };
+  window.closeZoom = function () { stopAutoPlay(); document.getElementById('imgZoomOverlay').classList.remove('active'); document.body.style.overflow = ''; };
+  window.zoomPrev = function () { slideIdx = (slideIdx - 1 + slides.length) % slides.length; renderZoomImage(); resetAutoPlay(); };
+  window.zoomNext = function () { slideIdx = (slideIdx + 1) % slides.length; renderZoomImage(); resetAutoPlay(); };
 
-  window.closeZoom = function () {
-    stopAutoPlay();
-    document.getElementById('imgZoomOverlay').classList.remove('active');
-    document.body.style.overflow = '';
-  };
-
-  window.zoomPrev = function () {
-    slideIdx = (slideIdx - 1 + slides.length) % slides.length;
-    renderZoomImage();
-    resetAutoPlay();
-  };
-
-  window.zoomNext = function () {
-    slideIdx = (slideIdx + 1) % slides.length;
-    renderZoomImage();
-    resetAutoPlay();
-  };
-
-  /* ---- Keyboard ---- */
   document.addEventListener('keydown', function (e) {
-    var zoomOpen = document.getElementById('imgZoomOverlay').classList.contains('active');
-    var modalOpen = document.getElementById('designModal').classList.contains('active');
-    if (e.key === 'Escape') {
-      if (zoomOpen) closeZoom();
-      else if (modalOpen) closeDesignModal();
-    }
-    if (zoomOpen) {
-      if (e.key === 'ArrowLeft') zoomPrev();
-      if (e.key === 'ArrowRight') zoomNext();
-    }
+    var z = document.getElementById('imgZoomOverlay').classList.contains('active');
+    var m = document.getElementById('designModal').classList.contains('active');
+    if (e.key === 'Escape') { if (z) closeZoom(); else if (m) closeDesignModal(); }
+    if (z) { if (e.key === 'ArrowLeft') zoomPrev(); if (e.key === 'ArrowRight') zoomNext(); }
   });
 
-  /* ---- Touch / Swipe: Zoom ---- */
   (function () {
     var overlay = document.getElementById('imgZoomOverlay');
     if (!overlay) return;
     var sx = 0, sy = 0, sw = false;
-
-    overlay.addEventListener('touchstart', function (e) {
-      if (e.touches.length !== 1) return;
-      sx = e.touches[0].clientX; sy = e.touches[0].clientY; sw = true;
-    }, { passive: true });
-
-    overlay.addEventListener('touchmove', function (e) {
-      if (!sw) return;
-      var dx = e.touches[0].clientX - sx;
-      var dy = e.touches[0].clientY - sy;
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) e.preventDefault();
-    }, { passive: false });
-
-    overlay.addEventListener('touchend', function (e) {
-      if (!sw) return; sw = false;
-      var dx = e.changedTouches[0].clientX - sx;
-      var dy = e.changedTouches[0].clientY - sy;
-      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
-        dx < 0 ? zoomNext() : zoomPrev();
-      } else if (dy > 80 && Math.abs(dy) > Math.abs(dx)) {
-        closeZoom();
-      }
-    }, { passive: true });
-
+    overlay.addEventListener('touchstart', function (e) { if (e.touches.length !== 1) return; sx = e.touches[0].clientX; sy = e.touches[0].clientY; sw = true; }, { passive: true });
+    overlay.addEventListener('touchmove', function (e) { if (!sw) return; var dx = e.touches[0].clientX - sx; if (Math.abs(dx) > Math.abs(e.touches[0].clientY - sy) && Math.abs(dx) > 10) e.preventDefault(); }, { passive: false });
+    overlay.addEventListener('touchend', function (e) { if (!sw) return; sw = false; var dx = e.changedTouches[0].clientX - sx; var dy = e.changedTouches[0].clientY - sy; if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { dx < 0 ? zoomNext() : zoomPrev(); } else if (dy > 80 && Math.abs(dy) > Math.abs(dx)) { closeZoom(); } }, { passive: true });
     overlay.style.touchAction = 'pan-y';
   })();
 
-  /* ---- Touch / Swipe: Design Modal ---- */
   (function () {
     var modal = document.getElementById('designModal');
     if (!modal) return;
     var content = modal.querySelector('.design-modal-content');
     if (!content) return;
     content.addEventListener('touchstart', function (e) { content._ty = e.touches[0].clientY; }, { passive: true });
-    content.addEventListener('touchend', function (e) {
-      if (e.changedTouches[0].clientY - (content._ty || 0) > 100 && content.scrollTop <= 0) closeDesignModal();
-    }, { passive: true });
+    content.addEventListener('touchend', function (e) { if (e.changedTouches[0].clientY - (content._ty || 0) > 100 && content.scrollTop <= 0) closeDesignModal(); }, { passive: true });
   })();
 })();
