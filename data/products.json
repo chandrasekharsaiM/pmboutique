@@ -43,7 +43,12 @@
         {
           "designId": "design-1784272021037-q6fdb",
           "name": "Design 4",
-          "images": []
+          "images": [
+            "images/products/bridal-lehenga-1784272752881-d3i0.jpg",
+            "images/products/bridal-lehenga-1784272758368-d3i1.jpg",
+            "images/products/bridal-lehenga-1784272762570-d3i2.jpg",
+            "images/products/bridal-lehenga-1784272767217-d3i3.jpg"
+          ]
         },
         {
           "designId": "design-1784272021037-i17o9",
