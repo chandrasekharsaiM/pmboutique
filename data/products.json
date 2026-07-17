@@ -5,26 +5,43 @@
       "name": "Bridal Lehenga",
       "collection": "womens",
       "image": "images/products/bridal-lehenga-1784256425057.jpg",
-      "gallery": [
-        "images/products/bridal-lehenga-1784255919504-g1.jpg",
-        "images/products/bridal-lehenga-1784256427315-g1.jpg",
-        "images/products/bridal-lehenga-1784263679169-g1.jpg",
-        "images/products/bridal-lehenga-1784265226195-g1.jpg",
-        "images/products/bridal-lehenga-1784267074856-g1.jpg",
-        "images/products/bridal-lehenga-1784267202345-g1.jpg",
-        "images/products/bridal-lehenga-1784267226453-g1.jpg",
-        "images/products/bridal-lehenga-1784267464981-g1.jpg"
-      ],
+      "imageWebp": "",
       "tag": "new",
       "order": 1,
-      "imageWebp": "",
-      "galleryWebp": [
-        "images/products/bridal-lehenga-1784263679169-g1.webp",
-        "images/products/bridal-lehenga-1784265226195-g1.webp",
-        "images/products/bridal-lehenga-1784267074856-g1.webp",
-        "images/products/bridal-lehenga-1784267202345-g1.webp",
-        "images/products/bridal-lehenga-1784267226453-g1.webp",
-        "images/products/bridal-lehenga-1784267464981-g1.webp"
+      "designs": [
+        {
+          "id": "d-1784269304598-olhvch",
+          "name": "Design 1",
+          "coverImage": "images/products/bridal-lehenga-1784269328585-d0i0.jpg",
+          "coverImageWebp": "images/products/bridal-lehenga-1784269328585-d0i0.webp",
+          "images": [
+            {
+              "id": "i-1784269330524-mx64no",
+              "jpg": "images/products/bridal-lehenga-1784269328585-d0i0.jpg",
+              "webp": "images/products/bridal-lehenga-1784269328585-d0i0.webp"
+            },
+            {
+              "id": "i-1784269334806-e4t4q0",
+              "jpg": "images/products/bridal-lehenga-1784269332700-d0i1.jpg",
+              "webp": "images/products/bridal-lehenga-1784269332700-d0i1.webp"
+            },
+            {
+              "id": "i-1784269338827-64r9fo",
+              "jpg": "images/products/bridal-lehenga-1784269336853-d0i2.jpg",
+              "webp": "images/products/bridal-lehenga-1784269336853-d0i2.webp"
+            },
+            {
+              "id": "i-1784269342749-6ewr69",
+              "jpg": "images/products/bridal-lehenga-1784269340874-d0i3.jpg",
+              "webp": "images/products/bridal-lehenga-1784269340874-d0i3.webp"
+            },
+            {
+              "id": "i-1784269347064-91t6cp",
+              "jpg": "images/products/bridal-lehenga-1784269344844-d0i4.jpg",
+              "webp": "images/products/bridal-lehenga-1784269344844-d0i4.webp"
+            }
+          ]
+        }
       ]
     },
     {
