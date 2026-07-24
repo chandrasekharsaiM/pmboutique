@@ -61,7 +61,13 @@
         {
           "designId": "design-1784272021037-1gh3p",
           "name": "Design 6",
-          "images": []
+          "images": [
+            "images/products/bridal-lehenga-1784911710725-d5i0.jpg",
+            "images/products/bridal-lehenga-1784911714821-d5i1.jpg",
+            "images/products/bridal-lehenga-1784911719576-d5i2.jpg",
+            "images/products/bridal-lehenga-1784911723678-d5i3.jpg",
+            "images/products/bridal-lehenga-1784911727859-d5i4.jpg"
+          ]
         }
       ]
     },
